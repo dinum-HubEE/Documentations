@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><InsermCertificatAdministrative version="1.00.00">
+	<DateDeces>
+		<Date>2019-03-27</Date>
+	<Heure>16:00:00</Heure>
+		
+	</DateDeces>
+	<Defunt>
+		<Nom>test</Nom>
+		<NomJeuneFille>test</NomJeuneFille>
+		<Prenoms>test</Prenoms>
+		<DateNaissance>1980-12-23</DateNaissance>
+		<Sexe>Feminin</Sexe>
+	</Defunt>
+	<LieuDeces>
+		<Commune>LA ROCHELLE</Commune>
+		
+		<CodePostal>17019</CodePostal>
+	</LieuDeces>
+	<AdresseDomicile>
+		<NumeroRue>1</NumeroRue>
+		<Adresse>test</Adresse>
+		<Commune>RENNES</Commune>
+		
+		<CodePostal>35000</CodePostal>
+	</AdresseDomicile>
+	<InformationsFuneraires>
+		<ObstacleMedicoLegal>false</ObstacleMedicoLegal>
+		<MiseEnBiereImmediate miseenbiere="false">
+			<CercueilHermetique>false</CercueilHermetique>
+			<CercueilSimple>false</CercueilSimple>
+		</MiseEnBiereImmediate>
+		<ObstacleSoinsConservation>false</ObstacleSoinsConservation>
+		<ObstacleDonCorps>false</ObstacleDonCorps>
+		<RechercheCauseDeces>false</RechercheCauseDeces>
+		
+		<PresenceProthesePile>false</PresenceProthesePile>
+		<RetraitProthesePile>false</RetraitProthesePile>
+	</InformationsFuneraires>
+	<Validation>
+		<NNC>ER20190860001</NNC>
+		<CodeFinessOrganisme>170000087</CodeFinessOrganisme>
+		<Medecin>Dr Eloise CERCUEIL</Medecin>
+		<Lieu>LA ROCHELLE</Lieu>
+		<Date>2019-03-27T16:22:59</Date>
+		<CodeDepot>5100-1370-5010-3863</CodeDepot>
+	</Validation>
+	<DoublonVolontaire>false</DoublonVolontaire>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" Id="id-a2a7df24ea268e1b20073d68e5e1dfb3"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/2006/12/xml-c14n11"/><ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><ds:Reference Id="r-id-1" Type="" URI=""><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/TR/1999/REC-xpath-19991116"><ds:XPath>not(ancestor-or-self::ds:Signature)</ds:XPath></ds:Transform><ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><ds:DigestValue>KhEJ/uQRdKff5CxyVPQm0GmjeioT1zyuhHhLzb2tr1E=</ds:DigestValue></ds:Reference><ds:Reference Type="http://uri.etsi.org/01903#SignedProperties" URI="#xades-id-a2a7df24ea268e1b20073d68e5e1dfb3"><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><ds:DigestValue>+F8Usjzn9ccUnyWw12KBZasO043DchG3aunXUKog2M0=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue Id="value-id-a2a7df24ea268e1b20073d68e5e1dfb3">O5V8n+GD+wWOMlZCKP0n5uSWAdiMooddjqdzsoWREizuGwSiVgW5vWeb7waZwszk7Gyx4xCA7gC6g36eiBt/HAuAeiQ5mGiiJKIFn+I8gYop7z1WXgXnoRgKfnxxD/G0w75w8GJ0FBLcbq5J55RE/jJBeg3pOHFfOGCF67j/BhiY7ybWvUhHA+AcGYSYN7TcVwJr5SZu0izq0hUrfprX8DOFeCPOlNP4Zp2EvAWFaBzQMn6RoTt9htT8crI7V3RrvQogd/pC39qrJedgyvC65JGmDxxZ1F3MV91mS9oANW3XKlJZnQAXjgkjI53zrnHGZVqZynLpPpj9eVzAf5aVNg==</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509Certificate>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</ds:X509Certificate></ds:X509Data></ds:KeyInfo><ds:Object><xades:QualifyingProperties xmlns:xades="http://uri.etsi.org/01903/v1.3.2#" Target="#id-a2a7df24ea268e1b20073d68e5e1dfb3"><xades:SignedProperties Id="xades-id-a2a7df24ea268e1b20073d68e5e1dfb3"><xades:SignedSignatureProperties><xades:SigningTime>2019-03-27T15:23:02Z</xades:SigningTime><xades:SigningCertificate><xades:Cert><xades:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>wGkUsLF09BX/buBn9lME7PgIrgU=</ds:DigestValue></xades:CertDigest><xades:IssuerSerial><ds:X509IssuerName>CN=TERENA SSL High Assurance CA 3,O=TERENA,L=Amsterdam,ST=Noord-Holland,C=NL</ds:X509IssuerName><ds:X509SerialNumber>4164800585585130024443422852214149101</ds:X509SerialNumber></xades:IssuerSerial></xades:Cert></xades:SigningCertificate></xades:SignedSignatureProperties><xades:SignedDataObjectProperties><xades:DataObjectFormat ObjectReference="#r-id-1"><xades:MimeType>text/xml</xades:MimeType></xades:DataObjectFormat></xades:SignedDataObjectProperties></xades:SignedProperties></xades:QualifyingProperties></ds:Object></ds:Signature></InsermCertificatAdministrative>
+
+

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PACS xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+	<partenaire1>
+		<civilite>MME</civilite>
+        <nomNaissance>TEST</nomNaissance>
+   		<prenoms>TEST</prenoms>
+   		<codeNationalite>FRA</codeNationalite>
+   		   		   		<jourNaissance>10</jourNaissance>
+   		<moisNaissance>10</moisNaissance>
+   		<anneeNaissance>1994</anneeNaissance>
+   		<LieuNaissance>
+			<localite>NICE</localite>
+			<codePostal>06000</codePostal>
+			<codeInsee>06088</codeInsee>
+			<departement>YVELINES</departement>
+			<codePays>FRA</codePays>
+		</LieuNaissance>
+   		<ofpra>false</ofpra>
+   		<mesureJuridique>false</mesureJuridique>
+   		<adressePostale>
+   					<NumeroLibelleVoie>1</NumeroLibelleVoie>
+								<CodePostal>06000</CodePostal>
+		<Localite>NICE</Localite>
+		<Pays>FRA</Pays>
+   		</adressePostale>
+   		<adresseElectronique>test123456@yopmail.com</adresseElectronique>
+   		   				<titreIdentiteVerifie>true</titreIdentiteVerifie>
+	</partenaire1>
+	<partenaire2>
+		<civilite>MME</civilite>
+        <nomNaissance>TEST</nomNaissance>
+   		<prenoms>TEST</prenoms>
+   		<codeNationalite>FRA</codeNationalite>
+   		   		   		<jourNaissance>12</jourNaissance>
+   		<moisNaissance>02</moisNaissance>
+   		<anneeNaissance>1994</anneeNaissance>
+   		<LieuNaissance>
+			<localite>NICE</localite>
+			<codePostal>06000</codePostal>
+			<codeInsee>06088</codeInsee>
+			<departement>YVELIENS</departement>
+			<codePays>FRA</codePays>
+		</LieuNaissance>
+   		<ofpra>false</ofpra>
+   		<mesureJuridique>false</mesureJuridique>
+   		<adressePostale>
+   					<NumeroLibelleVoie>1</NumeroLibelleVoie>
+								<CodePostal>06000</CodePostal>
+		<Localite>NICE</Localite>
+		<Pays>FRA</Pays>
+   		</adressePostale>
+   		<adresseElectronique>test123456@yopmail.com</adresseElectronique>
+   		   				<titreIdentiteVerifie>true</titreIdentiteVerifie>
+	</partenaire2>
+	<convention>
+						<conventionSpecifique>true</conventionSpecifique>
+			</convention>
+	<residenceCommune>
+								<NumeroLibelleVoie>1</NumeroLibelleVoie>
+								<CodePostal>06000</CodePostal>
+		<Localite>NICE</Localite>
+		<Pays>FRA</Pays>
+	</residenceCommune>
+	<attestationHonneur>
+		<nonParente>true</nonParente>
+		<residenceCommune>true</residenceCommune>
+	</attestationHonneur>
+
+</PACS>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

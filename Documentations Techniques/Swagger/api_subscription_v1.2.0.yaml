@@ -1,0 +1,550 @@
+openapi: 3.0.0
+info:
+  description: This is the swagger describing Subscription API exposed by HubEE.
+  version: 1.1.0
+  title: Subscription
+x-wso2-basePath: /referential/v1
+x-wso2-production-endpoints: "#/x-wso2-endpoints/microservice"
+x-wso2-endpoints:
+  - microservice:
+      urls:
+        - https://microservice/referential/v1
+servers:
+  - url: 'https://apirecettenhube.imfr.cgi.com/referential/v1'
+    description: Serveur REC CGI
+security:
+  - dinum_auth: []
+paths:
+  /subscriptions:
+    parameters:
+      - name: editorName
+        in: header
+        description: Editor name
+        required: false
+        schema:
+          type: string
+          maxLength: 50
+      - name: applicationName
+        in: header
+        description: Application name
+        required: false
+        schema:
+          type: string
+          maxLength: 50
+      - name: softwareVersion
+        in: header
+        description: Software version
+        required: false
+        schema:
+          type: string
+          maxLength: 50
+    post:
+      tags:
+        - Subscription
+      summary: Create a new subscription
+      description: "This method allows the creation of a subscription.<br/> This method is accessible by <b>DATAPASS</b> and <b>ADMIN</b>"
+      operationId: createSubscription
+      security: 
+        - dinum_auth: 
+          - DATAPASS
+          - ADMIN
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Subscription'
+                - type: object
+                  properties:
+                    localAdministrator:
+                      $ref: '#/components/schemas/LocalAdministrator'
+                    delegationActor:
+                      $ref: '#/components/schemas/DelegationActor'
+
+        description: Subscription object that needs to be created
+        required: true
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Subscription'
+                  - type: object
+                    properties:
+                      localAdministrator:
+                        $ref: '#/components/schemas/LocalAdministrator'
+                      delegationActor:
+                        $ref: '#/components/schemas/DelegationActor'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: "#/email: String is not a valid email value, #:processType required key not found"
+        '500':
+          description: Internal server
+    get:
+      tags:
+        - Subscription
+      summary: Find subscriptions by process type
+      description: "This method allows the retrieve of a subscription by its identifier.<br/> This method is accessible by <b>OSL</b> and <b>ADMIN</b>"
+      operationId: listSubscription
+      security: 
+        - dinum_auth: 
+          - OSL
+          - ADMIN
+      parameters:
+        - name: processCode
+          in: query
+          description: Filter - Process code
+          example: CERTDC
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              maxLength: 30
+            
+        - name: status
+          in: query
+          description: Filter - Subscription status
+          example: Actif
+          required: false
+          schema:
+            type: string
+            maxLength: 20
+
+        - name: companyRegister
+          in: query
+          description: Filter - Company register
+          example: 22770001000019
+          required: false
+          schema:
+            type: string
+            pattern: '[0-9]{14}'
+            maxLength: 14
+    
+        - name: delegationActorEmail
+          in: query
+          description: Filter - Delegation Actor Email
+          example: George.DUBOIS@admin.com
+          required: false
+          schema:
+            type: string
+            pattern: ^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$
+            maxLength: 320
+
+        - name: orderBy
+          in: query
+          description: "To order by '<b>accessMode</b>' it is necessary to put <b>asc(access_mode)</b> to have an ascending order or <b>desc(access_mode)</b> for a descending order. <br> Possible values are : id,datapass_id,si_type,si_company_register,si_branch_code,notification_frequency,access_mode,delegation_actor,email,local_admin,rejection_reason,status,activate_date_time,validate_date_time,reject_date_time,end_date_time,update_date_time,process_code"
+          example: asc(access_mode)
+          required: false
+          schema:
+            type: string
+            maxLength: 40
+            
+        - name: offSet
+          in: query
+          description: Offset
+          example: "0"
+          required: false
+          schema:
+            type: integer
+        - name: maxResult
+          in: query
+          description: Max result
+          example: 25
+          required: false
+          schema:
+            type: integer             
+      responses:
+        '200':
+          description: Successful operation
+          headers:
+            Content-Range:
+              schema:
+                type: string
+                example: "Susbscriptions 0-27/100"
+              description: Pagination data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscription'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: "Bad Request : Validation failed.\n[ERROR][REQUEST][GET /referential/v1/subscriptions @query.processType] Query parameter 'processType' is unexpected on path \"/subscriptions\""
+        '500':
+          description: Internal server
+  /subscriptions/{subscriptionId}:
+    parameters:
+      - name: editorName
+        in: header
+        description: Editor name
+        required: false
+        schema:
+          type: string
+          maxLength: 50
+      - name: applicationName
+        in: header
+        description: Application name
+        required: false
+        schema:
+          type: string
+          maxLength: 50
+      - name: softwareVersion
+        in: header
+        description: Software version
+        required: false
+        schema:
+          type: string
+          maxLength: 50
+      - name: subscriptionId
+        in: path
+        description: Subscription id
+        required: true
+        schema:
+          type: string
+          format: uuid
+    put:
+      tags:
+        - Subscription
+      summary: Update an existing subscription
+      description: "This method allows the modification of a subscription by its identifier.<br/> This method is accessible by <b>ADMIN</b>"
+      operationId: updateSubscription
+      security: 
+        - dinum_auth: 
+          - ADMIN
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+        description: Subscription object that needs to be modified
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: "#/email: String is not a valid email value, #:processType required key not found"
+        '404':
+          description: Subscription is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: Subscription is not found
+        '500':
+          description: Internal server
+    get:
+      tags:
+        - Subscription
+      summary: Find a subscription by id
+      operationId: getSubscriptionById
+      description: "This method allows the retrieve of a subscription by its identifier.<br/> This method is accessible by <b>OSL</b> and <b>ADMIN</b>"
+      security: 
+        - dinum_auth: 
+          - OSL
+          - ADMIN
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: "Bad Request : Validation failed.\n[ERROR][REQUEST][GET /referential/v1/subscriptions/23133 @path.subscriptionId] Input string \"23133\" is not a valid UUID"
+        '404':
+          description: Subscription is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: Subscription is not found
+        '500':
+          description: Internal server
+components:
+  securitySchemes:
+    dinum_auth:
+      type: "oauth2"
+      flows:         
+        implicit:
+          authorizationUrl: https://api.example.com/oauth2/authorize
+          scopes: 
+            OSL: osl
+            SI: si
+            ADMIN: admin
+  schemas:
+
+    DelegationActor:
+      properties:
+        firstName:
+          type: string
+          maxLength: 255
+          example: George
+          description: Prénom du délégué technique
+        lastName:
+          type: string
+          maxLength: 255
+          example: DUBOIS
+          description: Nom du délégué technique
+        email:
+          type: string
+          format: email
+          pattern: ^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$
+          example: George.DUBOIS@admin.com
+          description: Adresse email du délégué technique
+          maxLength: 320          
+        function:
+          type: string
+          nullable: true
+          maxLength: 255
+          description: Fonction du délégué technique
+        phoneNumber:
+          type: string
+          nullable: true
+          pattern: ^\+[0-9]{10,20}|[0-9]{10,20}
+          example: '00658475847'
+          description: Numéro de téléphone du délégué technique  
+        mobileNumber:
+          type: string
+          nullable: true
+          pattern: ^\+[0-9]{10,20}|[0-9]{10,20}
+          example: '00658475847'
+          description:  Numéro de téléphone mobile du délégué technique          
+    LocalAdministrator:
+      properties:
+        firstName:
+          type: string
+          maxLength: 255
+          example: George
+          description: Prénom de l'administrateur local
+        lastName:
+          type: string
+          maxLength: 255
+          example: DUBOIS
+          description: Nom de l'administrateur local
+        email:
+          type: string
+          format: email
+          pattern: ^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$
+          example: George.DUBOIS@admin.com
+          description: Adresse email de l'administrateur local
+          maxLength: 320
+        function:
+          type: string
+          maxLength: 255
+          nullable: true
+          description: Fonction de l'administrateur local
+        phoneNumber:
+          type: string
+          nullable: true
+          pattern: ^\+[0-9]{10,20}|[0-9]{10,20}
+          example: '00658475847'
+          description: Numéro de téléphone de l'administrateur local   
+        mobileNumber:
+          type: string
+          nullable: true
+          pattern: ^\+[0-9]{10,20}|[0-9]{10,20}
+          example: '00658475847'
+          description:  Numéro de téléphone mobile de l'administrateur local
+      required:
+      - email
+            
+    Subscription:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          description: Identifiant technique de subscription      
+        datapassId:
+          type: integer
+          format: int64
+          example: 14632
+          description: Identifiant technique de Datapass
+        processCode:
+          type: string
+          maxLength: 30
+          example: CERTDC
+          description: Reference vers la démarche
+        subscriber:
+          $ref: '#/components/schemas/OrganizationIdentifier'
+        accessMode:
+          type: string
+          maxLength: 7  
+          nullable: true
+          description: Modalité d'accès au TD (Portail ou API)
+          enum:
+            - PORTAIL
+            - API
+          example: API
+        notificationFrequency:
+          type: string
+          maxLength: 20
+          description: Fréquence d\'envoi des mails liés à l\'abonnement
+          example: unitaire
+        activateDateTime:
+          type: string
+          format: date-time
+          nullable: true
+          description: Date d'activation
+        validateDateTime:
+          type: string
+          nullable: true
+          format: date-time
+          description: Date de validation
+        rejectDateTime:
+          type: string
+          nullable: true
+          format: date-time
+          description: Date de rejet
+        endDateTime:
+          type: string
+          nullable: true
+          format: date-time
+          description: Date de fin
+        updateDateTime:
+          type: string
+          nullable: true
+          format: date-time
+          description: Date de modification
+        delegationActor:
+          type: object
+          nullable: true
+          properties:
+            email:
+              type: string
+              nullable: true
+              format: email
+              pattern: ^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$
+              example: Pierre.DUBOIS@admin.com
+              description: Adresse email du délégué technique
+              maxLength: 320
+          required:
+          - email
+        rejectionReason:
+          type: string
+          maxLength: 1000          
+          nullable: true
+          description: Motif de rejet si refusé
+        status:
+          type: string
+          maxLength: 20          
+          description: "Statut de l'abonnement : Actif, Inactif, Refusé, Suspendu"
+          example: Actif
+        email:
+          type: string
+          nullable: true
+          format: email
+          example: George.DUBOIS@admin.com
+          description: Adresse email à notifier
+          maxLength: 320
+        localAdministrator:
+          type: object
+          properties:
+            email:
+              type: string
+              format: email
+              pattern: ^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$
+              example: Pierre.DUBOIS@admin.com
+              description: Adresse email de l'administrateur local
+              maxLength: 320
+          required:
+          - email
+      required:
+        - id
+        - datapassId
+        - notificationFrequency
+        - processCode
+        - subscriber
+        - localAdministrator
+        
+    OrganizationIdentifier:
+      type: object
+      properties:
+        type:
+          type: string
+          maxLength: 20
+          description: "Type d'organisation : OSL, SI, Admin (DINUM)"
+          example: SI
+        companyRegister:
+          type: string
+          maxLength: 14
+          description: Code SIRET de l'organisation
+          example: 22770001000019
+          pattern: '[0-9]{14}'
+        branchCode:
+          type: string
+          maxLength: 10
+          description: Code guichet de l'organisation
+          example: 77372
+      required:
+        - type
+        - companyRegister
+        - branchCode   
+    Error:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            properties:
+              code:
+                type: number
+              message:
+                type: string        

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Génération du FLUX XML en sortie -->
+
+<non_PACS xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<identiteDemandeur>
+		<nomNaissance>DJODOM MOTCHEHO</nomNaissance>
+		<prenoms>Francoise , Adelaide</prenoms>
+		<sexe>F</sexe>
+		<jourNaissance>19</jourNaissance>
+		<moisNaissance>01</moisNaissance>
+		<anneeNaissance>1976</anneeNaissance>
+		<lieuNaissance>
+			<localite>BAFOUSSAM</localite>
+			<pays>CAMEROUN</pays>
+		</lieuNaissance>
+		<adressePostale>
+			<numeroLibelleVoie>1 rue jean de vitelle</numeroLibelleVoie>
+			<codePostal>50300</codePostal>
+			<localite>AVRANCHES</localite>
+			<pays>FRANCE</pays>
+		</adressePostale>
+		<adresseElectronique>pacs.scec@diplomatie.gouv.fr</adresseElectronique>
+	</identiteDemandeur>
+	<dateSaisie>2020-09-15T14:33:55</dateSaisie>
+</non_PACS>

@@ -1,0 +1,18 @@
+**************************************************************************************
+* Name of product : 20210107_CGI_HUBEE_API_Swagger
+* Version number : v1.2.0
+* Product Overview : Contrat d'interface du HUB pour les partenaires (OSL/SI/Portail/Datapass)
+* Date of the release : 27/08/2021
+**************************************************************************************
+
+Swagger Folder
+- Ajout de la méthode DELETE /cases/{caseId}/events/{eventId}
+- Diverses corrections ("format: string" corrigé en "type: string", correction d'erreurs 404)
+
+Swagger Subscription
+- Champs localAdministrator.firstName et localAdministrator.lastName rendus facultatifs pour le Portail HubEE
+- Correction de la regexp des numéros de téléphone des objets localAdministrator et delegateActor
+- Description du champ subscription.status complété
+
+Swagger Process
+- Champs timeBeforeFileDeletion, timeBeforeArchiving, timeBeforeFolderDeletion passés en int32

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<InsermDeclarationDeces version="1.00.00">
+	
+	<Annee>2019</Annee>
+	<Ville>LA ROCHELLE</Ville>
+	<Etablissement>HOPITAL SAINT-LOUIS - LA ROCHELLE</Etablissement>
+	<CodeFinessEtablissement>170000087</CodeFinessEtablissement>
+	<DateDeces>
+		<Date>2019-03-27</Date>
+	<Heure>16:00:00</Heure>
+	</DateDeces>
+	
+	<DateRedaction>2019-03-27T16:22:59</DateRedaction>
+	<Defunt>
+		<Nom>test</Nom>
+		<NomJeuneFille>test</NomJeuneFille>
+		<Prenoms>test</Prenoms>
+		<DateNaissance>1980-12-23</DateNaissance>
+		
+		<AdresseDomicile>
+		<Adresse>1 test</Adresse>
+		<Commune>RENNES</Commune>
+		
+		<CodePostal>35000</CodePostal>
+		<Departement>Ile-et-Vilaine</Departement>
+	</AdresseDomicile>
+	</Defunt>
+	
+	<InformationsValidateurs>
+		<NomDeclarant>Baptiste Geffrault</NomDeclarant>
+		<NomOfficier>Eloise CERCUEIL</NomOfficier>
+		<NomMedecin>Dr Eloise CERCUEIL</NomMedecin>
+	</InformationsValidateurs>
+</InsermDeclarationDeces>
+
+
+

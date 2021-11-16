@@ -1,0 +1,449 @@
+{
+	"id": "df1d32bb-0be5-4cf3-9234-a3e942a9aea6",
+	"name": "environnement_bas",
+	"values": [
+		{
+			"key": "environnement",
+			"value": "BAS",
+			"enabled": true
+		},
+		{
+			"key": "baseUrl",
+			"value": "https://apibacasablehubee.imfr.cgi.com",
+			"enabled": true
+		},
+		{
+			"key": "tokenUrl",
+			"value": "https://apibacasablehubee.imfr.cgi.com/token",
+			"enabled": true
+		},
+		{
+			"key": "version",
+			"value": "v1",
+			"enabled": true
+		},
+		{
+			"key": "processCode",
+			"value": "CERTDC",
+			"enabled": true
+		},
+		{
+			"key": "Si1BranchCode",
+			"value": "75108",
+			"enabled": true
+		},
+		{
+			"key": "Si1CompanyRegister",
+			"value": "11001401600015",
+			"enabled": true
+		},
+		{
+			"key": "Si2BranchCode",
+			"value": "38544",
+			"enabled": true
+		},
+		{
+			"key": "Si2CompanyRegister",
+			"value": "21380544300016",
+			"enabled": true
+		},
+		{
+			"key": "Si3BranchCode",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "Si3CompanyRegister",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "SIClientId",
+			"value": "ys07xzGJBJd4Dlq1BO9e1F2Nhj8a",
+			"enabled": true
+		},
+		{
+			"key": "SIClientSecret",
+			"value": "6Wp2kMzkiiRBjwYr5YnKCf6fzTsa",
+			"enabled": true
+		},
+		{
+			"key": "dgsClientId",
+			"value": "2JLvuWJ4A7E9Fc9TazWAHwD0D7Aa",
+			"enabled": true
+		},
+		{
+			"key": "dgsClientSecret",
+			"value": "Uugupl1ALltYJWVZmlvvFnjIJpAa",
+			"enabled": true
+		},
+		{
+			"key": "dilaClientid",
+			"value": "NDhrrIqMutC0D_2ejSM11bnfyjEa",
+			"enabled": true
+		},
+		{
+			"key": "dilaClientSecret",
+			"value": "bzWJBk1AtEnPi8T_lrz5YIMOSLka",
+			"enabled": true
+		},
+		{
+			"key": "DGSToken",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "DILAToken",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "adminToken",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "pofToken",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "nextSIId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "nextSISecret",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "iteration",
+			"value": "0",
+			"enabled": true
+		},
+		{
+			"key": "nextToken",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "nextSIRequest",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "nextBranchCode",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "nextCompanyRegister",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "subscriptionId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "pofClientId",
+			"value": "ys07xzGJBJd4Dlq1BO9e1F2Nhj8a",
+			"enabled": true
+		},
+		{
+			"key": "pofClientSecret",
+			"value": "6Wp2kMzkiiRBjwYr5YnKCf6fzTsa",
+			"enabled": true
+		},
+		{
+			"key": "NiceClientId",
+			"value": "qgE2CulnLtk1h7RfC7wVcwhWpgYa",
+			"enabled": true
+		},
+		{
+			"key": "NiceClientSecret",
+			"value": "TyB10fLH1nnte_iUIRi_JtMn6rUa",
+			"enabled": true
+		},
+		{
+			"key": "siToken1",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "notifToDelete",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "firstName",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "portailClient",
+			"value": "aYIqoWfU0VHPL0LELJdOVNFwDiUa",
+			"enabled": true
+		},
+		{
+			"key": "portailSecret",
+			"value": "EefbMkipZRNOOLu15caX_WAJwQwa",
+			"enabled": true
+		},
+		{
+			"key": "portailToken",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "latestEventCreated",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "latestFolderCreated",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "latestCaseCreatedMairie",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "latestCaseCreatedPOF",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "attachmentId1",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "attachmentId2",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "attachmentId3",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "attachmentId4",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "attachmentId5",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "attachmentId6",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "foldertodelete",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "caseToDelete",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "latestCaseCreated",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "notifToCheck",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "oslNotifId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "SnatedClient",
+			"value": "ZGKOW9KU4IiUSTM4ZJGYS_iFlYIa",
+			"enabled": true
+		},
+		{
+			"key": "SnatedSecret",
+			"value": "dNYKTdfTR4zvuoFjgHPD2CLNrC8a",
+			"enabled": true
+		},
+		{
+			"key": "snatedToken",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "RsaClient",
+			"value": "B3Zkf2FETPfvUplPx5Apqf_WzH4a",
+			"enabled": true
+		},
+		{
+			"key": "RsaSecret",
+			"value": "t_g1FA48U8tiG0JNGc1oWpfBAfsa",
+			"enabled": true
+		},
+		{
+			"key": "rsaToken",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "bodySI1",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "bodyJSON",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "currentOSLToken",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "nbPJ",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "currentPJ",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "currentOSLName",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "CNAFClientId",
+			"value": "jbZflb7Cn7w9YTB8nggGMfPbXxQa",
+			"enabled": true
+		},
+		{
+			"key": "CNAFClientSecret",
+			"value": "JIH8AefrRxclbTPuNWzXOl1Oih8a",
+			"enabled": true
+		},
+		{
+			"key": "CNAFToken",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "currentSIToken",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "notif",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "notifOSL",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "notifSI",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "eventAttach1",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "eventAttach2",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "eventAttach3",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "eventAttach4",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "eventAttach5",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "eventAttach6",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "newSubscriptionId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "pofNotifId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "siToken2",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "mairiecaseId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "mairieeventId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "latestCase",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "actualTNRbranchCode",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "actualTNRcompanyRegister",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "actualTNRprocess",
+			"value": "",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2021-11-16T14:50:48.122Z",
+	"_postman_exported_using": "Postman/9.1.3"
+}

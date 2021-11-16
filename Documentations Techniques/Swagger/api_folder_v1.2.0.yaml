@@ -1,0 +1,1825 @@
+openapi: 3.0.0
+info:
+  description: This is the swagger describing API exposed by HubEE.
+  version: 1.2.0
+  title: Folder
+x-wso2-basePath: /teledossiers/v1
+x-wso2-production-endpoints: '#/x-wso2-endpoints/microservice'
+x-wso2-endpoints:
+  - microservice:
+      urls:
+        - 'https://microservice/teledossiers/v1'
+  - microserviceBinary:
+      urls:
+        - 'https://microservice/teledossiers/v1'
+      advanceEndpointConfig:
+        timeoutInMillis: 300000
+servers:
+  - url: 'https://apirecettenhube.imfr.cgi.com/teledossiers/v1'
+    description: Serveur REC CGI
+paths:
+  /notifications:
+    parameters:
+      - $ref: '#/components/parameters/editorName'
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/softwareVersion'
+    get:
+      tags:
+        - Notifications
+      summary: Find notifications by recipient
+      description: >-
+        This method allows the retrieve of a notifications filtered by
+        recipient.<br/> This method is accessible by <b>OSL</b>, <b>SI</b> and
+        <b>ADMIN</b>
+      security:
+        - dinum_auth:
+            - OSL
+            - SI
+            - ADMIN
+      operationId: listNotification
+      parameters:
+        - name: maxResult
+          in: query
+          description: Max result
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notification'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: "Bad Request : Validation failed.\n[ERROR][REQUEST][GET /teledossiers/v1/notifications @query.maxResult] Instance type (string) does not match any allowed primitive type (allowed: [\"integer\",\"number\"]"
+        '500':
+          description: Internal server
+  '/notifications/{notificationId}':
+    parameters:
+      - $ref: '#/components/parameters/editorName'
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/softwareVersion'
+      - name: notificationId
+        in: path
+        description: Notification id
+        required: true
+        schema:
+          type: string
+          format: uuid
+    delete:
+      tags:
+        - Notifications
+      summary: Delete an existing notification
+      security:
+        - dinum_auth:
+            - OSL
+            - SI
+            - ADMIN
+      description: >-
+        This method allows the deletion of a notification by its
+        identifier.<br/> This method is accessible by <b>OSL</b>, <b>SI</b> and
+        <b>ADMIN</b>
+      operationId: deleteNotification
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: "Bad Request : Validation failed.\n[ERROR][REQUEST][DELETE /teledossiers/v1/notifications/dddddd @path.notificationId] Input string \"dddddd\" is not a valid UUID"
+        '403':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 403
+                        message: "Unauthorized user"
+                        
+        '404':
+          description: Notification is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: "Notification is not found"
+        '500':
+          description: Internal server
+  /folders:
+    parameters:
+      - $ref: '#/components/parameters/editorName'
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/softwareVersion'
+    post:
+      tags:
+        - Folders
+      summary: Create a new folder
+      description: >-
+        This method allows the creation of a folder meta-data.<br/> This method
+        is accessible by <b>OSL</b> and <b>ADMIN</b>
+      operationId: createFolder
+      security:
+        - dinum_auth:
+            - OSL
+            - ADMIN
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Folder'
+        description: Folder object that needs to be created
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: "Bad Request : Validation failed.\n[ERROR][REQUEST][POST /teledossiers/v1/folders @body] Object has missing required properties ([\"applicant\"])"
+        '500':
+          description: Internal server
+  '/folders/{folderId}':
+    parameters:
+      - $ref: '#/components/parameters/editorName'
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/softwareVersion'
+      - name: folderId
+        in: path
+        description: Folder id
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      tags:
+        - Folders
+      summary: Find folder by Id
+      operationId: getFolderById
+      description: >-
+        This method allows the retrieve of a folder by its identifier.<br/> This
+        method is accessible by <b>OSL</b> and <b>ADMIN</b>
+      security:
+        - dinum_auth:
+            - OSL
+            - ADMIN
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: Bad request
+        '403':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 403
+                        message: Unauthorized user
+        '404':
+          description: Folder is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: Folder is not found
+        '500':
+          description: Internal server
+    patch:
+      tags:
+        - Folders
+      summary: Update an existing folder
+      description: >-
+        This method allows the modification of the folder <b>status</b> and
+        <b>closeDateTime</b>.<br/>
+        This method is accessible by <b>OSL</b> and
+        <b>ADMIN</b>.<br/>
+        Update the folder status will not change cases status, except for the "HUBEE_COMPLETED" value at folder creation.<br/>
+        <b>OSL</b> or <b>ADMIN</b> must update the cases status before the folder status.
+      operationId: updateFolder
+      security:
+        - dinum_auth:
+            - OSL
+            - ADMIN
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                globalStatus:
+                  type: string
+                  maxLength: 50
+                  example: HUBEE_COMPLETED
+                  description: Statut global du folder
+                closeDateTime:
+                  type: string
+                  format: date-time
+                  description: Date de clôture
+              required:
+              - globalStatus
+        description: Folder status that needs to be modified
+        required: true
+      responses:
+        '204':
+          description: Successfully updated
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: Bad request
+        '403':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 403
+                        message: Unauthorized user
+        '404':
+          description: Folder is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: Folder is not found
+        '500':
+          description: Internal server
+          
+    post:
+      tags:
+        - Folders
+      summary: Update an existing folder
+      description: >-
+        This method allows the modification of the folder <b>status</b> and
+        <b>closeDateTime</b>.<br/> This method is accessible by <b>OSL</b> and
+        <b>ADMIN</b>
+      operationId: updateFolderWithPost
+      security:
+        - dinum_auth:
+            - OSL
+            - ADMIN
+      parameters:
+        - name: X-HTTP-Method-Override
+          in: header
+          schema:
+            type: string
+            enum:
+              - PATCH
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                globalStatus:
+                  type: string
+                  maxLength: 50
+                  example: HUBEE_COMPLETED
+                  description: Statut global du folder
+                closeDateTime:
+                  type: string
+                  format: date-time
+                  description: Date de clôture
+              required:
+              - globalStatus                  
+        description: Folder status that needs to be modified
+        required: true
+      responses:
+        '204':
+          description: Successfully updated
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: Bad request
+        '403':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 403
+                        message: Unauthorized user
+        '404':
+          description: Folder is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: Folder is not found
+        '405':
+          description: Method not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 405
+                        message: Method not allowed
+        '500':
+          description: Internal server          
+          
+          
+          
+    delete:
+      tags:
+        - Folders
+      summary: Delete an existing folder
+      security:
+        - dinum_auth:
+            - OSL
+            - ADMIN
+      description: >-
+        This method allows the deletion of a folder by its
+        identifier when its globalStatus is <b>HUBEE_RECEIVED</b> and it has no event or notification.<br/> This method is accessible by <b>OSL</b> and
+        <b>ADMIN</b>
+      operationId: deleteFolder
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: Bad request
+        '403':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 403
+                        message: Unauthorized user
+        '404':
+          description: Folder is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: Folder is not found
+        '500':
+          description: Internal server
+
+  '/folders/{folderId}/attachments/{attachmentId}':
+    parameters:
+      - $ref: '#/components/parameters/editorName'
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/softwareVersion'
+      - $ref: '#/components/parameters/digestSHA2'      
+      - name: folderId
+        in: path
+        description: Folder id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: attachmentId
+        in: path
+        description: Attachment id
+        required: true
+        schema:
+          type: string
+          format: uuid
+    put:
+      tags:
+        - Folders
+      summary: Upload a new folder attachment
+      description: >-
+        This method allows the upload of a binary file in the HUB.<br/> This
+        method is accessible by <b>OSL</b> and <b>ADMIN</b>
+      operationId: uploadFolderAttachment
+      x-wso2-production-endpoints: '#/x-wso2-endpoints/microserviceBinary'      
+      security:
+        - dinum_auth:
+            - OSL
+            - ADMIN
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: Bad request
+        '403':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 403
+                        message: Unauthorized user
+        '404':
+          description: Binary meta-data is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: "Binary meta-data is not found"
+        '500':
+          description: Internal server
+  '/cases/{caseId}':
+    parameters:
+      - $ref: '#/components/parameters/editorName'
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/softwareVersion'
+      - name: caseId
+        in: path
+        description: Case id
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      tags:
+        - Cases
+      summary: Find case by id
+      operationId: getCaseById
+      description: >-
+        This method allows the retrieve of a case by its identifier.<br/>
+        This method is accessible by <b>OSL</b>, <b>SI</b> and <b>ADMIN</b>
+      security:
+        - dinum_auth:
+            - OSL
+            - SI
+            - ADMIN
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Case'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: Bad request
+        '403':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 403
+                        message: Unauthorized user
+        '404':
+          description: Case is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: Case is not found
+        '500':
+          description: Internal server
+    patch:
+      tags:
+        - Cases
+      summary: Update an existing case
+      description: >-
+        This method allows the modification of the status of a case.<br/>
+        This method is accessible by <b>OSL</b>, <b>SI</b> and <b>ADMIN</b>.<br/>
+        Update the case status must be followed by the creation of an event to create a notification.
+      operationId: updateCase
+      security:
+        - dinum_auth:
+            - OSL
+            - SI
+            - ADMIN
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: HUBEE_RECEIVED
+                  maxLength: 50
+                  description: Statut global du folder
+      responses:
+        '204':
+          description: Successfully updated
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: Bad request
+        '403':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 403
+                        message: Unauthorized user
+        '404':
+          description: Case is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: Case is not found
+        '500':
+          description: Internal server
+    post:
+      tags:
+        - Cases
+      summary: Update an existing case
+      description: >-
+        This method allows the modification of the status of a case.<br/>
+        This method is accessible by <b>OSL</b>, <b>SI</b> and <b>ADMIN</b>
+      operationId: updateCaseWithPost
+      security:
+        - dinum_auth:
+            - OSL
+            - SI
+            - ADMIN
+      parameters:
+        - name: X-HTTP-Method-Override
+          in: header
+          schema:
+            type: string
+            enum:
+              - PATCH
+          required: true            
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: HUBEE_RECEIVED
+                  maxLength: 50
+                  description: Statut global du folder
+      responses:
+        '204':
+          description: Successfully updated
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: Bad request
+        '403':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 403
+                        message: Unauthorized user
+        '404':
+          description: Case is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: Case is not found
+        '500':
+          description: Internal server          
+  '/cases/{caseId}/attachments/{attachmentId}':
+    parameters:
+      - $ref: '#/components/parameters/editorName'
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/softwareVersion'
+      - name: attachmentId
+        in: path
+        description: Attachment id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: caseId
+        in: path
+        description: Case id
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      tags:
+        - Cases
+      summary: Download attachment
+      operationId: downloadCaseAttachmentById
+      description: >-
+        This method allows the download of a case binary file by its
+        identifier.<br/> This method is accessible by <b>SI</b>, <b>OSL</b> and <b>ADMIN</b>
+      security:
+        - dinum_auth:
+            - SI
+            - OSL
+            - ADMIN
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+                example: binary file
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: Bad request
+        '403':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 403
+                        message: Unauthorized user
+        '404':
+          description: File is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: File is not found
+        '500':
+          description: Internal server
+  '/cases/{caseId}/events':
+    parameters:
+      - $ref: '#/components/parameters/editorName'
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/softwareVersion'
+      - name: caseId
+        in: path
+        description: Case id
+        required: true
+        schema:
+          type: string
+          format: uuid
+    post:
+      tags:
+        - Cases
+      summary: Create a new event
+      description: >-
+        This method allows the addition of a event in the folder.<br/> This
+        method is accessible by <b>OSL</b>, <b>SI</b> and <b>ADMIN</b>
+      operationId: createEvent
+      security:
+        - dinum_auth:
+            - OSL
+            - SI
+            - ADMIN
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+        description: Event object that needs to be created
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: Bad request
+        '403':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 403
+                        message: Unauthorized user
+  '/cases/{caseId}/events/{eventId}':
+    parameters:
+      - $ref: '#/components/parameters/editorName'
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/softwareVersion'
+      - name: caseId
+        in: path
+        description: Folder id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: eventId
+        in: path
+        description: Event id
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      tags:
+        - Cases
+      summary: Find event by Id
+      operationId: getEventById
+      description: >-
+        This method allows the retrieve of a event by its identifier.<br/>
+        This method is accessible by <b>OSL</b>, <b>SI</b> and <b>ADMIN</b>
+      security:
+        - dinum_auth:
+            - OSL
+            - SI
+            - ADMIN
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: Bad request
+        '403':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 403
+                        message: Unauthorized user
+        '404':
+          description: Event is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: event is not found
+        '500':
+          description: Internal server
+    patch:
+      tags:
+        - Cases
+      summary: Update an existing event
+      description: >-
+        This method allows the modification of the status taken into account by
+        the recipient of the event.<br/> This method is accessible by
+        <b>OSL</b>, <b>SI</b> and <b>ADMIN</b>
+      operationId: updateEvent
+      security:
+        - dinum_auth:
+            - OSL
+            - SI
+            - ADMIN
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  maxLength: 11
+                  example: SENT
+                  description: Statut global de l'événement
+      responses:
+        '204':
+          description: Successfully updated
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: Bad request
+                
+        '403':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 403
+                        message: Unauthorized user
+        '404':
+          description: Event is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: event is not found
+        '500':
+          description: Internal server
+    post:
+      tags:
+        - Cases
+      summary: Update an existing event
+      description: >-
+        This method allows the modification of the status taken into account by
+        the recipient of the event.<br/> This method is accessible by
+        <b>OSL</b>, <b>SI</b> and <b>ADMIN</b>
+      operationId: updateEventWithPost
+      security:
+        - dinum_auth:
+            - OSL
+            - SI
+            - ADMIN
+      parameters:
+        - name: X-HTTP-Method-Override
+          in: header
+          schema:
+            type: string
+            enum:
+              - PATCH
+          required: true             
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  maxLength: 11
+                  example: SENT
+                  description: Statut global de l'événement
+      responses:
+        '204':
+          description: Successfully updated
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: Bad request
+                
+        '403':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 403
+                        message: Unauthorized user
+        '404':
+          description: Event is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: event is not found
+        '500':
+          description: Internal server
+    delete:
+      tags:
+        - Cases
+      summary: Delete an existing event
+      security:
+        - dinum_auth:
+            - OSL
+            - SI
+            - ADMIN
+      description: >-
+        This method allows the deletion of an event by its
+        identifier, if the action type is <b>ATTACH_DEPOSIT</b> and the status is <b>IN_PROGRESS</b>.<br/> This method is accessible by <b>OSL</b>, <b>SI</b> and
+        <b>ADMIN</b>
+      operationId: deleteEvent
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: "Bad Request"
+        '403':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 403
+                        message: "Unauthorized user"
+                        
+        '404':
+          description: Event is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: "Event is not found"
+        '500':
+          description: Internal server
+  '/cases/{caseId}/events/{eventId}/attachments/{attachmentId}':
+    parameters:
+      - $ref: '#/components/parameters/editorName'
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/softwareVersion'
+      - $ref: '#/components/parameters/digestSHA2'      
+      - name: caseId
+        in: path
+        description: Case id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: attachmentId
+        in: path
+        description: Attachment id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: eventId
+        in: path
+        description: Event id
+        required: true
+        schema:
+          type: string
+          format: uuid
+    put:
+      tags:
+        - Cases
+      summary: Upload a new event attachment
+      description: >-
+        This method allows the upload of a binary file in the event of a
+        case.<br/> This method is accessible by <b>OSL</b>, <b>SI</b> and
+        <b>ADMIN</b>
+      operationId: uploadEventAttachment
+      x-wso2-production-endpoints: '#/x-wso2-endpoints/microserviceBinary'      
+      security:
+        - dinum_auth:
+            - OSL
+            - SI
+            - ADMIN
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: Bad request
+        '403':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 403
+                        message: Unauthorized user
+        '404':
+          description: Binary meta-data is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: "Binary meta-data is not found"                         
+        '500':
+          description: Internal server
+    get:
+      tags:
+        - Cases
+      summary: Download attachment
+      operationId: downloadEventAttachmentById
+      description: >-
+        This method allows the download of a binary file of a event by its
+        identifier.<br/> This method is accessible by <b>OSL</b>, <b>SI</b> and
+        <b>ADMIN</b>
+      security:
+        - dinum_auth:
+            - OSL
+            - SI
+            - ADMIN
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+                example: binary file
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: Bad request
+        '403':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 403
+                        message: Unauthorized user
+        '404':
+          description: File is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: file is not found
+        '500':
+          description: Internal server
+components:
+  securitySchemes:
+    dinum_auth:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /token
+          scopes:
+            OSL: osl
+            SI: si
+            ADMIN: admin
+  parameters:
+    editorName:  
+      name: editorName
+      in: header
+      description: Editor name
+      required: false
+      schema:
+        type: string
+        maxLength: 50
+    applicationName:  
+      name: applicationName
+      in: header
+      description: Application name
+      required: false
+      schema:
+        type: string
+        maxLength: 50
+    softwareVersion:
+      name: softwareVersion
+      in: header
+      description: Software version
+      required: false
+      schema:
+        type: string
+        maxLength: 50
+    digestSHA2:
+      name: Digest
+      in: header
+      description: File hash value
+      required: false
+      schema:
+        type: string
+        example: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=        
+        
+  schemas:
+    Notification:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Identifiant technique de la notification
+          readOnly: true
+        recipient:
+          $ref: '#/components/schemas/OrganizationIdentifier'
+        transmitter:
+          $ref: '#/components/schemas/OrganizationIdentifier' 
+        processCode:
+          type: string
+          example: CERTDC
+          maxLength: 30
+          description: Code de la démarche
+        caseId:
+          type: string
+          format: uuid
+          nullable: true
+          description: Référence vers le case
+          example: sdeabb0c-5dd1-4ere0-9fg5-22526fb52492
+        eventId:
+          type: string
+          format: uuid
+          nullable: true
+          example: a66abb0c-52d1-4e50-9195-22526fb7ce92
+          description: Référence vers l'event
+        dateTime:
+          type: string
+          format: date-time
+          nullable: true
+          description: Date de création
+      required:
+        - id
+        - recipient
+        - transmitter
+        - processCode
+        - dateTime
+    Applicant:
+      type: object
+      properties:
+        firstName:
+          type: string
+          maxLength: 255
+          example: George
+          description: Prénom du demandeur
+        lastName:
+          type: string
+          maxLength: 255
+          example: DUBOIS
+          description: Nom du demandeur
+        email:
+          type: string
+          format: email
+          nullable: true
+          example: George.DUBOIS@admin.com
+          description: Adresse email du demandeur
+          maxLength: 320
+      required:
+        - firstName
+        - lastName
+    Attachment:
+      type: object
+      properties:
+        id:
+          type: string
+          example: a66abb0c-52d1-4e50-9195-22526fb7ce92
+          format: uuid
+          description: Identifiant technique de la piece jointe
+          readOnly: true
+        status:
+          type: string
+          maxLength: 9
+          readOnly: true
+          example: PENDING
+          description: "Statut sur l'enregistrement du binaire dans le stockage des fichiers. Les valeurs possibles sont : PENDING | RECEIVED | CORRUPTED | REJECTED"
+        fileName:
+          type: string
+          maxLength: 255
+          example: file.pdf
+          description: Nom du fichier
+        type:
+          type: string
+          maxLength: 100
+          example: VA_CertificatdeDeces
+          description: Type
+        size:
+          type: integer
+          example: 1024
+          description: Taille en octets
+        mimeType:
+          type: string
+          maxLength: 255
+          example: application/pdf
+          description: Format du fichier              
+      required:
+        - id
+        - fileName
+        - type
+        - size
+        - mimeType
+        - status
+    Case:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 94b1b09d-b47f-4480-9b48-93b8b36108f2
+          format: uuid
+          description: Identifiant technique du case
+        status:
+          type: string
+          example: HUBEE_NOTIFIED
+          maxLength: 15
+          description: Statut du case. Les valeurs possibles sont HUBEE_NOTIFIED, SENT, SI_RECEIVED, SI_INTG_ERROR, IN_PROGRESS, ADD_AWAITING, REFUSED, DONE, et CLOSED
+        recipient:
+          $ref: '#/components/schemas/OrganizationIdentifier'
+        externalId:
+          type: string
+          maxLength: 30
+          description: Numéro de case renseigné par l'OSL
+          example: DGS-CERTDC-0000000000001-01
+        updateDateTime:
+          type: string
+          format: date-time
+          nullable: true
+          description: Date de modification
+        transmissionDateTime:
+          type: string
+          format: date-time
+          nullable: true
+          readOnly: true
+          description: Date de transmission  
+        processCode:
+          type: string
+          example: RSA
+          maxLength: 30
+          description: Code de la démarche
+        createDateTime:
+          type: string
+          format: date-time
+          description: Date de création
+        closeDateTime:
+          type: string
+          format: date-time
+          nullable: true
+          description: Date de clôture
+        partnerAttributes:
+          type: string
+          nullable: true
+          maxLength: 1024
+          description: Messages techniques entre l'OSL et le SI
+          example: 'statut=17;type=SIGNALEMENT'
+        applicant:
+            $ref: '#/components/schemas/Applicant'  
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+      required:
+      - id
+      - status
+      - recipient
+      - externalId
+      - processCode
+      - createDateTime           
+    Folder:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Identifiant technique du TD
+          readOnly: true
+        globalStatus:
+          type: string
+          example: HUBEE_RECEIVED
+          maxLength: 15
+          description: Statut global du TD. Les valeurs possibles sont HUBEE_RECEIVED, HUBEE_COMPLETED, HUBEE_NOTIFIED, SENT, SI_RECEIVED, IN_PROGRESS, ADD_AWAITING, REFUSED, DONE, et CLOSED
+          readOnly: true
+        processCode:
+          type: string
+          example: RSA
+          maxLength: 30
+          description: Code de la démarche
+        createDateTime:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date de création
+        closeDateTime:
+          type: string
+          format: date-time
+          nullable: true
+          description: Date de clôture          
+        applicant:
+          $ref: '#/components/schemas/Applicant'
+        externalId:
+          type: string
+          example: DGS-CERTDC-0000000000001
+          maxLength: 30
+          description: Numéro de TD renseigné par l'OSL
+        updateDateTime:
+          type: string
+          format: date-time
+          nullable: true
+          readOnly: true
+          description: Date et heure de la mise à jour
+        partnerInfo:
+          nullable: true        
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/PartnerInfo'          
+        cases:
+          type: array
+          minLength: 1
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                example: d7923df5-c071-400e-87b5-f0d01d539aa5
+                description: Identifiant technique du case
+                readOnly: true
+              status:
+                type: string
+                maxLength: 15
+                example: HUBEE_NOTIFIED
+                readOnly: true
+                description: Statut du télédossier
+              recipient:
+                $ref: '#/components/schemas/OrganizationIdentifier'
+              externalId:
+                type: string
+                maxLength: 100
+                description: Numéro de case renseigné par l'OSL
+                example: DGS-CERTDC-0000000000001-01
+              updateDateTime:
+                type: string
+                format: date-time
+                nullable: true
+                readOnly: true                
+                description: Date de modification
+              transmissionDateTime:
+                type: string
+                format: date-time
+                readOnly: true
+                nullable: true
+                description: Date de transmission
+              partnerAttributes:
+                type: string
+                nullable: true
+                maxLength: 1024
+                description: Messages techniques entre l'OSL et le SI
+                example: 'statut=17;type=SIGNALEMENT'
+            required:
+              - id
+              - externalId
+              - status
+              - recipient
+        attachments:
+          type: array
+          minLength: 1
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Attachment'
+              - type: object
+                required: 
+                  - recipients                
+                properties:
+                  recipients:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: string
+                      description: Liste des external Id des Cases
+                    example:
+                      - 'DGS-CERTDC-0000000000001-01'
+                      - 'DGS-CERTDC-0000000000002-02' 
+      required:
+        - id
+        - externalId
+        - globalStatus
+        - cases
+        - attachments
+        - applicant
+        - processCode
+        - createDateTime
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+          example: a66abb0c-52d1-4e50-9195-22526fb7ce92
+          format: uuid
+          description: Identifiant technique de l'event
+          readOnly: true
+        transmitter:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/OrganizationIdentifier'
+        message:
+          type: string
+          example: OK
+          maxLength: 1000
+          nullable: true
+          description: Message saisi
+        comment:
+          type: string
+          example: OK
+          maxLength: 1000
+          nullable: true
+          description: Commentaire interne saisi. Ce champ est à destination des SI uniquement, et non aux OSL
+        actionType:
+          type: string
+          example: STATUS_UPDATE, ATTACH_DEPOSIT, ATTACH_DL, ATTACH_DL_ALL, COM_ADD, SENDING_MESSAGE
+          maxLength: 100
+          nullable: true
+          description: Nature de l'action effectuée
+        author:
+          type: string
+          example: George DUBOIS 
+          maxLength: 255
+          nullable: true
+          description: "Auteur de l'action associée à l'événement"
+        notification:
+          type: boolean
+          nullable: true
+          description: Créé une notification pour le SI ou l'OSL
+        createDateTime:
+          type: string
+          nullable: true
+          format: date-time
+          readOnly: true
+          description: Date et heure de la creation
+        updateDateTime:
+          type: string
+          nullable: true
+          format: date-time
+          readOnly: true
+          description: Date et heure de la mise à jour
+        status:
+          type: string
+          maxLength: 8
+          description: Statut de prise en compte du message
+          readOnly: true
+          example: SENT ou RECEIVED
+        caseCurrentStatus:
+          type: string
+          maxLength: 15
+          nullable: true
+          description: Statut courant du case au moment de l'evenement
+          example: HUBEE_NOTIFIED
+        caseNewStatus:
+          type: string
+          maxLength: 15
+          nullable: true
+          description: Statut du case a la sortie de l'evenement
+          example: HUBEE_COMPLETED
+        partnerAttributes:
+          type: string
+          nullable: true
+          maxLength: 1024
+          description: Messages techniques entre l'OSL et le SI
+          example: 'statut=17;type=SIGNALEMENT'
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+        partnerInfo:
+          nullable: true        
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/PartnerInfo'             
+      required:
+        - id
+        - transmitter
+        - createDateTime
+        - updateDateTime
+        - actionType
+        - notification
+        - status            
+    OrganizationIdentifier:
+      type: object
+      properties:
+        type:
+          type: string
+          maxLength: 20
+          description: "Type d'organisation : OSL, SI, Admin (DINUM)"
+          example: SI
+        companyRegister:
+          type: string
+          maxLength: 14
+          description: Code SIRET de l'organisation
+          example: 22770001000019
+          pattern: '[0-9]{14}'
+        branchCode:
+          type: string
+          maxLength: 10
+          description: Code guichet de l'organisation
+          example: 77372
+      required:
+        - type
+        - companyRegister
+        - branchCode
+    PartnerInfo:
+      type: object
+      properties:
+        editorName:
+          type: string
+          maxLength: 50
+          description: Editor name
+          readOnly: true
+          nullable: true
+        applicationName:  
+          description: Application name
+          type: string
+          maxLength: 50
+          readOnly: true
+          nullable: true
+        softwareVersion:
+          description: Software version
+          type: string
+          maxLength: 50
+          readOnly: true
+          nullable: true
+    Error:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            properties:
+              code:
+                type: number
+              message:
+                type: string

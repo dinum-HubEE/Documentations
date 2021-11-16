@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<EnveloppeMetierType canal_utilise="0">
+	<DemandeActe>
+		<TypeActe>
+			<Code>NAISSANCE</Code>
+			<Libelle>Acte de naissance</Libelle>
+		</TypeActe>
+		<NatureActe>
+			<Code>COPIE-INTEGRALE</Code>
+			<Libelle>Copie intégrale</Libelle>
+		</NatureActe>
+		<DateActe>1962-08-24</DateActe>
+		<LieuActe>
+						<CodePostal>06000</CodePostal>
+			<Ville>NICE</Ville>
+			<CodeINSEE>06088</CodeINSEE>
+		</LieuActe>
+		<NombreExemplaires>1</NombreExemplaires>
+		<MotifDemande>
+			<Libelle>Autre</Libelle>
+			<Commentaire>Autre</Commentaire>
+		</MotifDemande>
+		<Demandeur>
+			<QualiteDemandeur>
+				<Code>PersonneConcernee</Code>
+				<Libelle>La personne concernée par l&apos;acte</Libelle>
+			</QualiteDemandeur>
+			<Civilite>MADAME</Civilite>
+			<Nom>L&apos;heritier</Nom>
+	        <Prenom>Angela Claire Louise</Prenom>
+			<AdresseFrancaise>
+												<Voie>20 RUE PIERRE SEGURAN</Voie>
+								<CodePostal>06300</CodePostal>
+				<Ville>NICE</Ville>
+			</AdresseFrancaise>
+			<Courriel>wossewodda-3728@yopmail.com</Courriel>
+					</Demandeur>
+		<Titulaire>
+			<Civilite>MADAME</Civilite>
+			<NomNaissance>DUBOIS</NomNaissance>
+			<Prenoms>Angela Claire Louise</Prenoms>
+			<DateDeNaissance>1962-08-24</DateDeNaissance>
+            <LieuDeNaissance>NICE</LieuDeNaissance>
+            <DepartementDeNaissance>Paris</DepartementDeNaissance>
+			
+	</Titulaire>
+	</DemandeActe>
+</EnveloppeMetierType>
+
+
+
+

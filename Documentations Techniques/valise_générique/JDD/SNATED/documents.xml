@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SNATED xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="snated.xsd"> 
+    <INTRO>
+        <VERSIONXSD>0.4</VERSIONXSD>
+	<DATEXPORT>2020-12-15</DATEXPORT>
+    </INTRO>
+    <IP>
+        <NUMAPPEL>2081257</NUMAPPEL>
+        <TYPE>1</TYPE>
+        <CODEDEPT>10</CODEDEPT><!-- Non défini -->
+        <CODEDEPT_AUTRE>00</CODEDEPT_AUTRE><!-- Non défini -->
+        <NUMDEJA>0</NUMDEJA>
+        <DATEAPPEL>2012-09-04T10:29:34</DATEAPPEL>
+        <NOM_CORRESPONDANT/>
+        <PRENOM_CORRESPONDANT/>
+        <FAX_CORRESPONDANT/>
+        <DUREEAPPEL>PT0H0M0S</DUREEAPPEL>
+        <NOM_COORDONNATEUR/>
+        <PRENOM_COORDONNATEUR/>
+        <CONTACT_SERVICE_URGENCE/>
+        <URGENT/>
+        <NUMECOUTANT/>
+        <ENFANTS>
+            <ENFANT>
+                <IDENFANT>548371</IDENFANT>
+                <NOM_ENFANT/>
+                <PRENOM_ENFANT/>
+                <AGE_AN_ENFANT>0</AGE_AN_ENFANT>
+                <AGE_MOIS_ENFANT>0</AGE_MOIS_ENFANT>
+                <TRANCHE_AGE_ENFANT>0</TRANCHE_AGE_ENFANT><!--  -->
+                <SEXE_ENFANT>0</SEXE_ENFANT><!--    -->
+                <ADRESSE_ENFANT/>
+                <VILLE_ENFANT/>
+                <CP_ENFANT/>
+                <TEL1_ENFANT/>
+                <TEL2_ENFANT/>
+                <LIEUVIE>0</LIEUVIE><!--  -->
+            </ENFANT>
+        </ENFANTS>
+        <AUTEURS>
+            <AUTEUR>
+                <IDAUTEUR>548372</IDAUTEUR>
+                <NOM_AUTEUR/>
+                <PRENOM_AUTEUR/>
+                <TRANCHE_AGE_AUTEUR>0</TRANCHE_AGE_AUTEUR><!--  -->
+                <SEXE_AUTEUR>0</SEXE_AUTEUR><!--    -->
+                <ADRESSE_AUTEUR/>
+                <VILLE_AUTEUR/>
+                <CP_AUTEUR/>
+                <TEL1_AUTEUR/>
+                <TEL2_AUTEUR/>
+            </AUTEUR>
+        </AUTEURS>
+        <APPELANTS>
+            <APPELANT>
+                <IDAPPELANT>1</IDAPPELANT>
+                <NOM_APPELANT/>
+                <PRENOM_APPELANT/>
+                <TRANCHE_AGE_APPELANT>7</TRANCHE_AGE_APPELANT><!-- Adulte  -->
+                <SEXE_APPELANT>3</SEXE_APPELANT><!--   Adulte  Féminin Mère  -->
+                <QUALITE_APPELANT>95</QUALITE_APPELANT><!-- Mère  -->
+                <ADRESSE_APPELANT/>
+                <VILLE_APPELANT/>
+                <CP_APPELANT/>
+                <TEL1_APPELANT/>
+                <TEL2_APPELANT/>
+            </APPELANT>
+        </APPELANTS>
+        <OBJET>1</OBJET><!-- Situation d'enfant en danger ou en risque de l'être -->
+        <SITUATIONS>
+            <SITUATION>
+                <IDENFANT>548371</IDENFANT>
+                <IDAUTEUR>548372</IDAUTEUR>
+                <QUALITE>105</QUALITE><!-- Autre membre de la famille -->
+                <DANGERS>
+                    <DANGER>4</DANGER><!-- Négligence lourde envers l'enfant -->
+                </DANGERS>
+            </SITUATION>
+        </SITUATIONS>
+        <RAPPORT>Situation fictive générée pour tester le dépot sur la PEC
+        </RAPPORT>
+        <ORIENTATIONS>
+        </ORIENTATIONS>
+    </IP>
+</SNATED>

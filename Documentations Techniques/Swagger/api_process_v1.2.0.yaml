@@ -1,0 +1,422 @@
+openapi: 3.0.0
+info:
+  description: This is the swagger describing Process API exposed by HubEE.
+  version: 1.2.0
+  title: Process
+x-wso2-basePath: /referential/v1
+x-wso2-production-endpoints: "#/x-wso2-endpoints/microservice"
+x-wso2-endpoints:
+  - microservice:
+      urls:
+        - https://microservice/referential/v1
+servers:
+  - url: 'https://apirecettenhube.imfr.cgi.com/referential/v1'
+    description: Serveur REC CGI
+security:
+  - dinum_auth: []
+paths:
+  /processes:
+    parameters:
+      - $ref: '#/components/parameters/editorName'
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/softwareVersion'
+    post:
+      tags:
+        - Process
+      summary: Create a new process
+      description: "This method allows the creation of a process.<br/> This method is accessible by <b>ADMIN</b>"
+      operationId: createProcess
+      security: 
+        - dinum_auth: 
+          - ADMIN
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Process'
+        description: Process object that needs to be created
+        required: true
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Process'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: "#/email: String is not a valid email value, #:processType required key not found"
+        '500':
+          description: Internal server
+    get:
+      tags:
+        - Process
+      summary: Find processes
+      description: "This method allows the retrieve of a process by its identifier.<br/> This method is accessible by <b>ADMIN</b>"
+      operationId: listProcess
+      security: 
+        - dinum_auth: 
+          - ADMIN
+      parameters:
+        - $ref: '#/components/parameters/editorName'
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/softwareVersion'
+        - $ref: '#/components/parameters/companyRegister'
+        - $ref: '#/components/parameters/orderBy'        
+      responses:
+        '200':
+          description: Successful operation
+          headers:
+            Content-Range:
+              schema:
+                type: string
+                example: "Susbscriptions 0-27/100"
+              description: Pagination data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Process'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: "#/processType: Integer is not a valid value"
+        '500':
+          description: Internal server
+  /processes/{code}:
+    parameters:
+        - $ref: '#/components/parameters/editorName'
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/softwareVersion'
+        - $ref: '#/components/parameters/code'
+    put:
+      tags:
+        - Process
+      summary: Update an existing process
+      description: "This method allows the modification of a process by its identifier.<br/> This method is accessible by <b>ADMIN</b>"
+      operationId: updateProcess
+      security: 
+        - dinum_auth: 
+          - ADMIN
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Process'
+        description: Process object that needs to be modified
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Process'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: "#/email: String is not a valid email value, #:processType required key not found"
+        '404':
+          description: Process is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: Process is not found
+        '500':
+          description: Internal server
+    get:
+      tags:
+        - Process
+      summary: Find a process by code
+      operationId: getProcessById
+      description: "This method allows the retrieve of a process by its identifier.<br/> This method is accessible by <b>OSL</b> and <b>ADMIN</b>"
+      security: 
+        - dinum_auth: 
+          - ADMIN
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Process'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 400
+                        message: "#/processId: String is not a valid Integer value"
+        '404':
+          description: Process is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                example1:
+                  value:
+                    errors:
+                      - code: 404
+                        message: Process is not found
+        '500':
+          description: Internal server
+components:
+
+  securitySchemes:
+    dinum_auth:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /token
+          scopes:
+            ADMIN: admin
+
+  parameters:
+    editorName:  
+      name: editorName
+      in: header
+      description: Editor name
+      required: false
+      schema:
+        type: string
+        maxLength: 50
+    applicationName:  
+      name: applicationName
+      in: header
+      description: Application name
+      required: false
+      schema:
+        type: string
+        maxLength: 50
+    softwareVersion:
+      name: softwareVersion
+      in: header
+      description: Software version
+      required: false
+      schema:
+        type: string
+        maxLength: 50  
+    offset:
+      name: offset
+      in: query
+      description: filter
+      required: false
+      example: 0
+      schema:
+        type: integer
+    maxResult:      
+      name: maxResult
+      in: query
+      description: filter
+      required: false
+      example: 25
+      schema:
+        type: integer
+    orderBy:      
+      name: orderBy
+      in: query
+      description: "To order by <b>'subscriptionValidation'</b> it is necessary to put <b>'subscription_validation'</b>. <br> Possible values are :</br> code, name, description, is_activated, subscription_validation, osl_type, osl_company_register, osl_branch_code, attachments_max_size, time_before_archiving, time_before_deletion, message_transmitter, attachments_types and attachments_formats:"
+      example: status
+      required: false
+      schema:
+        type: string
+        maxLength: 20
+    code:
+      name: code
+      in: path
+      description: filter
+      example: CERTDC
+      required: true
+      schema:
+        type: string 
+    companyRegister:
+      name: companyRegister
+      in: query
+      description: "Filter : Organization company register"
+      example: 22770001000019
+      schema:  
+        type: string
+        maxLength: 14
+        pattern: '[0-9]{14}'
+
+  schemas:
+        
+    Process:
+      type: object
+      properties:
+        code:
+          type: string
+          example: CERTDC
+          maxLength: 30
+          description: Code de la démarche      
+        name:
+          type: string
+          example: Certificat de décès électronique
+          maxLength: 100
+          description: Nom de la démarche
+        description:
+          type: string
+          nullable: true
+          example: Transmission électronique du volet administratif du Certificat de décès
+          maxLength: 1000
+          description: Description de la démarche
+        isActivated:
+          type: boolean
+          description: Statut de la démarche
+        osl:
+          $ref: '#/components/schemas/OrganizationIdentifier'          
+        attachmentFormatsEnabled:
+          type: array
+          minLength: 1
+          description: Liste des formats de fichiers acceptés pour la démarche
+          items:
+            type: string
+            maxLength: 255
+            example: "application/pdf, application/xml"
+        attachmentTypesEnabled:
+          type: array
+          minLength: 1
+          description: Liste des types de pièces jointes acceptés pour la démarche
+          items:
+            type: string
+            maxLength: 100
+            example: "VA_CertificatdeDeces, DD_Certificatdedeces"
+        attachmentMaxSizeEnabled:
+          type: integer
+          example: 1024
+          description: Taille maximale des fichiers autorisée pour la démarche en octets
+        statusBeforeFileDeletion:
+          type: string
+          maxLength: 15
+          example: "SI_RECEIVED"
+          description: Statut du case avant purge des fichiers binaire du stockage Objet
+        timeBeforeFileDeletion:
+          type: integer
+          example: 1
+          format: int32
+          description: Délai en jour au statut statusBeforeFileDeletion avant purge des fichiers binaires du stockage Objet
+        timeBeforeArchiving:
+          type: integer
+          example: 1
+          format: int32
+          description: Délai en jour au statut "CLOSED" avant archivage d'un télédossier à cette démarche
+        timeBeforeFolderDeletion:
+          type: integer
+          example: 30
+          format: int32
+          description: Délai en jour au statut "ARCHIVED" avant suppression d’un télédossier à cette démarche
+        messageToTransmitter:
+          type: boolean
+          description: Envoi possible de message à l'OSL pour la démarche
+        subscriptionValidation:
+          type: string
+          maxLength: 6
+          description: Modalité de validation des abonnements à la démarche
+          enum:
+            - Auto
+            - Manual
+        creationDateTime:
+          type: string
+          format: date-time
+          nullable: true
+          readOnly: true
+          description: Date de création
+        updateDateTime:
+          type: string
+          format: date-time
+          nullable: true
+          readOnly: true
+          description: Date de dernière modification
+        legalJustification:
+          type: string
+          maxLength: 1000
+          nullable: true
+          description: Justification réglementaire de la démarche
+      required:
+        - name
+        - isActivated
+        - osl
+        - attachmentFormatsEnabled
+        - attachmentTypesEnabled
+        - timeBeforeArchiving
+        - messageToTransmitter
+        - subscriptionValidation
+        - attachmentMaxSizeEnabled
+        - statusBeforeFileDeletion
+        - timeBeforeFileDeletion
+        - timeBeforeFolderDeletion
+        - creationDateTime
+        - code
+        
+    OrganizationIdentifier:
+      type: object
+      properties:
+        type:
+          type: string
+          maxLength: 20
+          description: "Type de l'organisation : OSL, SI, Admin (DINUM)"
+          example: SI
+        companyRegister:
+          type: string
+          maxLength: 14
+          description: Code SIRET de l'organisation
+          example: 22770001000019
+          pattern: '[0-9]{14}'
+        branchCode:
+          type: string
+          maxLength: 10
+          description: Code guichet de l'organisation
+          example: 77372
+      required:
+        - type
+        - companyRegister
+        - branchCode
+    Error:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            properties:
+              code:
+                type: number
+              message:
+                type: string        
