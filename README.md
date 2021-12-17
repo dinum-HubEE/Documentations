@@ -4,19 +4,25 @@
 
 
 
-# Espace de documentation de HUBEE
+# Projet HUBEE
 
-## [Documentations Fonctionnelles](https://github.com/dinum-HubEE/Documentations/tree/main/Documentations%20Fonctionnelles)
+## Nous contacter
+- Assistance : support@hubee.numerique.gouv.fr
+- Contact : contact@hubee.numerique.gouv.fr
 
-## Documentations Techniques
+## Documentations
+- [Documentations Fonctionnelles](https://github.com/dinum-HubEE/Documentations/tree/main/Documentations%20Fonctionnelles)
+- [Documentations Techniques](https://github.com/dinum-HubEE/Documentations/tree/main/Documentations%20Techniques)
 
 ## Contrat d'interface
   
 ### Swagger
 Pour les opérateurs de services en ligne :
+- [Folder](https://github.com/dinum-HubEE/Documentations/tree/main/Documentations%20Techniques/Swagger)
 - [Organization](https://github.com/dinum-HubEE/Documentations/tree/main/Documentations%20Techniques/Swagger)
 - [Processes](https://github.com/dinum-HubEE/Documentations/tree/main/Documentations%20Techniques/Swagger)
 - [Subscriptions](https://github.com/dinum-HubEE/Documentations/tree/main/Documentations%20Techniques/Swagger)
+
 Pour les services instructeurs :
 - [Folder](https://github.com/dinum-HubEE/Documentations/tree/main/Documentations%20Techniques/Swagger)
 
