@@ -1,0 +1,70 @@
+name: Zipping files
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Create GitHub release ${{ github.run_number }}
+      id: create-new-release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.run_number }}
+        release_name: HUBEE-Documentation-${{ github.run_number }}
+        
+        
+    - name: zipping folders
+      run: |
+        zip -r DocumentationsTechniques.zip 'Documentations Techniques'
+        zip -r DocumentationsFonctionnelles.zip 'Documentations Fonctionnelles'
+        cd 'Documentations Techniques'
+        zip -r swagger.zip Swagger
+        mv swagger.zip ../swagger.zip
+        zip -r valiseGenerique.zip valise_générique
+        mv valiseGenerique.zip ../valiseGenerique.zip
+        
+    - name: Fixing swagger ${{ github.run_number }}
+      uses: actions/upload-release-asset@v1
+      env:
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+        asset_path: swagger.zip
+        asset_name: swagger.zip
+        asset_content_type: application/zip
+        
+        
+    - name: Fixing valiseGenerique ${{ github.run_number }}
+      uses: actions/upload-release-asset@v1
+      env:
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+        asset_path: valiseGenerique.zip
+        asset_name: valiseGenerique.zip
+        asset_content_type: application/zip
+    
+    - name: Fixing Documentations techniques ${{ github.run_number }}
+      uses: actions/upload-release-asset@v1
+      env:
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+        asset_path: DocumentationsTechniques.zip
+        asset_name: DocumentationsTechniques.zip
+        asset_content_type: application/zip
+        
+    - name: Fixing Documentations fonctionnelles ${{ github.run_number }}
+      uses: actions/upload-release-asset@v1
+      env:
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+        asset_path: DocumentationsFonctionnelles.zip
+        asset_name: DocumentationsFonctionnelles.zip
+        asset_content_type: application/zip
