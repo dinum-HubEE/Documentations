@@ -7,7 +7,6 @@
 # Projet HUBEE
 
 ## Nous contacter
-- Assistance : support@hubee.numerique.gouv.fr
 - Contact : contact@hubee.numerique.gouv.fr
 
 ## Documentations
