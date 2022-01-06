@@ -6,11 +6,11 @@
 	<Etablissement>HOPITAL SAINT-LOUIS - LA ROCHELLE</Etablissement>
 	<CodeFinessEtablissement>170000087</CodeFinessEtablissement>
 	<DateDeces>
-		<Date>2019-03-27</Date>
-	<Heure>16:00:00</Heure>
+		<Date>2021-10-26</Date>
+	<Heure>10:00:00</Heure>
 	</DateDeces>
 	
-	<DateRedaction>2019-03-27T16:22:59</DateRedaction>
+	<DateRedaction>2021-10-26T12:22:59</DateRedaction>
 	<Defunt>
 		<Nom>test</Nom>
 		<NomJeuneFille>test</NomJeuneFille>
