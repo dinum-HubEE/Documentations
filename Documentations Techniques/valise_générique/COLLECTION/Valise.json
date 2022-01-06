@@ -483,7 +483,7 @@
 									"                {\r",
 									"                    \"fileName\": \"ER20190860001_20190517_1512_VA.xml\",\r",
 									"                    \"type\": \"VA_CertificatdeDeces\",\r",
-									"                    \"size\": 6908,\r",
+									"                    \"size\": 6917,\r",
 									"                    \"mimeType\": \"application/xml\",\r",
 									"                    \"recipients\": [\r",
 									"                        \"DGS-CERTDC-0000000000102-01\",\r",
@@ -1360,7 +1360,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/jdd/CERTDC/ER20190860001_20190517_1512_DD.xml"
+								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7.1/JDD/CERTDC/ER20190860001_20190517_1512_DD.xml"
 							}
 						},
 						"url": {
@@ -1526,7 +1526,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/jdd/CERTDC/ER20190860001_20190517_1512_VA.xml"
+								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7.1/JDD/CERTDC/ER20190860001_20190517_1512_VA.xml"
 							}
 						},
 						"url": {
@@ -1609,7 +1609,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique/JDD/ETATCIVIL/ActeEtatCivil-PDF.pdf"
+								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7.1/JDD/ETATCIVIL/ActeEtatCivil-PDF.pdf"
 							}
 						},
 						"url": {
@@ -1692,7 +1692,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique/JDD/ETATCIVIL/ActeEtatCivil-XML.xml"
+								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7.1/JDD/ETATCIVIL/ActeEtatCivil-XML.xml"
 							}
 						},
 						"url": {
@@ -1775,7 +1775,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7/JDD/JECHANGEDECOORDONNEES/flux-siv.pdf"
+								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7.1/JDD/JECHANGEDECOORDONNEES/flux-siv.pdf"
 							}
 						},
 						"url": {
@@ -1858,7 +1858,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7/JDD/JECHANGEDECOORDONNEES/flux-siv.xml"
+								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7.1/JDD/JECHANGEDECOORDONNEES/flux-siv.xml"
 							}
 						},
 						"url": {
