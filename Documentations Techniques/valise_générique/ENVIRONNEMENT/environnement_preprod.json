@@ -274,12 +274,12 @@
 		},
 		{
 			"key": "SnatedClient",
-			"value": "ZGKOW9KU4IiUSTM4ZJGYS_iFlYIa",
+			"value": "VuZGjQate0GJeSOaRwiC0v2LxP0a",
 			"enabled": true
 		},
 		{
 			"key": "SnatedSecret",
-			"value": "dNYKTdfTR4zvuoFjgHPD2CLNrC8a",
+			"value": "sfllWUPkSnMUW9qieAXhngINuYYa",
 			"enabled": true
 		},
 		{
@@ -334,12 +334,12 @@
 		},
 		{
 			"key": "CNAFClientId",
-			"value": "jbZflb7Cn7w9YTB8nggGMfPbXxQa",
+			"value": "rFRjf4n7CV8f3fyMQxxON6Fcu7ka",
 			"enabled": true
 		},
 		{
 			"key": "CNAFClientSecret",
-			"value": "JIH8AefrRxclbTPuNWzXOl1Oih8a",
+			"value": "01XVssCitPAZRRyXKilqskcHfwIa",
 			"enabled": true
 		},
 		{
@@ -459,6 +459,6 @@
 		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2022-01-06T11:03:29.758Z",
+	"_postman_exported_at": "2022-01-10T14:24:13.570Z",
 	"_postman_exported_using": "Postman/9.7.0"
 }
