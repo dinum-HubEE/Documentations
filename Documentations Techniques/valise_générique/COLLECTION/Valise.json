@@ -658,11 +658,10 @@
 									"                {\r",
 									"                    \"fileName\": \"coordonnees-allocataire.txt\",\r",
 									"                    \"type\": \"coordonnees-allocataire\",\r",
-									"                    \"size\": 33,\r",
+									"                    \"size\": 514,\r",
 									"                    \"mimeType\": \"text/plain\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"CNAF-ALLOC-0000000000102-01\",\r",
-									"                        \"CNAF-ALLOC-0000000000102-02\"\r",
+									"                        \"CNAF-ALLOC-0000000000102-01\"\r",
 									"                    ]\r",
 									"                }\r",
 									"            ]\r",
@@ -1941,7 +1940,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7/JDD/CAF-contact/coordonnees-allocataire.txt"
+								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7.1/JDD/CAF-contact/coordonnees-allocataire.txt"
 							}
 						},
 						"url": {
@@ -2024,7 +2023,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique/JDD/SNATED/documents.xml"
+								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7.1/JDD/SNATED/documents.xml"
 							}
 						},
 						"url": {
@@ -2107,7 +2106,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique/JDD/SNATED/documents.pdf"
+								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7.1/JDD/SNATED/documents.pdf"
 							}
 						},
 						"url": {
@@ -3396,7 +3395,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"status\": \"IN_PROGRESS\"\r\n}",
+									"raw": "{\r\n  \"status\": \"SI_RECEIVED\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
