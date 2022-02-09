@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SNATED xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="retour.xsd"> 
+    <INTRO>
+        <VERSIONXSD>0.4</VERSIONXSD>
+	<DATEXPORT>2021-05-14</DATEXPORT>
+    </INTRO>
+    <RETOURIP>
+        <NUMAPPEL>2081257</NUMAPPEL>
+        <EVALUATIONS>
+            <EVALUATION />
+            <EVALUATION />
+            <EVALUATION_AUTRE />
+            <PREMIERE_RENCONTRE />
+        </EVALUATIONS>
+        <TRANSMISSIONS>
+            <TRANSMISSION />
+            <TRANSMISSION />
+            <TRANSMISSION_AUTRE />
+        </TRANSMISSIONS>
+        <SITUATIONS>
+            <SITUATION />
+            <SITUATION />
+            <SITUATION_AUTRE />
+        </SITUATIONS>
+        <SUIVIS>
+            <SUIVI />
+            <SUIVI />
+        </SUIVIS>
+        <SYNTHESE_EVAL />
+        <ENFANTS>
+            <ENFANT>
+                <IDENFANT>4019954</IDENFANT>
+                <NOM_ENFANT>MARGUERITE</NOM_ENFANT>
+                <NOM_ENFANT_CORRIGE />
+                <PRENOM_ENFANT>Lisa</PRENOM_ENFANT>
+                <PRENOM_ENFANT_CORRIGE />
+                <AGE_AN_ENFANT>17</AGE_AN_ENFANT>
+                <AGE_AN_ENFANT_CORRIGE />
+                <AGE_MOIS_ENFANT>4</AGE_MOIS_ENFANT>
+                <AGE_MOIS_ENFANT_CORRIGE />
+                <TRANCHE_AGE_ENFANT>12</TRANCHE_AGE_ENFANT><!-- Jeune (15-18 ans) -->
+                <TRANCHE_AGE_ENFANT_CORRIGE />
+                <SEXE_ENFANT>3</SEXE_ENFANT>
+                <SEXE_ENFANT_CORRIGE>0</SEXE_ENFANT_CORRIGE>
+                <MESURES_ANT>
+                    <MESURE />
+                    <MESURE />
+                </MESURES_ANT>
+                <MESURES_POST>
+                    <MESURE />
+                    <MESURE />
+                </MESURES_POST>
+            </ENFANT>
+            <ENFANT>
+                <IDENFANT>4019955</IDENFANT>
+                <NOM_ENFANT>MARGUERITE</NOM_ENFANT>
+                <NOM_ENFANT_CORRIGE />
+                <PRENOM_ENFANT>Pédro</PRENOM_ENFANT>
+                <PRENOM_ENFANT_CORRIGE />
+                <AGE_AN_ENFANT>15</AGE_AN_ENFANT>
+                <AGE_AN_ENFANT_CORRIGE />
+                <AGE_MOIS_ENFANT>0</AGE_MOIS_ENFANT>
+                <AGE_MOIS_ENFANT_CORRIGE />
+                <TRANCHE_AGE_ENFANT>12</TRANCHE_AGE_ENFANT><!-- Jeune (15-18 ans) -->
+                <TRANCHE_AGE_ENFANT_CORRIGE />
+                <SEXE_ENFANT>3</SEXE_ENFANT>
+                <SEXE_ENFANT_CORRIGE>0</SEXE_ENFANT_CORRIGE>
+                <MESURES_ANT>
+                    <MESURE />
+                    <MESURE />
+                </MESURES_ANT>
+                <MESURES_POST>
+                    <MESURE />
+                    <MESURE />
+                </MESURES_POST>
+            </ENFANT>
+            <ENFANT>
+                <IDENFANT>4019957</IDENFANT>
+                <NOM_ENFANT>MARGUERITE</NOM_ENFANT>
+                <NOM_ENFANT_CORRIGE />
+                <PRENOM_ENFANT>Olympe</PRENOM_ENFANT>
+                <PRENOM_ENFANT_CORRIGE />
+                <AGE_AN_ENFANT>10</AGE_AN_ENFANT>
+                <AGE_AN_ENFANT_CORRIGE />
+                <AGE_MOIS_ENFANT>0</AGE_MOIS_ENFANT>
+                <AGE_MOIS_ENFANT_CORRIGE />
+                <TRANCHE_AGE_ENFANT>4</TRANCHE_AGE_ENFANT><!-- Enfant (6-11 ans) -->
+                <TRANCHE_AGE_ENFANT_CORRIGE />
+                <SEXE_ENFANT>3</SEXE_ENFANT>
+                <SEXE_ENFANT_CORRIGE>0</SEXE_ENFANT_CORRIGE>
+                <MESURES_ANT>
+                    <MESURE />
+                    <MESURE />
+                </MESURES_ANT>
+                <MESURES_POST>
+                    <MESURE />
+                    <MESURE />
+                </MESURES_POST>
+            </ENFANT>
+        </ENFANTS>
+    </RETOURIP>
+</SNATED>

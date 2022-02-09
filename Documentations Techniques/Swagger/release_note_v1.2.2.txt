@@ -1,0 +1,12 @@
+**************************************************************************************
+* Name of product : 20210107_CGI_HUBEE_API_Swagger
+* Version number : v1.2.2
+* Product Overview : Contrat d'interface du HUB pour les partenaires (OSL/SI/Portail/Datapass)
+* Date of the release : 01/10/2021
+**************************************************************************************
+
+Swagger Folder (1.2.2)
+- Revert de la correction de la 1.2.0 sur le "format: string"
+
+Swagger Process (1.2.1)
+- Ajout du champ siAttachmentFormatsEnabled

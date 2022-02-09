@@ -311,6 +311,14 @@ components:
             type: string
             maxLength: 255
             example: "application/pdf, application/xml"
+        siAttachmentFormatsEnabled:
+          type: array
+          minLength: 0
+          description: Liste des formats de fichiers acceptés pour la démarche
+          items:
+            type: string
+            maxLength: 255
+            example: "application/pdf, application/xml"
         attachmentTypesEnabled:
           type: array
           minLength: 1

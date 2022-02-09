@@ -623,7 +623,7 @@
 									"            ],\r",
 									"            \"attachments\": [\r",
 									"                {\r",
-									"                    \"fileName\": \"documents.xml\",\r",
+									"                    \"fileName\": \"IP2081257.xml\",\r",
 									"                    \"type\": \"documents\",\r",
 									"                    \"size\": 3099,\r",
 									"                    \"mimeType\": \"application/xml\",\r",
@@ -632,10 +632,37 @@
 									"                    ]\r",
 									"                },\r",
 									"                {\r",
-									"                    \"fileName\": \"documents.pdf\",\r",
+									"                    \"fileName\": \"IP2081257.pdf\",\r",
 									"                    \"type\": \"documents\",\r",
 									"                    \"size\": 26201,\r",
 									"                    \"mimeType\": \"application/pdf\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"SNATED-SNATED-0000000000102-01\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                {\r",
+									"                    \"fileName\": \"CG02_RE_IP2081257.xml\",\r",
+									"                    \"type\": \"documents\",\r",
+									"                    \"size\": 3752,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"SNATED-SNATED-0000000000102-01\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                {\r",
+									"                    \"fileName\": \"CG02_RE_IP2081257.odt\",\r",
+									"                    \"type\": \"documents\",\r",
+									"                    \"size\": 43650,\r",
+									"                    \"mimeType\": \"application/vnd.oasis.opendocument.text\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"SNATED-SNATED-0000000000102-01\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                {\r",
+									"                    \"fileName\": \"CG02_RE_IP2081257.docx\",\r",
+									"                    \"type\": \"documents\",\r",
+									"                    \"size\": 84161,\r",
+									"                    \"mimeType\": \"application/vnd.openxmlformats-officedocument.wordprocessingml.document\",\r",
 									"                    \"recipients\": [\r",
 									"                        \"SNATED-SNATED-0000000000102-01\"\r",
 									"                    ]\r",
@@ -2023,7 +2050,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7.1/JDD/SNATED/documents.xml"
+								"src": "/C:/Users/sebastien.assali/Downloads/CG10_IP2081257/IP2081257.xml"
 							}
 						},
 						"url": {
@@ -2106,7 +2133,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7.1/JDD/SNATED/documents.pdf"
+								"src": "/C:/Users/sebastien.assali/Downloads/CG10_IP2081257/IP2081257.pdf"
 							}
 						},
 						"url": {
@@ -2131,6 +2158,255 @@
 								{
 									"key": "attachmentId",
 									"value": "{{attachmentId2}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SNATED_PJ3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"    postman.setNextRequest('Déclarer le TD complet')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/C:/Users/sebastien.assali/Downloads/CG10_IP2081257/CG02_RE_IP2081257.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId3}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SNATED_PJ4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"    postman.setNextRequest('Déclarer le TD complet')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/C:/Users/sebastien.assali/Downloads/CG10_IP2081257/CG02_RE_IP2081257.odt"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId4}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SNATED_PJ5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"    postman.setNextRequest('Déclarer le TD complet')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/C:/Users/sebastien.assali/Downloads/CG10_IP2081257/CG02_RE_IP2081257.docx"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId5}}",
 									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
 								}
 							]
@@ -3395,7 +3671,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"status\": \"SI_RECEIVED\"\r\n}",
+									"raw": "{\r\n  \"status\": \"IN_PROGRESS\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4374,6 +4650,85 @@
 											"response": []
 										},
 										{
+											"name": "event - update SI1",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"201\", function () {\r",
+															"    pm.response.to.have.status(201);\r",
+															"});\r",
+															"\r",
+															"pm.test(\"Created\", () => {\r",
+															"  pm.response.to.have.status(\"Created\");\r",
+															"});\r",
+															"\r",
+															"const responseJson = pm.response.json();\r",
+															"pm.environment.set('latestEventCreated', responseJson.id);\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{currentSIToken}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "PATCH",
+												"header": [
+													{
+														"key": "",
+														"value": "",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"status\": \"RECEIVED\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/events/:eventId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"teledossiers",
+														"{{version}}",
+														"cases",
+														":caseId",
+														"events",
+														":eventId"
+													],
+													"variable": [
+														{
+															"key": "caseId",
+															"value": "{{latestCaseCreatedPOF}}",
+															"description": "da70c8d6-0610-44a0-a914-276edcfd265d"
+														},
+														{
+															"key": "eventId",
+															"value": "{{poflatestEventCreated}}"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
 											"name": "TD téléchargé SI1 - status",
 											"event": [
 												{
@@ -4503,85 +4858,6 @@
 															"key": "caseId",
 															"value": "{{latestCaseCreatedPOF}}",
 															"description": "da70c8d6-0610-44a0-a914-276edcfd265d"
-														}
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "event - update SI1",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"exec": [
-															"pm.test(\"201\", function () {\r",
-															"    pm.response.to.have.status(201);\r",
-															"});\r",
-															"\r",
-															"pm.test(\"Created\", () => {\r",
-															"  pm.response.to.have.status(\"Created\");\r",
-															"});\r",
-															"\r",
-															"const responseJson = pm.response.json();\r",
-															"pm.environment.set('latestEventCreated', responseJson.id);\r",
-															""
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "{{currentSIToken}}",
-															"type": "string"
-														}
-													]
-												},
-												"method": "PATCH",
-												"header": [
-													{
-														"key": "",
-														"value": "",
-														"type": "text"
-													}
-												],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"status\": \"RECEIVED\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/events/:eventId",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"teledossiers",
-														"{{version}}",
-														"cases",
-														":caseId",
-														"events",
-														":eventId"
-													],
-													"variable": [
-														{
-															"key": "caseId",
-															"value": "{{latestCaseCreatedPOF}}",
-															"description": "da70c8d6-0610-44a0-a914-276edcfd265d"
-														},
-														{
-															"key": "eventId",
-															"value": "{{poflatestEventCreated}}"
 														}
 													]
 												}
@@ -10683,7 +10959,7 @@
 													"bearer": [
 														{
 															"key": "token",
-															"value": "{{DGSToken}}",
+															"value": "{{currentOSLToken}}",
 															"type": "string"
 														}
 													]
