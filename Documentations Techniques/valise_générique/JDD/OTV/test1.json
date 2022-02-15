@@ -1,0 +1,60 @@
+{
+  "PERSONNE_FORM": {
+    "DATE_NAISSANCE": "1992-12-11T23:00:00.000Z",
+    "NOM": "Toto",
+    "PRENOM": "Lacoste",
+    "PAYS_NAISSANCE_ID": 99160,
+    "COMMUNE_NAISSANCE": "Issy-les-Moulineaux",
+    "NOM_NAISSANCE": "",
+    "TELEPHONE": "0678532596",
+    "TELEPHONE_2": "",
+    "EMAIL": "example@mail.com"
+  },
+  "PERIODE_FORM": {
+    "DATE_DEBUT": "2022-03-02T08:45:00.000Z",
+    "DATE_FIN": "2022-04-25T08:00:32.000Z"
+  },
+  "ADRESSE_FORM": {
+    "ALARME": false,
+    "CODE_INSEE": "83137",
+    "CODE_POSTAL": "83000",
+    "COMMUNE": "Toulon",
+    "COORD_X": 5.926929,
+    "COORD_Y": 43.124698,
+    "DEPARTEMENT_ID": "83",
+    "DIGICODE": [
+      "24B12",
+      "68693"
+    ],
+    "ESCALIER": "",
+    "ETAGE": "6",
+    "HALL": "",
+    "IMMEUBLE": "",
+    "INFORMATIONS_COMPLEMENTAIRES": "Deux digicodes",
+    "NOM_BATEAU": "",
+    "NOM_TELESURVEILLANCE": "",
+    "NUMERO_APARTEMENT": "12B",
+    "NUMERO_PONTON": "",
+    "NUMERO_VOIE": "44",
+    "PASS_VIGIK": false,
+    "PAYS_ID": 99160,
+    "REGION_ID": "93",
+    "RESIDENCE": "",
+    "TELEPHONE_TELESURVEILLANCE": "",
+    "TYPE_ID": 2,
+    "VOIE": "Rue Jean Jaurés"
+  },
+  "CONTACT_FORM": {
+    "CONTACTS": [
+      {
+        "NOM_CONTACT": "Concierge",
+        "PRENOM_CONTACT": "Malrod",
+        "TELEPHONE1_CONTACT": "0685963696",
+        "TELEPHONE2_CONTACT": "0689636985",
+        "EMAIL_CONTACT": "example2@mail.com",
+        "HAS_KEY": false,
+        "CAN_DISABLE_ALARME": false
+      }
+    ]
+  }
+}

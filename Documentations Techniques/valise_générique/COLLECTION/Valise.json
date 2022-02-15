@@ -417,22 +417,35 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
+									"pm.environment.set('actualTNRfolder', parseInt(pm.environment.get('actualTNRfolder')) + 1)\r",
+									"\r",
+									"let actualFolder = pm.environment.get('actualTNRfolder');\r",
+									"\r",
+									"const person = {\r",
+									"    \"firstName\": [\"Sébastien\", \"Adeline\", \"Capucine\", \"Isabelle\", \"Arnaud\", \"Nadège\", \"Adja\", \"Laetitia\", \"Jérémy\", \"Maxime\", \"Ioana\", \"Florent\"],\r",
+									"    \"lastName\": [\"brabra\", \"villepint\", \"gourget\", \"tabochar\", \"bernu\", \"elcapone\", \"zoro\", \"explorateur\", \"libertin\", \"rabin\", \"plato\", \"orange\"]\r",
+									"}\r",
+									"\r",
+									"let actualPersonFirstName = person.firstName[(Math.floor(Math.random() * person.firstName.length - 1)) + 1]\r",
+									"\r",
+									"let actualPersonLastName = person.lastName[(Math.floor(Math.random() * person.lastName.length - 1)) + 1]\r",
+									"\r",
 									"let JDD = {\r",
 									"    \"demarche\": {\r",
 									"        \"OSL\": {\r",
 									"            \"SNATED\": [\"SNATED\"],\r",
 									"            \"DGS\": [\"CERTDC\"],\r",
-									"            \"DILA\": [\"EtatCivil\", \"JeChangeDeCoordonnees\", \"recensementCitoyen\", \"depotDossierPACS\"],\r",
+									"            \"DILA\": [\"EtatCivil\", \"JeChangeDeCoordonnees\", \"recensementCitoyen\", \"depotDossierPACS\", \"OTV\"],\r",
 									"            \"CNAF\": [\"CAF-contact\"],\r",
 									"            \"RSA\": [\"RSA\"]\r",
 									"        },\r",
 									"        \"applicant\": {\r",
-									"            \"firstName\": \"Sébastien\",\r",
-									"            \"lastName\": \"Cocktail\"\r",
+									"            \"firstName\": actualPersonFirstName,\r",
+									"            \"lastName\": actualPersonLastName\r",
 									"        },\r",
 									"        \"CERTDC\":\r",
 									"        {\r",
-									"            \"externalId\": \"DGS-CERTDC-0000000000102\",\r",
+									"            \"externalId\": \"DGS-CERTDC-\" + actualFolder,\r",
 									"            \"cases\": [\r",
 									"                {\r",
 									"                    \"recipient\": {\r",
@@ -440,7 +453,7 @@
 									"                        \"type\": \"SI\",\r",
 									"                        \"companyRegister\": \"4566\"\r",
 									"                    },\r",
-									"                    \"externalId\": \"DGS-CERTDC-0000000000102-01\"\r",
+									"                    \"externalId\": \"DGS-CERTDC-\" + actualFolder + \"-01\"\r",
 									"                },\r",
 									"                {\r",
 									"                    \"recipient\": {\r",
@@ -448,7 +461,7 @@
 									"                        \"type\": \"SI\",\r",
 									"                        \"companyRegister\": \"4566\"\r",
 									"                    },\r",
-									"                    \"externalId\": \"DGS-CERTDC-0000000000102-02\"\r",
+									"                    \"externalId\": \"DGS-CERTDC-\" + actualFolder + \"-02\"\r",
 									"                }\r",
 									"            ],\r",
 									"            \"attachments\": [\r",
@@ -458,7 +471,7 @@
 									"                    \"size\": 96149,\r",
 									"                    \"mimeType\": \"application/pdf\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"DGS-CERTDC-0000000000102-01\"\r",
+									"                        \"DGS-CERTDC-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                },\r",
 									"                {\r",
@@ -467,7 +480,7 @@
 									"                    \"size\": 988,\r",
 									"                    \"mimeType\": \"application/xml\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"DGS-CERTDC-0000000000102-01\"\r",
+									"                        \"DGS-CERTDC-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                },\r",
 									"                {\r",
@@ -476,8 +489,8 @@
 									"                    \"size\": 219619,\r",
 									"                    \"mimeType\": \"application/pdf\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"DGS-CERTDC-0000000000102-01\",\r",
-									"                        \"DGS-CERTDC-0000000000102-02\"\r",
+									"                        \"DGS-CERTDC-\" + actualFolder + \"-01\",\r",
+									"                        \"DGS-CERTDC-\" + actualFolder + \"-02\"\r",
 									"                    ]\r",
 									"                },\r",
 									"                {\r",
@@ -486,14 +499,14 @@
 									"                    \"size\": 6917,\r",
 									"                    \"mimeType\": \"application/xml\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"DGS-CERTDC-0000000000102-01\",\r",
-									"                        \"DGS-CERTDC-0000000000102-02\"\r",
+									"                        \"DGS-CERTDC-\" + actualFolder + \"-01\",\r",
+									"                        \"DGS-CERTDC-\" + actualFolder + \"-02\"\r",
 									"                    ]\r",
 									"                }\r",
 									"            ]\r",
 									"        },\r",
 									"        \"EtatCivil\": {\r",
-									"            \"externalId\": \"DILA-AEC-0000000000102\",\r",
+									"            \"externalId\": \"DILA-AEC-\" + actualFolder,\r",
 									"            \"cases\": [\r",
 									"                {\r",
 									"                    \"recipient\": {\r",
@@ -501,7 +514,7 @@
 									"                        \"type\": \"SI\",\r",
 									"                        \"companyRegister\": \"21060088800015\"\r",
 									"                    },\r",
-									"                    \"externalId\": \"DILA-AEC-0000000000102-01\"\r",
+									"                    \"externalId\": \"DILA-AEC-\" + actualFolder + \"-01\"\r",
 									"                }\r",
 									"            ],\r",
 									"            \"attachments\": [\r",
@@ -511,7 +524,7 @@
 									"                    \"size\": 3337,\r",
 									"                    \"mimeType\": \"application/pdf\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"DILA-AEC-0000000000102-01\"\r",
+									"                        \"DILA-AEC-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                },\r",
 									"                {\r",
@@ -520,13 +533,13 @@
 									"                    \"size\": 1482,\r",
 									"                    \"mimeType\": \"application/xml\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"DILA-AEC-0000000000102-01\"\r",
+									"                        \"DILA-AEC-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                }\r",
 									"            ]\r",
 									"        },\r",
-									"        \"JeChangeDeCoordonnees\": {\r",
-									"            \"externalId\": \"DILA-JCC-0000000000102\",\r",
+									"        \"OTV\": {\r",
+									"            \"externalId\": \"DILA-OTV-\" + actualFolder,\r",
 									"            \"cases\": [\r",
 									"                {\r",
 									"                    \"recipient\": {\r",
@@ -534,7 +547,58 @@
 									"                        \"type\": \"SI\",\r",
 									"                        \"companyRegister\": \"21060088800015\"\r",
 									"                    },\r",
-									"                    \"externalId\": \"DILA-JCC-0000000000102-01\"\r",
+									"                    \"externalId\": \"DILA-OTV-\" + actualFolder + \"-01\"\r",
+									"                }\r",
+									"            ],\r",
+									"            \"attachments\": [\r",
+									"                {\r",
+									"                    \"fileName\": \"test1.json\",\r",
+									"                    \"type\": \"Metier\",\r",
+									"                    \"size\": 1462,\r",
+									"                    \"mimeType\": \"application/json\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"DILA-OTV-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                {\r",
+									"                    \"fileName\": \"test2.json\",\r",
+									"                    \"type\": \"ActeEtatCivil-XML\",\r",
+									"                    \"size\": 1461,\r",
+									"                    \"mimeType\": \"application/json\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"DILA-OTV-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                {\r",
+									"                    \"fileName\": \"test3.json\",\r",
+									"                    \"type\": \"ActeEtatCivil-XML\",\r",
+									"                    \"size\": 1461,\r",
+									"                    \"mimeType\": \"application/json\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"DILA-OTV-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                {\r",
+									"                    \"fileName\": \"test4.json\",\r",
+									"                    \"type\": \"ActeEtatCivil-XML\",\r",
+									"                    \"size\": 1391,\r",
+									"                    \"mimeType\": \"application/json\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"DILA-OTV-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            ]\r",
+									"        },\r",
+									"        \"JeChangeDeCoordonnees\": {\r",
+									"            \"externalId\": \"DILA-JCC-\" + actualFolder,\r",
+									"            \"cases\": [\r",
+									"                {\r",
+									"                    \"recipient\": {\r",
+									"                        \"branchCode\": \"06088\",\r",
+									"                        \"type\": \"SI\",\r",
+									"                        \"companyRegister\": \"21060088800015\"\r",
+									"                    },\r",
+									"                    \"externalId\": \"DILA-JCC-\" + actualFolder + \"-01\"\r",
 									"                }\r",
 									"            ],\r",
 									"            \"attachments\": [\r",
@@ -544,7 +608,7 @@
 									"                    \"size\": 3337,\r",
 									"                    \"mimeType\": \"application/pdf\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"DILA-JCC-0000000000102-01\"\r",
+									"                        \"DILA-JCC-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                },\r",
 									"                {\r",
@@ -553,13 +617,13 @@
 									"                    \"size\": 1482,\r",
 									"                    \"mimeType\": \"application/xml\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"DILA-JCC-0000000000102-01\"\r",
+									"                        \"DILA-JCC-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                }\r",
 									"            ]\r",
 									"        },\r",
 									"        \"recensementCitoyen\": {\r",
-									"            \"externalId\": \"DILA-RCO-0000000000102\",\r",
+									"            \"externalId\": \"DILA-RCO-\" + actualFolder,\r",
 									"            \"cases\": [\r",
 									"                {\r",
 									"                    \"recipient\": {\r",
@@ -567,7 +631,7 @@
 									"                        \"type\": \"SI\",\r",
 									"                        \"companyRegister\": \"21060088800015\"\r",
 									"                    },\r",
-									"                    \"externalId\": \"DILA-RCO-0000000000102-01\"\r",
+									"                    \"externalId\": \"DILA-RCO-\" + actualFolder + \"-01\"\r",
 									"                }\r",
 									"            ],\r",
 									"            \"attachments\": [\r",
@@ -577,7 +641,7 @@
 									"                    \"size\": 3514,\r",
 									"                    \"mimeType\": \"application/xml\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"DILA-RCO-0000000000102-01\"\r",
+									"                        \"DILA-RCO-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                },\r",
 									"                {\r",
@@ -586,7 +650,7 @@
 									"                    \"size\": 102294,\r",
 									"                    \"mimeType\": \"application/pdf\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"DILA-RCO-0000000000102-01\"\r",
+									"                        \"DILA-RCO-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                },\r",
 									"                {\r",
@@ -595,7 +659,7 @@
 									"                    \"size\": 4330,\r",
 									"                    \"mimeType\": \"application/pdf\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"DILA-RCO-0000000000102-01\"\r",
+									"                        \"DILA-RCO-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                },\r",
 									"                {\r",
@@ -604,13 +668,13 @@
 									"                    \"size\": 3123,\r",
 									"                    \"mimeType\": \"application/pdf\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"DILA-RCO-0000000000102-01\"\r",
+									"                        \"DILA-RCO-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                }\r",
 									"            ]\r",
 									"        },\r",
 									"        \"SNATED\": {\r",
-									"            \"externalId\": \"SNATED-SNATED-0000000000102\",\r",
+									"            \"externalId\": \"SNATED-SNATED-\" + actualFolder,\r",
 									"            \"cases\": [\r",
 									"                {\r",
 									"                    \"recipient\": {\r",
@@ -618,7 +682,7 @@
 									"                        \"type\": \"SI\",\r",
 									"                        \"companyRegister\": \"21060088800015\"\r",
 									"                    },\r",
-									"                    \"externalId\": \"SNATED-SNATED-0000000000102-01\"\r",
+									"                    \"externalId\": \"SNATED-SNATED-\" + actualFolder + \"-01\"\r",
 									"                }\r",
 									"            ],\r",
 									"            \"attachments\": [\r",
@@ -628,7 +692,7 @@
 									"                    \"size\": 3099,\r",
 									"                    \"mimeType\": \"application/xml\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"SNATED-SNATED-0000000000102-01\"\r",
+									"                        \"SNATED-SNATED-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                },\r",
 									"                {\r",
@@ -637,7 +701,7 @@
 									"                    \"size\": 26201,\r",
 									"                    \"mimeType\": \"application/pdf\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"SNATED-SNATED-0000000000102-01\"\r",
+									"                        \"SNATED-SNATED-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                },\r",
 									"                {\r",
@@ -646,7 +710,7 @@
 									"                    \"size\": 3752,\r",
 									"                    \"mimeType\": \"application/xml\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"SNATED-SNATED-0000000000102-01\"\r",
+									"                        \"SNATED-SNATED-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                },\r",
 									"                {\r",
@@ -655,7 +719,7 @@
 									"                    \"size\": 43650,\r",
 									"                    \"mimeType\": \"application/vnd.oasis.opendocument.text\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"SNATED-SNATED-0000000000102-01\"\r",
+									"                        \"SNATED-SNATED-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                },\r",
 									"                {\r",
@@ -664,13 +728,13 @@
 									"                    \"size\": 84161,\r",
 									"                    \"mimeType\": \"application/vnd.openxmlformats-officedocument.wordprocessingml.document\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"SNATED-SNATED-0000000000102-01\"\r",
+									"                        \"SNATED-SNATED-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                }\r",
 									"            ]\r",
 									"        },\r",
 									"        \"CAF-contact\": {\r",
-									"            \"externalId\": \"CNAF-ALLOC-0000000000102\",\r",
+									"            \"externalId\": \"CNAF-ALLOC-\" + actualFolder,\r",
 									"            \"cases\": [\r",
 									"                {\r",
 									"                    \"recipient\": {\r",
@@ -678,7 +742,7 @@
 									"                        \"type\": \"SI\",\r",
 									"                        \"companyRegister\": \"22920100000000\"\r",
 									"                    },\r",
-									"                    \"externalId\": \"CNAF-ALLOC-0000000000102-01\"\r",
+									"                    \"externalId\": \"CNAF-ALLOC-\" + actualFolder + \"-01\"\r",
 									"                }\r",
 									"            ],\r",
 									"            \"attachments\": [\r",
@@ -688,13 +752,13 @@
 									"                    \"size\": 514,\r",
 									"                    \"mimeType\": \"text/plain\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"CNAF-ALLOC-0000000000102-01\"\r",
+									"                        \"CNAF-ALLOC-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                }\r",
 									"            ]\r",
 									"        },\r",
 									"        \"RSA\": {\r",
-									"            \"externalId\": \"RSA-RSA-0000000000102\",\r",
+									"            \"externalId\": \"RSA-RSA-\" + actualFolder,\r",
 									"            \"cases\": [\r",
 									"                {\r",
 									"                    \"recipient\": {\r",
@@ -702,7 +766,7 @@
 									"                        \"type\": \"SI\",\r",
 									"                        \"companyRegister\": \"21060088800015\"\r",
 									"                    },\r",
-									"                    \"externalId\": \"RSA-RSA-0000000000102-01\"\r",
+									"                    \"externalId\": \"RSA-RSA-\" + actualFolder + \"-01\"\r",
 									"                }\r",
 									"            ],\r",
 									"            \"attachments\": [\r",
@@ -712,13 +776,13 @@
 									"                    \"size\": 1482,\r",
 									"                    \"mimeType\": \"application/xml\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"RSA-RSA-0000000000102-01\"\r",
+									"                        \"RSA-RSA-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                }\r",
 									"            ]\r",
 									"        },\r",
 									"        \"depotDossierPACS\": {\r",
-									"            \"externalId\": \"DILA-DDPACS-0000000000102\",\r",
+									"            \"externalId\": \"DILA-DDPACS-\" + actualFolder,\r",
 									"            \"cases\": [\r",
 									"                {\r",
 									"                    \"recipient\": {\r",
@@ -726,7 +790,7 @@
 									"                        \"type\": \"SI\",\r",
 									"                        \"companyRegister\": \"21060088800015\"\r",
 									"                    },\r",
-									"                    \"externalId\": \"DILA-DDPACS-0000000000102-01\"\r",
+									"                    \"externalId\": \"DILA-DDPACS-\" + actualFolder + \"-01\"\r",
 									"                }\r",
 									"            ],\r",
 									"            \"attachments\": [\r",
@@ -736,7 +800,7 @@
 									"                    \"size\": 532160,\r",
 									"                    \"mimeType\": \"application/pdf\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"DILA-DDPACS-0000000000102-01\"\r",
+									"                        \"DILA-DDPACS-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                },\r",
 									"                {\r",
@@ -745,7 +809,7 @@
 									"                    \"size\": 25727,\r",
 									"                    \"mimeType\": \"application/pdf\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"DILA-DDPACS-0000000000102-01\"\r",
+									"                        \"DILA-DDPACS-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                },\r",
 									"                {\r",
@@ -754,7 +818,7 @@
 									"                    \"size\": 25727,\r",
 									"                    \"mimeType\": \"application/pdf\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"DILA-DDPACS-0000000000102-01\"\r",
+									"                        \"DILA-DDPACS-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                },\r",
 									"                {\r",
@@ -763,7 +827,7 @@
 									"                    \"size\": 25727,\r",
 									"                    \"mimeType\": \"application/pdf\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"DILA-DDPACS-0000000000102-01\"\r",
+									"                        \"DILA-DDPACS-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                },\r",
 									"                {\r",
@@ -772,7 +836,7 @@
 									"                    \"size\": 2374,\r",
 									"                    \"mimeType\": \"application/xml\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"DILA-DDPACS-0000000000102-01\"\r",
+									"                        \"DILA-DDPACS-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                },\r",
 									"                {\r",
@@ -781,7 +845,7 @@
 									"                    \"size\": 4715,\r",
 									"                    \"mimeType\": \"application/pdf\",\r",
 									"                    \"recipients\": [\r",
-									"                        \"DILA-DDPACS-0000000000102-01\"\r",
+									"                        \"DILA-DDPACS-\" + actualFolder + \"-01\"\r",
 									"                    ]\r",
 									"                }\r",
 									"            ]\r",
@@ -842,7 +906,7 @@
 									"    pm.environment.set('currentPJ', 1)\r",
 									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
 									"\r",
-									"} else if (pm.response.code === 401 || 403) {\r",
+									"} else if (pm.response.code === 401 || 403 || 500) {\r",
 									"    postman.setNextRequest('token_' + pm.environment.get('currentOSLName'));\r",
 									"} else {\r",
 									"    console.log(\"erreur de création de folder \" + pm.response.code)\r",
@@ -1238,6 +1302,374 @@
 							"raw": "{{tokenUrl}}",
 							"host": [
 								"{{tokenUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OTV_PJ1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"    postman.setNextRequest('Déclarer le TD complet')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7.1/JDD/OTV/test1.json"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId1}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OTV_PJ2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"    postman.setNextRequest('Déclarer le TD complet')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7.1/JDD/OTV/test2.json"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId2}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OTV_PJ3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"    postman.setNextRequest('Déclarer le TD complet')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7.1/JDD/OTV/test3.json"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId4}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OTV_PJ4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"    postman.setNextRequest('Déclarer le TD complet')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7.1/JDD/OTV/test4.json"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId5}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
 							]
 						}
 					},
@@ -2050,7 +2482,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Downloads/CG10_IP2081257/IP2081257.xml"
+								"src": "/C:/Users/sebastien.assali/Documents/GIT/hubee/Documentations/Documentations Techniques/valise_générique/JDD/SNATED/IP2081257.xml"
 							}
 						},
 						"url": {
@@ -2133,7 +2565,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Downloads/CG10_IP2081257/IP2081257.pdf"
+								"src": "/C:/Users/sebastien.assali/Documents/GIT/hubee/Documentations/Documentations Techniques/valise_générique/JDD/SNATED/IP2081257.pdf"
 							}
 						},
 						"url": {
@@ -2216,7 +2648,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Downloads/CG10_IP2081257/CG02_RE_IP2081257.xml"
+								"src": "/C:/Users/sebastien.assali/Documents/GIT/hubee/Documentations/Documentations Techniques/valise_générique/JDD/SNATED/CG02_RE_IP2081257.xml"
 							}
 						},
 						"url": {
@@ -2299,7 +2731,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Downloads/CG10_IP2081257/CG02_RE_IP2081257.odt"
+								"src": "/C:/Users/sebastien.assali/Documents/GIT/hubee/Documentations/Documentations Techniques/valise_générique/JDD/SNATED/CG02_RE_IP2081257.odt"
 							}
 						},
 						"url": {
@@ -2382,7 +2814,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Downloads/CG10_IP2081257/CG02_RE_IP2081257.docx"
+								"src": "/C:/Users/sebastien.assali/Documents/GIT/hubee/Documentations/Documentations Techniques/valise_générique/JDD/SNATED/CG02_RE_IP2081257.docx"
 							}
 						},
 						"url": {
@@ -10682,7 +11114,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"actionType\": \"ATTACH_DEPOSIT\",\r\n    \"author\": \"George DUBOIS\",\r\n    \"notification\": true,\r\n    \"caseCurrentStatus\": \"ADD_AWAITING\",\r\n    \"caseNewStatus\": \"HUBEE_NOTIFIED\",\r\n    \"attachments\": [\r\n        {\r\n            \"fileName\": \"ER20190860001_20190517_1512_VA.pdf\",\r\n            \"type\": \"VA_CertificatdeDeces\",\r\n            \"size\": 219619,\r\n            \"mimeType\": \"application/pdf\"\r\n        },\r\n        {\r\n            \"fileName\": \"ER20190860001_20190517_1512_VA.xml\",\r\n            \"type\": \"VA_CertificatdeDeces\",\r\n            \"size\": 6916,\r\n            \"mimeType\": \"application/xml\"\r\n        }\r\n    ]\r\n}",
+													"raw": "{\r\n    \"actionType\": \"ATTACH_DEPOSIT\",\r\n    \"author\": \"George DUBOIS\",\r\n    \"notification\": true,\r\n    \"caseCurrentStatus\": \"DONE\",\r\n    \"caseNewStatus\": \"HUBEE_NOTIFIED\",\r\n    \"attachments\": [\r\n        {\r\n            \"fileName\": \"ER20190860001_20190517_1512_VA.pdf\",\r\n            \"type\": \"VA_CertificatdeDeces\",\r\n            \"size\": 219619,\r\n            \"mimeType\": \"application/pdf\"\r\n        },\r\n        {\r\n            \"fileName\": \"ER20190860001_20190517_1512_VA.xml\",\r\n            \"type\": \"VA_CertificatdeDeces\",\r\n            \"size\": 6917,\r\n            \"mimeType\": \"application/xml\"\r\n        }\r\n    ]\r\n}",
 													"options": {
 														"raw": {
 															"language": "json"
@@ -10704,7 +11136,7 @@
 													"variable": [
 														{
 															"key": "caseId",
-															"value": "4d1459c9-ca33-412e-b1d4-ef3a6acc217e",
+															"value": "656f7c78-765e-4550-b3ab-faae068c946c",
 															"description": "da70c8d6-0610-44a0-a914-276edcfd265d"
 														}
 													]
@@ -10833,7 +11265,7 @@
 												"body": {
 													"mode": "file",
 													"file": {
-														"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7.1/JDD/CERTDC/ER20190860001_20190517_1512_VA.xml"
+														"src": "/C:/Users/sebastien.assali/Documents/GIT/hubee/Documentations/Documentations Techniques/valise_générique/JDD/CERTDC/ER20190860001_20190517_1512_VA.xml"
 													}
 												},
 												"url": {
@@ -10854,17 +11286,17 @@
 													"variable": [
 														{
 															"key": "caseId",
-															"value": "{{latestCaseCreatedPOF}}",
+															"value": "656f7c78-765e-4550-b3ab-faae068c946c",
 															"description": "37df9f5b-93e4-437c-b28c-e0c8fe8c09f7"
 														},
 														{
 															"key": "eventId",
-															"value": "{{latestEventCreated}}",
+															"value": "13bf644c-9aed-45cd-89f9-808ce789f75e",
 															"description": "4a70ed55-45d7-4773-9ed3-782f996d4968"
 														},
 														{
 															"key": "attachmentId",
-															"value": "{{eventAttach2}}",
+															"value": "bc4c276f-6262-4ace-b155-db095b618439",
 															"description": "1baa6c67-bbf9-4cd9-a51e-2d1572411694"
 														}
 													]
