@@ -18,8 +18,6 @@
 ### Swagger
 Pour les opérateurs de services en ligne :
 - [Folder](https://github.com/dinum-HubEE/Documentations/releases/latest/download/swagger.zip)
-- [Organization](https://github.com/dinum-HubEE/Documentations/releases/latest/download/swagger.zip)
-- [Processes](https://github.com/dinum-HubEE/Documentations/releases/latest/download/swagger.zip)
 - [Subscriptions](https://github.com/dinum-HubEE/Documentations/releases/latest/download/swagger.zip)
 
 Pour les services instructeurs :
