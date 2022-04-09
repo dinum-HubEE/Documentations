@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Racine>
+    <IdentificationFlux>
+        <APPLIEME>CRI</APPLIEME>
+        <NUMVERSIONAPPLIEME>6200</NUMVERSIONAPPLIEME>
+        <TYPEFLUX>H</TYPEFLUX>
+        <NATFLUX>G</NATFLUX>
+        <DTCREAFLUX>2022-02-10</DTCREAFLUX>
+        <HEUCREAFLUX>20:14:35.0000</HEUCREAFLUX>
+        <DTREF>2022-02-10</DTREF>
+        <FONORG>CAF</FONORG>
+        <NUMORG>561</NUMORG>
+    </IdentificationFlux>
+    <InfoSuiviGrossessePMI>
+        <IdentificationDossier>
+            <Organisme>
+                <FONORG>CAF</FONORG>
+                <NUMORG>561</NUMORG>
+                <MATRICULE>063052900000000</MATRICULE>
+            </Organisme>
+            <Partenaire>
+                <TYPEPARTE>CG  </TYPEPARTE>
+                <IDEPARTE>056</IDEPARTE>
+            </Partenaire>
+        </IdentificationDossier>
+        <DonneesAdministratives>
+            <Adresse>
+                <TroncCommunAdresse>
+                    <RGADR>1</RGADR>
+                    <DTEMM>2021-01-01</DTEMM>
+                    <PAYS>FRA</PAYS>
+                    <TYPEADR>D</TYPEADR>
+                    <ETATADR>VC</ETATADR>
+                </TroncCommunAdresse>
+                <AdresseDetailleeFrance>
+                    <COMPLIDEADR></COMPLIDEADR>
+                    <COMPLADR></COMPLADR>
+                    <NUMVOIE>78</NUMVOIE>
+                    <LIBTYPEVOIE>AVENUE</LIBTYPEVOIE>
+                    <NOMVOIE>DU GENERAL DE GAULLE</NOMVOIE>
+                    <LIEUDIST></LIEUDIST>
+                    <NUMCOM>56121</NUMCOM>
+                    <CODEPOS>56100</CODEPOS>
+                    <NOMCOM>LORIENT</NOMCOM>
+                </AdresseDetailleeFrance>
+            </Adresse>
+        </DonneesAdministratives>
+        <DossierPMI>
+            <MOTITRANSMDOSPMI>01</MOTITRANSMDOSPMI>
+            <NBENFCHAPF>0</NBENFCHAPF>
+        </DossierPMI>
+    </InfoSuiviGrossessePMI>
+    <Anomalie>
+        <LIBANO> DOSSIER SANS PERSONNES</LIBANO>
+    </Anomalie>
+    <TransmissionFlux>
+        <NBTOTDOSPMITRANSMANO>1</NBTOTDOSPMITRANSMANO>
+    </TransmissionFlux>
+</Racine>

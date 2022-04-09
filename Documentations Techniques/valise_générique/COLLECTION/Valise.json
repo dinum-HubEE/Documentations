@@ -369,12 +369,12 @@
 							"basic": [
 								{
 									"key": "password",
-									"value": "{{SIClientSecret}}",
+									"value": "elbQxIX6EnsTCUAfTD1nnfgcefga",
 									"type": "string"
 								},
 								{
 									"key": "username",
-									"value": "{{SIClientId}}",
+									"value": "r7yfQhfdWHeW3zbo4ZKezcW42GUa",
 									"type": "string"
 								}
 							]
@@ -436,12 +436,400 @@
 									"            \"SNATED\": [\"SNATED\"],\r",
 									"            \"DGS\": [\"CERTDC\"],\r",
 									"            \"DILA\": [\"EtatCivil\", \"JeChangeDeCoordonnees\", \"recensementCitoyen\", \"depotDossierPACS\", \"OTV\"],\r",
-									"            \"CNAF\": [\"CAF-contact\"],\r",
+									"            \"CNAF\": [\"CAF-contact\", \"MSABEM\", \"MSAFIM\", \"declarationDeGrossesse\", \"GRO\", \"RSAFIX\", \"RSACTM\", \"IRSACG-IRSDCG\", \"SGR\", \"DSG\", \"MSABEI\", \"RSABEM-RSABAM\", \"RSABEI-RSABAI\", \"RSABEX-RSABAX\", \"RSAFIM\", \"MSABEX\"],\r",
 									"            \"RSA\": [\"RSA\"]\r",
 									"        },\r",
 									"        \"applicant\": {\r",
 									"            \"firstName\": actualPersonFirstName,\r",
 									"            \"lastName\": actualPersonLastName\r",
+									"        },\r",
+									"        \"SGR\":\r",
+									"        {\r",
+									"            \"externalId\": \"CNAF-SGR-\" + actualFolder,\r",
+									"            \"cases\": [\r",
+									"                {\r",
+									"                    \"recipient\": {\r",
+									"                        \"branchCode\": \"1234\",\r",
+									"                        \"type\": \"SI\",\r",
+									"                        \"companyRegister\": \"4566\"\r",
+									"                    },\r",
+									"                    \"externalId\": \"CNAF-SGR-\" + actualFolder + \"-01\"\r",
+									"                }\r",
+									"            ],\r",
+									"            \"attachments\": [\r",
+									"                {\r",
+									"                    \"fileName\": \"SGR.xml\",\r",
+									"                    \"type\": \"SGR\",\r",
+									"                    \"size\": 55701,\r",
+									"                    \"mimeType\": \"application/zip\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-SGR-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            ]\r",
+									"        },\r",
+									"        \"MSABEX\":\r",
+									"        {\r",
+									"            \"externalId\": \"CNAF-MSABEX-\" + actualFolder,\r",
+									"            \"cases\": [\r",
+									"                {\r",
+									"                    \"recipient\": {\r",
+									"                        \"branchCode\": \"1234\",\r",
+									"                        \"type\": \"SI\",\r",
+									"                        \"companyRegister\": \"4566\"\r",
+									"                    },\r",
+									"                    \"externalId\": \"CNAF-MSABEX-\" + actualFolder + \"-01\"\r",
+									"                }\r",
+									"            ],\r",
+									"            \"attachments\": [\r",
+									"                {\r",
+									"                    \"fileName\": \"MSABEX.xml\",\r",
+									"                    \"type\": \"MSABEX\",\r",
+									"                    \"size\": 2257,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-MSABEX-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            ]\r",
+									"        },\r",
+									"        \"MSABEI\":\r",
+									"        {\r",
+									"            \"externalId\": \"CNAF-MSABEI-\" + actualFolder,\r",
+									"            \"cases\": [\r",
+									"                {\r",
+									"                    \"recipient\": {\r",
+									"                        \"branchCode\": \"1234\",\r",
+									"                        \"type\": \"SI\",\r",
+									"                        \"companyRegister\": \"4566\"\r",
+									"                    },\r",
+									"                    \"externalId\": \"CNAF-MSABEI-\" + actualFolder + \"-01\"\r",
+									"                }\r",
+									"            ],\r",
+									"            \"attachments\": [\r",
+									"                {\r",
+									"                    \"fileName\": \"MSABEI.xml\",\r",
+									"                    \"type\": \"MSABEI\",\r",
+									"                    \"size\": 2738,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-MSABEI-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            ]\r",
+									"        },\r",
+									"        \"MSABEM\":\r",
+									"        {\r",
+									"            \"externalId\": \"CNAF-MSABEM-\" + actualFolder,\r",
+									"            \"cases\": [\r",
+									"                {\r",
+									"                    \"recipient\": {\r",
+									"                        \"branchCode\": \"1234\",\r",
+									"                        \"type\": \"SI\",\r",
+									"                        \"companyRegister\": \"4566\"\r",
+									"                    },\r",
+									"                    \"externalId\": \"CNAF-MSABEM-\" + actualFolder + \"-01\"\r",
+									"                }\r",
+									"            ],\r",
+									"            \"attachments\": [\r",
+									"                {\r",
+									"                    \"fileName\": \"MSABEM.xml\",\r",
+									"                    \"type\": \"MSABEM\",\r",
+									"                    \"size\": 3576,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-MSABEM-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            ]\r",
+									"        },\r",
+									"        \"DSG\":\r",
+									"        {\r",
+									"            \"externalId\": \"CNAF-DSG-\" + actualFolder,\r",
+									"            \"cases\": [\r",
+									"                {\r",
+									"                    \"recipient\": {\r",
+									"                        \"branchCode\": \"1234\",\r",
+									"                        \"type\": \"SI\",\r",
+									"                        \"companyRegister\": \"4566\"\r",
+									"                    },\r",
+									"                    \"externalId\": \"CNAF-DSG-\" + actualFolder + \"-01\"\r",
+									"                }\r",
+									"            ],\r",
+									"            \"attachments\": [\r",
+									"                {\r",
+									"                    \"fileName\": \"DSG.xml\",\r",
+									"                    \"type\": \"DSG\",\r",
+									"                    \"size\": 4682,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-DSG-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            ]\r",
+									"        },\r",
+									"        \"GRO\":\r",
+									"        {\r",
+									"            \"externalId\": \"CNAF-GRO-\" + actualFolder,\r",
+									"            \"cases\": [\r",
+									"                {\r",
+									"                    \"recipient\": {\r",
+									"                        \"branchCode\": \"1234\",\r",
+									"                        \"type\": \"SI\",\r",
+									"                        \"companyRegister\": \"4566\"\r",
+									"                    },\r",
+									"                    \"externalId\": \"CNAF-GRO-\" + actualFolder + \"-01\"\r",
+									"                }\r",
+									"            ],\r",
+									"            \"attachments\": [\r",
+									"                {\r",
+									"                    \"fileName\": \"GRO.xml\",\r",
+									"                    \"type\": \"GRO\",\r",
+									"                    \"size\": 2104,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-GRO-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            ]\r",
+									"        },\r",
+									"        \"IRSACG-IRSDCG\":\r",
+									"        {\r",
+									"            \"externalId\": \"CNAF-IRSACG-\" + actualFolder,\r",
+									"            \"cases\": [\r",
+									"                {\r",
+									"                    \"recipient\": {\r",
+									"                        \"branchCode\": \"1234\",\r",
+									"                        \"type\": \"SI\",\r",
+									"                        \"companyRegister\": \"4566\"\r",
+									"                    },\r",
+									"                    \"externalId\": \"CNAF-IRSACG-\" + actualFolder + \"-01\"\r",
+									"                }\r",
+									"            ],\r",
+									"            \"attachments\": [\r",
+									"                {\r",
+									"                    \"fileName\": \"IRSACG.xml\",\r",
+									"                    \"type\": \"IRSACG\",\r",
+									"                    \"size\": 2925,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-IRSACG-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                {\r",
+									"                    \"fileName\": \"IRSDCG.xml\",\r",
+									"                    \"type\": \"IRSDCG\",\r",
+									"                    \"size\": 4018,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-IRSACG-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            ]\r",
+									"        },\r",
+									"        \"RSABEX-RSABAX\":\r",
+									"        {\r",
+									"            \"externalId\": \"CNAF-RSABEX-\" + actualFolder,\r",
+									"            \"cases\": [\r",
+									"                {\r",
+									"                    \"recipient\": {\r",
+									"                        \"branchCode\": \"1234\",\r",
+									"                        \"type\": \"SI\",\r",
+									"                        \"companyRegister\": \"4566\"\r",
+									"                    },\r",
+									"                    \"externalId\": \"CNAF-RSABEX-\" + actualFolder + \"-01\"\r",
+									"                }\r",
+									"            ],\r",
+									"            \"attachments\": [\r",
+									"                {\r",
+									"                    \"fileName\": \"RSABEX.xml\",\r",
+									"                    \"type\": \"RSABEX\",\r",
+									"                    \"size\": 3055,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-RSABEX-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                {\r",
+									"                    \"fileName\": \"RSABAX.xml\",\r",
+									"                    \"type\": \"RSABAX\",\r",
+									"                    \"size\": 3055,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-RSABEX-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            ]\r",
+									"        },\r",
+									"        \"RSABEM-RSABAM\":\r",
+									"        {\r",
+									"            \"externalId\": \"CNAF-RSABEM-\" + actualFolder,\r",
+									"            \"cases\": [\r",
+									"                {\r",
+									"                    \"recipient\": {\r",
+									"                        \"branchCode\": \"1234\",\r",
+									"                        \"type\": \"SI\",\r",
+									"                        \"companyRegister\": \"4566\"\r",
+									"                    },\r",
+									"                    \"externalId\": \"CNAF-RSABEM-\" + actualFolder + \"-01\"\r",
+									"                }\r",
+									"            ],\r",
+									"            \"attachments\": [\r",
+									"                {\r",
+									"                    \"fileName\": \"RSABEM.xml\",\r",
+									"                    \"type\": \"RSABEM\",\r",
+									"                    \"size\": 6733,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-RSABEM-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                {\r",
+									"                    \"fileName\": \"RSABAM.xml\",\r",
+									"                    \"type\": \"RSABAM\",\r",
+									"                    \"size\": 2811,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-RSABEM-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            ]\r",
+									"        },\r",
+									"        \"RSABEI-RSABAI\":\r",
+									"        {\r",
+									"            \"externalId\": \"CNAF-RSABEI-\" + actualFolder,\r",
+									"            \"cases\": [\r",
+									"                {\r",
+									"                    \"recipient\": {\r",
+									"                        \"branchCode\": \"1234\",\r",
+									"                        \"type\": \"SI\",\r",
+									"                        \"companyRegister\": \"4566\"\r",
+									"                    },\r",
+									"                    \"externalId\": \"CNAF-RSABEI-\" + actualFolder + \"-01\"\r",
+									"                }\r",
+									"            ],\r",
+									"            \"attachments\": [\r",
+									"                {\r",
+									"                    \"fileName\": \"RSABEI.xml\",\r",
+									"                    \"type\": \"RSABEI\",\r",
+									"                    \"size\": 3511,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-RSABEI-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                {\r",
+									"                    \"fileName\": \"RSABAI.xml\",\r",
+									"                    \"type\": \"RSABAI\",\r",
+									"                    \"size\": 3055,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-RSABEI-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            ]\r",
+									"        },\r",
+									"        \"RSACTM\":\r",
+									"        {\r",
+									"            \"externalId\": \"CNAF-RSACTM-\" + actualFolder,\r",
+									"            \"cases\": [\r",
+									"                {\r",
+									"                    \"recipient\": {\r",
+									"                        \"branchCode\": \"1234\",\r",
+									"                        \"type\": \"SI\",\r",
+									"                        \"companyRegister\": \"4566\"\r",
+									"                    },\r",
+									"                    \"externalId\": \"CNAF-RSACTM-\" + actualFolder + \"-01\"\r",
+									"                }\r",
+									"            ],\r",
+									"            \"attachments\": [\r",
+									"                {\r",
+									"                    \"fileName\": \"RSACAM.xml\",\r",
+									"                    \"type\": \"RSACAM\",\r",
+									"                    \"size\": 564,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-RSACTM-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                {\r",
+									"                    \"fileName\": \"RSACTM.xml\",\r",
+									"                    \"type\": \"RSACTM\",\r",
+									"                    \"size\": 564,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-RSACTM-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            ]\r",
+									"        },\r",
+									"        \"RSAFIX\":\r",
+									"        {\r",
+									"            \"externalId\": \"CNAF-RSAFIX-\" + actualFolder,\r",
+									"            \"cases\": [\r",
+									"                {\r",
+									"                    \"recipient\": {\r",
+									"                        \"branchCode\": \"1234\",\r",
+									"                        \"type\": \"SI\",\r",
+									"                        \"companyRegister\": \"4566\"\r",
+									"                    },\r",
+									"                    \"externalId\": \"CNAF-RSAFIX-\" + actualFolder + \"-01\"\r",
+									"                }\r",
+									"            ],\r",
+									"            \"attachments\": [\r",
+									"                {\r",
+									"                    \"fileName\": \"RSAFIX.xml\",\r",
+									"                    \"type\": \"RSAFIX\",\r",
+									"                    \"size\": 7330,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-RSAFIX-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                {\r",
+									"                    \"fileName\": \"RSAFAX.xml\",\r",
+									"                    \"type\": \"RSAFAX\",\r",
+									"                    \"size\": 7330,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-RSAFIX-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            ]\r",
+									"        },\r",
+									"        \"RSAFIM\":\r",
+									"        {\r",
+									"            \"externalId\": \"CNAF-RSAFIM-\" + actualFolder,\r",
+									"            \"cases\": [\r",
+									"                {\r",
+									"                    \"recipient\": {\r",
+									"                        \"branchCode\": \"1234\",\r",
+									"                        \"type\": \"SI\",\r",
+									"                        \"companyRegister\": \"4566\"\r",
+									"                    },\r",
+									"                    \"externalId\": \"CNAF-RSAFIM-\" + actualFolder + \"-01\"\r",
+									"                }\r",
+									"            ],\r",
+									"            \"attachments\": [\r",
+									"                {\r",
+									"                    \"fileName\": \"RSAFAM.xml\",\r",
+									"                    \"type\": \"RSAFAM\",\r",
+									"                    \"size\": 2567,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-RSAFIM-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                },\r",
+									"                {\r",
+									"                    \"fileName\": \"RSAFIM.xml\",\r",
+									"                    \"type\": \"RSAFIM\",\r",
+									"                    \"size\": 2567,\r",
+									"                    \"mimeType\": \"application/xml\",\r",
+									"                    \"recipients\": [\r",
+									"                        \"CNAF-RSAFIM-\" + actualFolder + \"-01\"\r",
+									"                    ]\r",
+									"                }\r",
+									"            ]\r",
 									"        },\r",
 									"        \"CERTDC\":\r",
 									"        {\r",
@@ -1302,6 +1690,1866 @@
 							"raw": "{{tokenUrl}}",
 							"host": [
 								"{{tokenUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SGR_PJ1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/SGR/SGR.zip"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId1}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MSAFIM_PJ1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/MSAFIM/MSAFIM.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId1}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MSABEM_PJ1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/MSABEM/MSABEM.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId1}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MSABEI_PJ1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/MSABEI/MSABEI.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId1}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DSG_PJ1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/DSG/DSG.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId1}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GRO_PJ1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/GRO/GRO.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId1}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IRSACG-IRSDCG_PJ1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/IRSACG-IRSDCG/IRSACG.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId1}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IRSACG-IRSDCG_PJ2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/IRSACG-IRSDCG/IRSDCG.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId2}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RSABEX-RSABAX_PJ1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/RSABEX-RSABAX/RSABEX.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId1}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RSABEX-RSABAX_PJ2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/RSABEX-RSABAX/RSABAX.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId2}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RSABEM-RSABAM_PJ1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/RSABEM-RSABAM/RSABEM.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId1}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RSABEM-RSABAM_PJ2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/RSABEM-RSABAM/RSABAM.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId2}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RSABEI-RSABAI_PJ1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/RSABEI-RSABAI/RSABEI.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId1}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RSABEI-RSABAI_PJ2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/RSABEI-RSABAI/RSABAI.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId2}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RSACTM_PJ1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/RSACTM/RSACAM.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId1}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RSACTM_PJ2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/RSACTM/RSACTM.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId2}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RSAFIX_PJ1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/RSAFIX/RSAFIX.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId1}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RSAFIX_PJ2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/RSAFIX/RSAFAX.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId2}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RSAFIM_PJ1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/RSAFIM/RSAFAM.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId1}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RSAFIM_PJ2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No Content\", () => {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"\r",
+									"if (pm.environment.get('nbPJ') > 1) {\r",
+									"    pm.environment.set('nbPJ', (pm.environment.get('nbPJ') - 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    pm.environment.set('currentPJ', (pm.environment.get('currentPJ') + 1))\r",
+									"    console.log(pm.environment.get('currentPJ'))\r",
+									"    postman.setNextRequest(pm.environment.get('processCode') + '_PJ' + pm.environment.get('currentPJ'));\r",
+									"} else {\r",
+									"     // postman.setNextRequest('Déclarer le TD complet')\r",
+									"    postman.setNextRequest('Vérification du TD')\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{currentOSLToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/octet-stream",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/RSAFIM/RSAFIM.xml"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/teledossiers/{{version}}/folders/:folderId/attachments/:attachmentId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"teledossiers",
+								"{{version}}",
+								"folders",
+								":folderId",
+								"attachments",
+								":attachmentId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "{{latestFolderCreated}}",
+									"description": "21c92b0d-8742-44c7-8055-7697d9e7719c"
+								},
+								{
+									"key": "attachmentId",
+									"value": "{{attachmentId2}}",
+									"description": "8ad3e3f1-77da-4be6-b1c3-f14c6b2003e6"
+								}
 							]
 						}
 					},
@@ -6390,7 +8638,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications?maxResult=100000",
+											"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications?maxResult=10",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -6402,7 +8650,7 @@
 											"query": [
 												{
 													"key": "maxResult",
-													"value": "100000"
+													"value": "10"
 												}
 											]
 										}
@@ -10890,6 +13138,68 @@
 									"name": "recensementCitoyen",
 									"item": [
 										{
+											"name": "Modification du status du case",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"204\", function () {\r",
+															"    pm.response.to.have.status(204);\r",
+															"});\r",
+															"\r",
+															"pm.test(\"No Content\", () => {\r",
+															"  pm.response.to.have.status(\"No Content\");\r",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{currentSIToken}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "PATCH",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"status\": \"DONE\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"teledossiers",
+														"{{version}}",
+														"cases",
+														":caseId"
+													],
+													"variable": [
+														{
+															"key": "caseId",
+															"value": "{{latestCaseCreatedPOF}}"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
 											"name": "Création d'un event avec PJ",
 											"event": [
 												{
@@ -11038,68 +13348,6 @@
 															"key": "attachmentId",
 															"value": "{{eventAttach1}}",
 															"description": "1baa6c67-bbf9-4cd9-a51e-2d1572411694"
-														}
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "Modification du status du case",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"exec": [
-															"pm.test(\"204\", function () {\r",
-															"    pm.response.to.have.status(204);\r",
-															"});\r",
-															"\r",
-															"pm.test(\"No Content\", () => {\r",
-															"  pm.response.to.have.status(\"No Content\");\r",
-															"});"
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "{{currentSIToken}}",
-															"type": "string"
-														}
-													]
-												},
-												"method": "PATCH",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n  \"status\": \"DONE\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"teledossiers",
-														"{{version}}",
-														"cases",
-														":caseId"
-													],
-													"variable": [
-														{
-															"key": "caseId",
-															"value": "{{latestCaseCreatedPOF}}"
 														}
 													]
 												}

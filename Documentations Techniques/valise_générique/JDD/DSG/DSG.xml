@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Agregat xmlns:ns2="urn:cnav:sngi" xmlns:ns3="urn:ops:rncps:dge">
+    <ns3:Entete Profil_Version="01.02" PGMD_Profil="SORTIEDGE">
+        <ns3:Identification>CNAF.DGESDSGA.P22AAAA3</ns3:Identification>
+        <ns3:Temps>2022-01-30T12:15:35.516+01:00</ns3:Temps>
+        <ns3:RefService>M0002E001</ns3:RefService>
+        <ns3:VersionService>01.01</ns3:VersionService>
+        <ns3:NbDoc>1</ns3:NbDoc>
+        <ns3:Emetteur>
+            <ns3:Identite R="RFO">99640000</ns3:Identite>
+            <ns3:Qualite>OPDGE</ns3:Qualite>
+        </ns3:Emetteur>
+        <ns3:Recepteur>
+            <ns3:Identite R="SIRET">22080004900011</ns3:Identite>
+            <ns3:Qualite>CGD008</ns3:Qualite>
+        </ns3:Recepteur>
+    </ns3:Entete>
+    <ns3:Document>
+        <ns3:Mindex>
+            <ns3:Profil>DSGCNAF</ns3:Profil>
+            <ns3:Identification>08002781800019d88000250510001320064</ns3:Identification>
+            <ns3:Temps>2022-01-29T08:40:05.000+01:00</ns3:Temps>
+            <ns3:RefDGE>DGEM12000534</ns3:RefDGE>
+            <ns3:VersionService>01.01</ns3:VersionService>
+            <ns3:Producteur>
+                <ns3:Identite R="RFO">01110021</ns3:Identite>
+            </ns3:Producteur>
+        </ns3:Mindex>
+        <ns3:Trace>
+            <ns3:Activite>DIFFUSION</ns3:Activite>
+            <ns3:Temps>2022-01-30T12:15:35.516+01:00</ns3:Temps>
+            <ns3:Transmis>
+                <ns3:Identite R="RFO">00810011</ns3:Identite>
+                <ns3:LibOrganisme>CNAF</ns3:LibOrganisme>
+                <ns3:Echeance>FREQ=DAILY;BYHOUR=12;BYMINUTE=15</ns3:Echeance>
+                <ns3:VersionService>01.01</ns3:VersionService>
+            </ns3:Transmis>
+        </ns3:Trace>
+        <ns3:Donnee>
+            <dsgcnaf:DSGCNAF Nature="DSGCNAF" Version="00.03" xmlns:DGE="urn:ops:rncps:dge" xmlns:dsgcnaf="urn:cnamts:dsgcnaf" xmlns:beneficiaire="urn:siram:beneficiaire" xmlns:SNGI="urn:cnav:sngi" xmlns:partenairesante="urn:siram:partenairesante">
+                <dsgcnaf:Identification>08002781800019d88000250510001320064</dsgcnaf:Identification>
+                <dsgcnaf:Date>2022-01-29T08:40:05.000+01:00</dsgcnaf:Date>
+                <dsgcnaf:BENEFICIAIRE>
+                    <beneficiaire:NomFamille>xxxxx</beneficiaire:NomFamille>
+                    <beneficiaire:NomUsage>xxxxx</beneficiaire:NomUsage>
+                    <beneficiaire:Prenom>xxxxx</beneficiaire:Prenom>
+                    <beneficiaire:Adresse>
+                        <beneficiaire:Destinataire>xxxxxxxxxx</beneficiaire:Destinataire>
+                        <beneficiaire:PointRemise/>
+                        <beneficiaire:Complement/>
+                        <beneficiaire:NumeroVoie>1</beneficiaire:NumeroVoie>
+                        <beneficiaire:IndiceRepetition/>
+                        <beneficiaire:TypeVoie>RUE</beneficiaire:TypeVoie>
+                        <beneficiaire:NomVoie>DU CLOCHER</beneficiaire:NomVoie>
+                        <beneficiaire:MentionDistribution>08435</beneficiaire:MentionDistribution>
+                        <beneficiaire:CodePostal>08300</beneficiaire:CodePostal>
+                        <beneficiaire:Localite>TAGNON</beneficiaire:Localite>
+                        <beneficiaire:CodePays>F</beneficiaire:CodePays>
+                        <beneficiaire:CodeInsee>08435</beneficiaire:CodeInsee>
+						        </beneficiaire:Adresse>
+                    <beneficiaire:DateNai>1990-03-03</beneficiaire:DateNai>
+                    <beneficiaire:Rang>1</beneficiaire:Rang>
+                    <beneficiaire:MAT>
+                        <beneficiaire:DateDPG>2021-12-03+01:00</beneficiaire:DateDPG>
+                        <dsgcnaf:RectifDPG>false</dsgcnaf:RectifDPG>
+                        <beneficiaire:NbEnfANaitre>1</beneficiaire:NbEnfANaitre>
+                        <dsgcnaf:RectifNbEnfANaitre>false</dsgcnaf:RectifNbEnfANaitre>
+                        <beneficiaire:DateExamen>2022-01-29+01:00</beneficiaire:DateExamen>
+						        </beneficiaire:MAT>
+						      </dsgcnaf:BENEFICIAIRE>
+                <dsgcnaf:PARTENAIRE>
+                    <partenairesante:Numero R="ADELI">511019861</partenairesante:Numero>
+                    <partenairesante:PRESTATAIRE>
+                        <partenairesante:Numero R="AM">511019861</partenairesante:Numero>
+                        <partenairesante:NomFamille>xxxxx</partenairesante:NomFamille>
+                        <partenairesante:Prenom>xxxxx</partenairesante:Prenom>
+						        </partenairesante:PRESTATAIRE>
+						      </dsgcnaf:PARTENAIRE>
+						    </dsgcnaf:DSGCNAF>
+        </ns3:Donnee>
+    </ns3:Document>
+</Agregat>
