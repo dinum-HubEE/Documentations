@@ -6054,7 +6054,7 @@
 									"\r",
 									"function parameterEmptyOrNull(attachment, parameterTab) {\r",
 									"    for (const parameter of parameterTab) {\r",
-									"        if (attachment[parameter] == \"PENDING\") {\r",
+									"        if (attachment[parameter] != \"RECEIVED\") {\r",
 									"            postman.setNextRequest(null);\r",
 									"        }\r",
 									"    }\r",
