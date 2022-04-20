@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   description: This is the swagger describing API exposed by HubEE.
-  version: 1.2.2
+  version: 1.2.4
   title: Folder
 x-wso2-basePath: /teledossiers/v1
 x-wso2-production-endpoints: '#/x-wso2-endpoints/microservice'
@@ -95,7 +95,7 @@ paths:
       operationId: deleteNotification
       responses:
         '204':
-          description: Success
+          description: Successfully deleted
         '400':
           description: Bad request
           content:
@@ -160,7 +160,7 @@ paths:
         description: Folder object that needs to be created
       responses:
         '201':
-          description: Success
+          description: Successfully created
           content:
             application/json:
               schema:
@@ -436,7 +436,7 @@ paths:
       operationId: deleteFolder
       responses:
         '204':
-          description: Success
+          description: Successfully deleted
         '400':
           description: Bad request
           content:
@@ -517,7 +517,7 @@ paths:
               format: binary
       responses:
         '204':
-          description: Success
+          description: Successfully operation
         '400':
           description: Bad request
           content:
@@ -808,6 +808,13 @@ paths:
                 type: string
                 format: binary
                 example: binary file
+          headers:
+            digest:
+                schema:
+                  type: string
+                description: SHA-256 file hash value
+                example: gzC8kNpW+cmI6AK1s6flSBbQROpJg0EWKQjpqt9XTbM=
+                required: false
         '400':
           description: Bad request
           content:
@@ -879,7 +886,7 @@ paths:
         description: Event object that needs to be created
       responses:
         '201':
-          description: Success
+          description: Successfully created
           content:
             application/json:
               schema:
@@ -1143,7 +1150,7 @@ paths:
       operationId: deleteEvent
       responses:
         '204':
-          description: Success
+          description: Successfully deleted
         '400':
           description: Bad request
           content:
@@ -1233,7 +1240,7 @@ paths:
               format: binary
       responses:
         '204':
-          description: Success
+          description: Successfully operation
         '400':
           description: Bad request
           content:
@@ -1295,6 +1302,13 @@ paths:
                 type: string
                 format: binary
                 example: binary file
+          headers:
+            digest:
+                schema:
+                  type: string
+                description: SHA-256 file hash value
+                example: gzC8kNpW+cmI6AK1s6flSBbQROpJg0EWKQjpqt9XTbM=
+                required: false 
         '400':
           description: Bad request
           content:
@@ -1370,13 +1384,13 @@ components:
         type: string
         maxLength: 50
     digestSHA2:
-      name: Digest
+      name: digest
       in: header
-      description: File hash value
+      description: SHA-256 file hash value
       required: false
       schema:
         type: string
-        example: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=        
+        example: gzC8kNpW+cmI6AK1s6flSBbQROpJg0EWKQjpqt9XTbM=        
         
   schemas:
     Notification:
