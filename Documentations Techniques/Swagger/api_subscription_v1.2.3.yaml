@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   description: This is the swagger describing Subscription API exposed by HubEE.
-  version: 1.1.0
+  version: 1.2.3
   title: Subscription
 x-wso2-basePath: /referential/v1
 x-wso2-production-endpoints: "#/x-wso2-endpoints/microservice"
@@ -65,7 +65,7 @@ paths:
         required: true
       responses:
         '201':
-          description: Success
+          description: Successfully created
           content:
             application/json:
               schema:
@@ -111,7 +111,6 @@ paths:
             type: array
             items:
               type: string
-              maxLength: 30
             
         - name: status
           in: query
@@ -242,7 +241,7 @@ paths:
         required: true
       responses:
         '200':
-          description: Success
+          description: Successfully updated
           content:
             application/json:
               schema:
@@ -356,13 +355,13 @@ components:
         phoneNumber:
           type: string
           nullable: true
-          pattern: ^\+[0-9]{10,20}|[0-9]{10,20}
+          pattern: ^\+[0-9]{10,20}$|^[0-9]{10,20}$
           example: '00658475847'
           description: Numéro de téléphone du délégué technique  
         mobileNumber:
           type: string
           nullable: true
-          pattern: ^\+[0-9]{10,20}|[0-9]{10,20}
+          pattern: ^\+[0-9]{10,20}$|^[0-9]{10,20}$
           example: '00658475847'
           description:  Numéro de téléphone mobile du délégué technique          
     LocalAdministrator:
@@ -392,17 +391,15 @@ components:
         phoneNumber:
           type: string
           nullable: true
-          pattern: ^\+[0-9]{10,20}|[0-9]{10,20}
+          pattern: ^\+[0-9]{10,20}$|^[0-9]{10,20}$
           example: '00658475847'
           description: Numéro de téléphone de l'administrateur local   
         mobileNumber:
           type: string
           nullable: true
-          pattern: ^\+[0-9]{10,20}|[0-9]{10,20}
+          pattern: ^\+[0-9]{10,20}$|^[0-9]{10,20}$
           example: '00658475847'
           description:  Numéro de téléphone mobile de l'administrateur local
-      required:
-      - email
             
     Subscription:
       type: object
@@ -484,6 +481,7 @@ components:
           description: Motif de rejet si refusé
         status:
           type: string
+          nullable: true
           maxLength: 20          
           description: "Statut de l'abonnement : Actif, Inactif, Refusé, Suspendu"
           example: Actif
