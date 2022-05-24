@@ -1,0 +1,184 @@
+Evolutions des swaggers HubEE
+
+**************************************************************************************
+* Name of product : 20200316_CGI_HUBEE_API_Swagger
+* Version number : v1.2.6
+* Product Overview : Contrat d'interface du HUB pour les partenaires (OSL/SI/Portail/Datapass)
+* Date of the release : 16/03/2022
+**************************************************************************************
+
+Swagger Process (1.2.3)
+- Ajout des champs messageWithStatus et authorizedAwaiting maintenant nécessaire pour la création et modification d'un process
+
+
+
+
+
+
+*************************************************************************************
+* Name of product : 20211122_CGI_HUBEE_API_Swagger
+* Version number : v1.2.5
+* Product Overview : Contrat d'interface du HUB pour les partenaires (OSL/SI/Portail/Datapass)
+* Date of the release : 22/11/2021
+**************************************************************************************
+
+Swagger Subscription (1.2.3)
+- Correction de la regexp phoneNumber
+- Suppression de messages d'erreur en double pour email localAdministrator
+- Correction sur la modification d'une subscription sans status
+
+Swagger Organization (1.1.2)
+- Correction de la regexp phoneNumber
+
+===============
+
+Swagger Folder (1.2.4)
+- Alignement des messages retour entre méthodes
+
+Swagger Subscription (1.2.2)
+- Alignement des messages retour entre méthodes
+
+Swagger Organization (1.1.1)
+- Alignement des messages retour entre méthodes
+- Autorisation des '-' sur branchCode dans regexp get /organization/{id}
+
+Swagger Process (1.2.2)
+- Alignement des messages retour entre méthodes
+
+===============
+
+Swagger Folder (1.2.3)
+- Ajout du digest dans le response-header des récupérations d'attachment :
+GET /cases/{caseId}/attachments/{attachmentId}
+GET /cases/{caseId}/events/{eventId}/attachments/{attachmentId}
+
+Swagger Subscription (1.2.1)
+- GET /subscriptions : Retrait du maxlength dans le filtre par processCode pour prise en compte par les générateurs de clients
+
+
+
+
+
+
+**************************************************************************************
+* Name of product : 20211104_CGI_HUBEE_API_Swagger
+* Version number : v1.2.4
+* Product Overview : Contrat d'interface du HUB pour les partenaires (OSL/SI/Portail/Datapass)
+* Date of the release : 04/11/2021
+**************************************************************************************
+
+Swagger Folder (1.2.4)
+- Alignement des messages retour entre méthodes
+
+Swagger Subscription (1.2.2)
+- Alignement des messages retour entre méthodes
+
+Swagger Organization (1.1.1)
+- Alignement des messages retour entre méthodes
+- Autorisation des '-' sur branchCode dans regexp get /organization/{id}
+
+Swagger Process (1.2.2)
+- Alignement des messages retour entre méthodes
+
+
+
+
+
+**************************************************************************************
+* Name of product : 20210107_CGI_HUBEE_API_Swagger
+* Version number : v1.2.4
+* Product Overview : Contrat d'interface du HUB pour les partenaires (OSL/SI/Portail/Datapass)
+* Date of the release : 27/08/2021
+**************************************************************************************
+
+Swagger Folder
+- Ajout de la méthode DELETE /cases/{caseId}/events/{eventId}
+- Diverses corrections ("format: string" corrigé en "type: string", correction d'erreurs 404)
+
+Swagger Subscription
+- Champs localAdministrator.firstName et localAdministrator.lastName rendus facultatifs pour le Portail HubEE
+- Correction de la regexp des numéros de téléphone des objets localAdministrator et delegateActor
+- Description du champ subscription.status complété
+
+Swagger Process
+- Champs timeBeforeFileDeletion, timeBeforeArchiving, timeBeforeFolderDeletion passés en int32
+
+
+
+
+
+
+**************************************************************************************
+* Name of product : 20210107_CGI_HUBEE_API_Swagger
+* Version number : v1.2.1
+* Product Overview : Contrat d'interface du HUB pour les partenaires (OSL/SI/Portail/Datapass)
+* Date of the release : 16/09/2021
+**************************************************************************************
+
+Swagger Folder
+- Augmentation de la taille du champ event.status à 12 caractères
+
+
+
+
+
+
+
+**************************************************************************************
+* Name of product : 20210107_CGI_HUBEE_API_Swagger
+* Version number : v1.2.3
+* Product Overview : Contrat d'interface du HUB pour les partenaires (OSL/SI/Portail/Datapass)
+* Date of the release : 19/10/2021
+**************************************************************************************
+
+Swagger Folder (1.2.3)
+- Ajout du digest dans le response-header des récupérations d'attachment :
+GET /cases/{caseId}/attachments/{attachmentId}
+GET /cases/{caseId}/events/{eventId}/attachments/{attachmentId}
+
+Swagger Subscription (1.2.1)
+- GET /subscriptions : Retrait du maxlength dans le filtre par processCode pour prise en compte par les générateurs de clients
+
+
+
+
+
+
+
+**************************************************************************************
+* Name of product : 20210107_CGI_HUBEE_API_Swagger
+* Version number : v1.2.2
+* Product Overview : Contrat d'interface du HUB pour les partenaires (OSL/SI/Portail/Datapass)
+* Date of the release : 01/10/2021
+**************************************************************************************
+
+Swagger Folder (1.2.2)
+- Revert de la correction de la 1.2.0 sur le "format: string"
+
+Swagger Process (1.2.1)
+- Ajout du champ siAttachmentFormatsEnabled
+
+
+
+
+
+
+**************************************************************************************
+* Name of product : 20210107_CGI_HUBEE_API_Swagger
+* Version number : v1.2.0
+* Product Overview : Contrat d'interface du HUB pour les partenaires (OSL/SI/Portail/Datapass)
+* Date of the release : 27/08/2021
+**************************************************************************************
+
+Swagger Folder
+- Ajout de la méthode DELETE /cases/{caseId}/events/{eventId}
+- Diverses corrections ("format: string" corrigé en "type: string", correction d'erreurs 404)
+
+Swagger Subscription
+- Champs localAdministrator.firstName et localAdministrator.lastName rendus facultatifs pour le Portail HubEE
+- Correction de la regexp des numéros de téléphone des objets localAdministrator et delegateActor
+- Description du champ subscription.status complété
+
+Swagger Process
+- Champs timeBeforeFileDeletion, timeBeforeArchiving, timeBeforeFolderDeletion passés en int32
+
