@@ -6803,7 +6803,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications?maxResult=10000",
+									"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications?maxResult=100",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -6815,7 +6815,7 @@
 									"query": [
 										{
 											"key": "maxResult",
-											"value": "10000"
+											"value": "100"
 										}
 									]
 								}
@@ -7215,7 +7215,7 @@
 												"method": "GET",
 												"header": [],
 												"url": {
-													"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications?maxResult=100000",
+													"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications?maxResult=100",
 													"host": [
 														"{{baseUrl}}"
 													],
@@ -7227,7 +7227,7 @@
 													"query": [
 														{
 															"key": "maxResult",
-															"value": "100000"
+															"value": "100"
 														}
 													]
 												}
@@ -7766,7 +7766,7 @@
 												"method": "GET",
 												"header": [],
 												"url": {
-													"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications?maxResult=100000",
+													"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications?maxResult=100",
 													"host": [
 														"{{baseUrl}}"
 													],
@@ -7778,7 +7778,7 @@
 													"query": [
 														{
 															"key": "maxResult",
-															"value": "100000"
+															"value": "100"
 														}
 													]
 												}
@@ -8377,7 +8377,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications?maxResult=100000",
+											"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications?maxResult=100",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -8389,7 +8389,7 @@
 											"query": [
 												{
 													"key": "maxResult",
-													"value": "100000"
+													"value": "100"
 												}
 											]
 										}
