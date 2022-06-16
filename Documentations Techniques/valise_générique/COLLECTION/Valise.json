@@ -1095,7 +1095,7 @@
 									"                {\r",
 									"                    \"fileName\": \"CG02_RE_IP2081257.xml\",\r",
 									"                    \"type\": \"documents\",\r",
-									"                    \"size\": 3752,\r",
+									"                    \"size\": 3748,\r",
 									"                    \"mimeType\": \"application/xml\",\r",
 									"                    \"recipients\": [\r",
 									"                        \"SNATED-SNATED-\" + actualFolder + \"-01\"\r",
