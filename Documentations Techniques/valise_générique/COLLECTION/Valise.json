@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2bc6479b-c3fa-463b-8321-e55d7904d1a8",
+		"_postman_id": "c5483213-d4d9-4ce5-a023-44b8c8266ae1",
 		"name": "Valise générique",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -368,13 +368,13 @@
 							"type": "basic",
 							"basic": [
 								{
-									"key": "password",
-									"value": "elbQxIX6EnsTCUAfTD1nnfgcefga",
+									"key": "username",
+									"value": "{{SIClientId}}",
 									"type": "string"
 								},
 								{
-									"key": "username",
-									"value": "r7yfQhfdWHeW3zbo4ZKezcW42GUa",
+									"key": "password",
+									"value": "{{SIClientSecret}}",
 									"type": "string"
 								}
 							]
@@ -2686,7 +2686,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/RSABEM-RSABAM/RSABEM.xml"
+								"src": "/C:/Users/sebastien.assali/Downloads/valiseGenerique (12)/valise_générique/JDD/RSABEM-RSABAM/RSABEM.xml"
 							}
 						},
 						"url": {
@@ -2779,7 +2779,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/RSABEM-RSABAM/RSABAM.xml"
+								"src": "/C:/Users/sebastien.assali/Downloads/valiseGenerique (12)/valise_générique/JDD/RSABEM-RSABAM/RSABAM.xml"
 							}
 						},
 						"url": {
@@ -2872,7 +2872,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/RSABEI-RSABAI/RSABEI.xml"
+								"src": "/C:/Users/sebastien.assali/Downloads/valiseGenerique (12)/valise_générique/JDD/RSABEI-RSABAI/RSABEI.xml"
 							}
 						},
 						"url": {
@@ -2965,7 +2965,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/RSABEI-RSABAI/RSABAI.xml"
+								"src": "/C:/Users/sebastien.assali/Downloads/valiseGenerique (12)/valise_générique/JDD/RSABEI-RSABAI/RSABAI.xml"
 							}
 						},
 						"url": {
@@ -4743,7 +4743,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Documents/GIT/hubee/Documentations/Documentations Techniques/valise_générique/JDD/SNATED/IP2081257.xml"
+								"src": "/D:/Users/Biggy/Documents/DINUM/GIT/Documentations/Documentations Techniques/valise_générique/JDD/SNATED/IP2081257.xml"
 							}
 						},
 						"url": {
@@ -4827,7 +4827,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Documents/GIT/hubee/Documentations/Documentations Techniques/valise_générique/JDD/SNATED/IP2081257.pdf"
+								"src": "/D:/Users/Biggy/Documents/DINUM/GIT/Documentations/Documentations Techniques/valise_générique/JDD/SNATED/IP2081257.pdf"
 							}
 						},
 						"url": {
@@ -4911,7 +4911,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Documents/GIT/hubee/Documentations/Documentations Techniques/valise_générique/JDD/SNATED/CG02_RE_IP2081257.xml"
+								"src": "/D:/Users/Biggy/Documents/DINUM/GIT/Documentations/Documentations Techniques/valise_générique/JDD/SNATED/CG02_RE_IP2081257.xml"
 							}
 						},
 						"url": {
@@ -4995,7 +4995,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Documents/GIT/hubee/Documentations/Documentations Techniques/valise_générique/JDD/SNATED/CG02_RE_IP2081257.odt"
+								"src": "/D:/Users/Biggy/Documents/DINUM/GIT/Documentations/Documentations Techniques/valise_générique/JDD/SNATED/CG02_RE_IP2081257.odt"
 							}
 						},
 						"url": {
@@ -5079,7 +5079,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/C:/Users/sebastien.assali/Documents/GIT/hubee/Documentations/Documentations Techniques/valise_générique/JDD/SNATED/CG02_RE_IP2081257.docx"
+								"src": "/D:/Users/Biggy/Documents/DINUM/GIT/Documentations/Documentations Techniques/valise_générique/JDD/SNATED/CG02_RE_IP2081257.docx"
 							}
 						},
 						"url": {
@@ -6192,7 +6192,7 @@
 			"name": "B - Traitement d'un télé-dossier par un SI",
 			"item": [
 				{
-					"name": "CERTDC / EtatCivil / JeChangeDeCoordonnees",
+					"name": "Téléchargement OK par le SI",
 					"item": [
 						{
 							"name": "Recupérer Notif SI1",
@@ -6613,6 +6613,429 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Téléchargement KO par le SI : avec SI_INTG_ERROR",
+					"item": [
+						{
+							"name": "Recupérer Notif SI1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"OK\", () => {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"const responseJson = pm.response.json();\r",
+											"if (responseJson[0]) {\r",
+											"    pm.environment.set('pofNotifId', responseJson[0].id);\r",
+											"    pm.environment.set('latestCaseCreatedPOF', responseJson[0].caseId);\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{currentSIToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"teledossiers",
+										"{{version}}",
+										"notifications"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SI1 récup case",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"OK\", () => {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"const responseJson = pm.response.json();\r",
+											"if (responseJson) {\r",
+											"    pm.environment.set('attachmentId1', responseJson.attachments[0].id);\r",
+											"    pm.environment.set('attachmentId2', responseJson.attachments[1].id);\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{currentSIToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"teledossiers",
+										"{{version}}",
+										"cases",
+										":caseId"
+									],
+									"variable": [
+										{
+											"key": "caseId",
+											"value": "{{latestCaseCreatedPOF}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "téléch. PJ1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"OK\", () => {\r",
+											"  pm.response.to.have.status(\"OK\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{currentSIToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/attachments/:attachmentId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"teledossiers",
+										"{{version}}",
+										"cases",
+										":caseId",
+										"attachments",
+										":attachmentId"
+									],
+									"variable": [
+										{
+											"key": "caseId",
+											"value": "{{latestCaseCreatedPOF}}",
+											"description": "37df9f5b-93e4-437c-b28c-e0c8fe8c09f7"
+										},
+										{
+											"key": "attachmentId",
+											"value": "{{attachmentId1}}",
+											"description": "1baa6c67-bbf9-4cd9-a51e-2d1572411694"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "téléch. PJ2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"OK\", () => {\r",
+											"  pm.response.to.have.status(\"OK\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{currentSIToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/attachments/:attachmentId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"teledossiers",
+										"{{version}}",
+										"cases",
+										":caseId",
+										"attachments",
+										":attachmentId"
+									],
+									"variable": [
+										{
+											"key": "caseId",
+											"value": "{{latestCaseCreatedPOF}}",
+											"description": "37df9f5b-93e4-437c-b28c-e0c8fe8c09f7"
+										},
+										{
+											"key": "attachmentId",
+											"value": "{{attachmentId2}}",
+											"description": "1baa6c67-bbf9-4cd9-a51e-2d1572411694"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SI1 case - IN_PROGRESS",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"204\", function () {\r",
+											"    pm.response.to.have.status(204);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"No Content\", () => {\r",
+											"  pm.response.to.have.status(\"No Content\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{currentSIToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"status\": \"SI_INTG_ERROR\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"teledossiers",
+										"{{version}}",
+										"cases",
+										":caseId"
+									],
+									"variable": [
+										{
+											"key": "caseId",
+											"value": "{{latestCaseCreatedPOF}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "historique IN_PROGRESS",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const responseJson = pm.response.json();\r",
+											"pm.environment.set('latestEventCreated', responseJson.id);\r",
+											"\r",
+											"pm.test(\"201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{currentSIToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n \"actionType\": \"STATUS_UPDATE\",\r\n  \"author\": \"George DUBOIS\",\r\n  \"notification\": true,\r\n  \"caseCurrentStatus\": \"HUBEE_NOTIFIED\",\r\n  \"caseNewStatus\": \"SI_INTG_ERROR\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/events",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"teledossiers",
+										"{{version}}",
+										"cases",
+										":caseId",
+										"events"
+									],
+									"variable": [
+										{
+											"key": "caseId",
+											"value": "{{latestCaseCreatedPOF}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "del notif SI1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"204\", function () {\r",
+											"    pm.response.to.have.status(204);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"No Content\", () => {\r",
+											"  pm.response.to.have.status(\"No Content\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{currentSIToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications/:notificationId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"teledossiers",
+										"{{version}}",
+										"notifications",
+										":notificationId"
+									],
+									"variable": [
+										{
+											"key": "notificationId",
+											"value": "{{pofNotifId}}",
+											"description": "2d07d296-9c08-4c3f-8036-eadcbef25019"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -6803,7 +7226,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications?maxResult=100",
+									"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications?maxResult=10000",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -6815,7 +7238,7 @@
 									"query": [
 										{
 											"key": "maxResult",
-											"value": "100"
+											"value": "10000"
 										}
 									]
 								}
@@ -7215,7 +7638,7 @@
 												"method": "GET",
 												"header": [],
 												"url": {
-													"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications?maxResult=100",
+													"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications?maxResult=100000",
 													"host": [
 														"{{baseUrl}}"
 													],
@@ -7227,7 +7650,7 @@
 													"query": [
 														{
 															"key": "maxResult",
-															"value": "100"
+															"value": "100000"
 														}
 													]
 												}
@@ -7766,7 +8189,7 @@
 												"method": "GET",
 												"header": [],
 												"url": {
-													"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications?maxResult=100",
+													"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications?maxResult=100000",
 													"host": [
 														"{{baseUrl}}"
 													],
@@ -7778,7 +8201,7 @@
 													"query": [
 														{
 															"key": "maxResult",
-															"value": "100"
+															"value": "100000"
 														}
 													]
 												}
@@ -8377,7 +8800,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications?maxResult=100",
+											"raw": "{{baseUrl}}/teledossiers/{{version}}/notifications",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -8389,7 +8812,8 @@
 											"query": [
 												{
 													"key": "maxResult",
-													"value": "100"
+													"value": "100000",
+													"disabled": true
 												}
 											]
 										}
@@ -12776,7 +13200,7 @@
 												"header": [],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"actionType\": \"ADD_AWAITING\",\r\n    \"author\": \"George DUBOIS\",\r\n    \"notification\": true,\r\n    \"message\": \"j'ai besoin de compléments\",\r\n    \"caseCurrentStatus\": \"IN_PROGRESS\",\r\n    \"caseNewStatus\": \"ADD_AWAITING\"\r\n}",
+													"raw": "{\r\n    \"actionType\": \"STATUS_UPDATE\",\r\n    \"author\": \"George DUBOIS\",\r\n    \"notification\": true,\r\n    \"message\": \"j'ai besoin de compléments\",\r\n    \"caseCurrentStatus\": \"IN_PROGRESS\",\r\n    \"caseNewStatus\": \"ADD_AWAITING\"\r\n}",
 													"options": {
 														"raw": {
 															"language": "json"
@@ -13135,297 +13559,292 @@
 							"name": "1 - SI",
 							"item": [
 								{
-									"name": "recensementCitoyen",
-									"item": [
+									"name": "Modification du status du case",
+									"event": [
 										{
-											"name": "Modification du status du case",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"exec": [
-															"pm.test(\"204\", function () {\r",
-															"    pm.response.to.have.status(204);\r",
-															"});\r",
-															"\r",
-															"pm.test(\"No Content\", () => {\r",
-															"  pm.response.to.have.status(\"No Content\");\r",
-															"});"
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "{{currentSIToken}}",
-															"type": "string"
-														}
-													]
-												},
-												"method": "PATCH",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n  \"status\": \"DONE\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"teledossiers",
-														"{{version}}",
-														"cases",
-														":caseId"
-													],
-													"variable": [
-														{
-															"key": "caseId",
-															"value": "{{latestCaseCreatedPOF}}"
-														}
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "Création d'un event avec PJ",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"exec": [
-															"pm.test(\"201\", function () {\r",
-															"    pm.response.to.have.status(201);\r",
-															"});\r",
-															"\r",
-															"pm.test(\"Created\", () => {\r",
-															"  pm.response.to.have.status(\"Created\");\r",
-															"});\r",
-															"\r",
-															"const responseJson = pm.response.json();\r",
-															"pm.environment.set('latestEventCreated', responseJson.id);\r",
-															"pm.environment.set('eventAttach1', responseJson.attachments[0].id);\r",
-															""
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "{{currentSIToken}}",
-															"type": "string"
-														}
-													]
-												},
-												"method": "POST",
-												"header": [
-													{
-														"key": "",
-														"value": "",
-														"type": "text"
-													}
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"204\", function () {\r",
+													"    pm.response.to.have.status(204);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"No Content\", () => {\r",
+													"  pm.response.to.have.status(\"No Content\");\r",
+													"});"
 												],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"actionType\": \"ATTACH_DEPOSIT\",\r\n    \"author\": \"George DUBOIS\",\r\n    \"notification\": true,\r\n    \"caseCurrentStatus\": \"IN_PROGRESS\",\r\n    \"caseNewStatus\": \"DONE\",\r\n    \"attachments\": [\r\n        {\r\n            \"fileName\": \"10870-XML.xml\",\r\n            \"type\": \"10870-XML\",\r\n            \"size\": 3514,\r\n            \"mimeType\": \"application/xml\"\r\n        }\r\n    ]\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/events",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"teledossiers",
-														"{{version}}",
-														"cases",
-														":caseId",
-														"events"
-													],
-													"variable": [
-														{
-															"key": "caseId",
-															"value": "{{latestCaseCreatedPOF}}",
-															"description": "da70c8d6-0610-44a0-a914-276edcfd265d"
-														}
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "upload event attachment pour l'OSL",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"exec": [
-															"pm.test(\"204\", function () {\r",
-															"    pm.response.to.have.status(204);\r",
-															"});\r",
-															"\r",
-															"pm.test(\"No Content\", () => {\r",
-															"  pm.response.to.have.status(\"No Content\");\r",
-															"});"
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "{{currentSIToken}}",
-															"type": "string"
-														}
-													]
-												},
-												"method": "PUT",
-												"header": [
-													{
-														"key": "Content-Type",
-														"value": "application/octet-stream",
-														"type": "text"
-													}
-												],
-												"body": {
-													"mode": "file",
-													"file": {
-														"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7/JDD/RECENSEMENTCITOYEN/10870-XML.xml"
-													}
-												},
-												"url": {
-													"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/events/:eventId/attachments/:attachmentId",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"teledossiers",
-														"{{version}}",
-														"cases",
-														":caseId",
-														"events",
-														":eventId",
-														"attachments",
-														":attachmentId"
-													],
-													"variable": [
-														{
-															"key": "caseId",
-															"value": "{{latestCaseCreatedPOF}}",
-															"description": "37df9f5b-93e4-437c-b28c-e0c8fe8c09f7"
-														},
-														{
-															"key": "eventId",
-															"value": "{{latestEventCreated}}",
-															"description": "4a70ed55-45d7-4773-9ed3-782f996d4968"
-														},
-														{
-															"key": "attachmentId",
-															"value": "{{eventAttach1}}",
-															"description": "1baa6c67-bbf9-4cd9-a51e-2d1572411694"
-														}
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "case by caseId EventId",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"exec": [
-															"pm.test(\"204\", function () {\r",
-															"    pm.response.to.have.status(204);\r",
-															"});\r",
-															"\r",
-															"pm.test(\"No Content\", () => {\r",
-															"  pm.response.to.have.status(\"No Content\");\r",
-															"});"
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "{{currentSIToken}}",
-															"type": "string"
-														}
-													]
-												},
-												"method": "PATCH",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n  \"status\": \"SENT\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/events/:eventId",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"teledossiers",
-														"{{version}}",
-														"cases",
-														":caseId",
-														"events",
-														":eventId"
-													],
-													"variable": [
-														{
-															"key": "caseId",
-															"value": "{{latestCaseCreatedPOF}}",
-															"description": "subfolder d2ff34aa-e848-4ae9-b313-bb002eef2c14"
-														},
-														{
-															"key": "eventId",
-															"value": "{{latestEventCreated}}",
-															"description": "6184477b-eb76-4e75-aff8-9369cdb73675"
-														}
-													]
-												},
-												"description": "Modification du status d'un event - 204"
-											},
-											"response": []
+												"type": "text/javascript"
+											}
 										}
-									]
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{currentSIToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"status\": \"DONE\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teledossiers",
+												"{{version}}",
+												"cases",
+												":caseId"
+											],
+											"variable": [
+												{
+													"key": "caseId",
+													"value": "{{latestCaseCreatedPOF}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Création d'un event avec PJ",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"201\", function () {\r",
+													"    pm.response.to.have.status(201);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Created\", () => {\r",
+													"  pm.response.to.have.status(\"Created\");\r",
+													"});\r",
+													"\r",
+													"const responseJson = pm.response.json();\r",
+													"pm.environment.set('latestEventCreated', responseJson.id);\r",
+													"pm.environment.set('eventAttach1', responseJson.attachments[0].id);\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{currentSIToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "",
+												"value": "",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"actionType\": \"ATTACH_DEPOSIT\",\r\n    \"author\": \"CD seine\",\r\n    \"notification\": true,\r\n    \"caseCurrentStatus\": \"IN_PROGRESS\",\r\n    \"caseNewStatus\": \"DONE\",\r\n    \"attachments\": [\r\n        {\r\n            \"fileName\": \"IP2081257.xml\",\r\n            \"type\": \"IP2081257\",\r\n            \"size\": 3099,\r\n            \"mimeType\": \"application/xml\"\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/events",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teledossiers",
+												"{{version}}",
+												"cases",
+												":caseId",
+												"events"
+											],
+											"variable": [
+												{
+													"key": "caseId",
+													"value": "{{latestCaseCreatedPOF}}",
+													"description": "da70c8d6-0610-44a0-a914-276edcfd265d"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "upload event attachment pour l'OSL",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"204\", function () {\r",
+													"    pm.response.to.have.status(204);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"No Content\", () => {\r",
+													"  pm.response.to.have.status(\"No Content\");\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{currentSIToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/octet-stream",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "file",
+											"file": {
+												"src": "/D:/Users/Biggy/Documents/DINUM/valiseGenerique/valise_générique/JDD/SNATED/IP2081257.xml"
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/events/:eventId/attachments/:attachmentId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teledossiers",
+												"{{version}}",
+												"cases",
+												":caseId",
+												"events",
+												":eventId",
+												"attachments",
+												":attachmentId"
+											],
+											"variable": [
+												{
+													"key": "caseId",
+													"value": "{{latestCaseCreatedPOF}}",
+													"description": "37df9f5b-93e4-437c-b28c-e0c8fe8c09f7"
+												},
+												{
+													"key": "eventId",
+													"value": "{{latestEventCreated}}",
+													"description": "4a70ed55-45d7-4773-9ed3-782f996d4968"
+												},
+												{
+													"key": "attachmentId",
+													"value": "{{eventAttach1}}",
+													"description": "1baa6c67-bbf9-4cd9-a51e-2d1572411694"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "case by caseId EventId",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"204\", function () {\r",
+													"    pm.response.to.have.status(204);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"No Content\", () => {\r",
+													"  pm.response.to.have.status(\"No Content\");\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{currentSIToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"status\": \"SENT\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/events/:eventId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teledossiers",
+												"{{version}}",
+												"cases",
+												":caseId",
+												"events",
+												":eventId"
+											],
+											"variable": [
+												{
+													"key": "caseId",
+													"value": "{{latestCaseCreatedPOF}}",
+													"description": "subfolder d2ff34aa-e848-4ae9-b313-bb002eef2c14"
+												},
+												{
+													"key": "eventId",
+													"value": "{{latestEventCreated}}",
+													"description": "6184477b-eb76-4e75-aff8-9369cdb73675"
+												}
+											]
+										},
+										"description": "Modification du status d'un event - 204"
+									},
+									"response": []
 								}
 							]
 						},
@@ -13433,376 +13852,371 @@
 							"name": "2 - OSL",
 							"item": [
 								{
-									"name": "recensementCitoyen",
-									"item": [
+									"name": "Création d'un event avec PJ",
+									"event": [
 										{
-											"name": "Création d'un event avec PJ",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"exec": [
-															"pm.test(\"201\", function () {\r",
-															"    pm.response.to.have.status(201);\r",
-															"});\r",
-															"\r",
-															"pm.test(\"Created\", () => {\r",
-															"  pm.response.to.have.status(\"Created\");\r",
-															"});\r",
-															"\r",
-															"const responseJson = pm.response.json();\r",
-															"pm.environment.set('latestEventCreated', responseJson.id);\r",
-															""
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "{{currentOSLToken}}",
-															"type": "string"
-														}
-													]
-												},
-												"method": "POST",
-												"header": [
-													{
-														"key": "",
-														"value": "",
-														"type": "text"
-													}
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"201\", function () {\r",
+													"    pm.response.to.have.status(201);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Created\", () => {\r",
+													"  pm.response.to.have.status(\"Created\");\r",
+													"});\r",
+													"\r",
+													"const responseJson = pm.response.json();\r",
+													"pm.environment.set('latestEventCreated', responseJson.id);\r",
+													""
 												],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"actionType\": \"ATTACH_DEPOSIT\",\r\n    \"author\": \"George DUBOIS\",\r\n    \"notification\": true,\r\n    \"caseCurrentStatus\": \"DONE\",\r\n    \"caseNewStatus\": \"HUBEE_NOTIFIED\",\r\n    \"attachments\": [\r\n        {\r\n            \"fileName\": \"ER20190860001_20190517_1512_VA.pdf\",\r\n            \"type\": \"VA_CertificatdeDeces\",\r\n            \"size\": 219619,\r\n            \"mimeType\": \"application/pdf\"\r\n        },\r\n        {\r\n            \"fileName\": \"ER20190860001_20190517_1512_VA.xml\",\r\n            \"type\": \"VA_CertificatdeDeces\",\r\n            \"size\": 6917,\r\n            \"mimeType\": \"application/xml\"\r\n        }\r\n    ]\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/events",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"teledossiers",
-														"{{version}}",
-														"cases",
-														":caseId",
-														"events"
-													],
-													"variable": [
-														{
-															"key": "caseId",
-															"value": "656f7c78-765e-4550-b3ab-faae068c946c",
-															"description": "da70c8d6-0610-44a0-a914-276edcfd265d"
-														}
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "upload event attachment pour le SI",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"exec": [
-															"pm.test(\"204\", function () {\r",
-															"    pm.response.to.have.status(204);\r",
-															"});\r",
-															"\r",
-															"pm.test(\"No Content\", () => {\r",
-															"  pm.response.to.have.status(\"No Content\");\r",
-															"});"
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "{{currentOSLToken}}",
-															"type": "string"
-														}
-													]
-												},
-												"method": "PUT",
-												"header": [
-													{
-														"key": "Content-Type",
-														"value": "application/octet-stream",
-														"type": "text"
-													}
-												],
-												"body": {
-													"mode": "file",
-													"file": {
-														"src": "/C:/Users/sebastien.assali/Documents/projet/hubee/valise_générique_V1.7.1/JDD/CERTDC/ER20190860001_20190517_1512_VA.pdf"
-													}
-												},
-												"url": {
-													"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/events/:eventId/attachments/:attachmentId",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"teledossiers",
-														"{{version}}",
-														"cases",
-														":caseId",
-														"events",
-														":eventId",
-														"attachments",
-														":attachmentId"
-													],
-													"variable": [
-														{
-															"key": "caseId",
-															"value": "{{latestCaseCreatedPOF}}",
-															"description": "37df9f5b-93e4-437c-b28c-e0c8fe8c09f7"
-														},
-														{
-															"key": "eventId",
-															"value": "{{latestEventCreated}}",
-															"description": "4a70ed55-45d7-4773-9ed3-782f996d4968"
-														},
-														{
-															"key": "attachmentId",
-															"value": "{{eventAttach1}}",
-															"description": "1baa6c67-bbf9-4cd9-a51e-2d1572411694"
-														}
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "upload event attachment pour le SI Copy",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"exec": [
-															"pm.test(\"204\", function () {\r",
-															"    pm.response.to.have.status(204);\r",
-															"});\r",
-															"\r",
-															"pm.test(\"No Content\", () => {\r",
-															"  pm.response.to.have.status(\"No Content\");\r",
-															"});"
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "{{currentOSLToken}}",
-															"type": "string"
-														}
-													]
-												},
-												"method": "PUT",
-												"header": [
-													{
-														"key": "Content-Type",
-														"value": "application/octet-stream",
-														"type": "text"
-													}
-												],
-												"body": {
-													"mode": "file",
-													"file": {
-														"src": "/C:/Users/sebastien.assali/Documents/GIT/hubee/Documentations/Documentations Techniques/valise_générique/JDD/CERTDC/ER20190860001_20190517_1512_VA.xml"
-													}
-												},
-												"url": {
-													"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/events/:eventId/attachments/:attachmentId",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"teledossiers",
-														"{{version}}",
-														"cases",
-														":caseId",
-														"events",
-														":eventId",
-														"attachments",
-														":attachmentId"
-													],
-													"variable": [
-														{
-															"key": "caseId",
-															"value": "656f7c78-765e-4550-b3ab-faae068c946c",
-															"description": "37df9f5b-93e4-437c-b28c-e0c8fe8c09f7"
-														},
-														{
-															"key": "eventId",
-															"value": "13bf644c-9aed-45cd-89f9-808ce789f75e",
-															"description": "4a70ed55-45d7-4773-9ed3-782f996d4968"
-														},
-														{
-															"key": "attachmentId",
-															"value": "bc4c276f-6262-4ace-b155-db095b618439",
-															"description": "1baa6c67-bbf9-4cd9-a51e-2d1572411694"
-														}
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "Modification du status du case",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"exec": [
-															"pm.test(\"204\", function () {\r",
-															"    pm.response.to.have.status(204);\r",
-															"});\r",
-															"\r",
-															"pm.test(\"No Content\", () => {\r",
-															"  pm.response.to.have.status(\"No Content\");\r",
-															"});"
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "{{currentOSLToken}}",
-															"type": "string"
-														}
-													]
-												},
-												"method": "PATCH",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"status\": \"HUBEE_NOTIFIED\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"teledossiers",
-														"{{version}}",
-														"cases",
-														":caseId"
-													],
-													"variable": [
-														{
-															"key": "caseId",
-															"value": "{{latestCaseCreatedPOF}}"
-														}
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "case by caseId EventId",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"exec": [
-															"pm.test(\"204\", function () {\r",
-															"    pm.response.to.have.status(204);\r",
-															"});\r",
-															"\r",
-															"pm.test(\"No Content\", () => {\r",
-															"  pm.response.to.have.status(\"No Content\");\r",
-															"});"
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "{{currentOSLToken}}",
-															"type": "string"
-														}
-													]
-												},
-												"method": "PATCH",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n  \"status\": \"SENT\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/events/:eventId",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"teledossiers",
-														"{{version}}",
-														"cases",
-														":caseId",
-														"events",
-														":eventId"
-													],
-													"variable": [
-														{
-															"key": "caseId",
-															"value": "{{latestCaseCreatedPOF}}",
-															"description": "subfolder d2ff34aa-e848-4ae9-b313-bb002eef2c14"
-														},
-														{
-															"key": "eventId",
-															"value": "{{latestEventCreated}}",
-															"description": "6184477b-eb76-4e75-aff8-9369cdb73675"
-														}
-													]
-												},
-												"description": "Modification du status d'un event - 204"
-											},
-											"response": []
+												"type": "text/javascript"
+											}
 										}
-									]
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{currentOSLToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "",
+												"value": "",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"actionType\": \"ATTACH_DEPOSIT\",\r\n    \"author\": \"George DUBOIS\",\r\n    \"notification\": true,\r\n    \"caseCurrentStatus\": \"DONE\",\r\n    \"caseNewStatus\": \"HUBEE_NOTIFIED\",\r\n    \"attachments\": [\r\n        {\r\n            \"fileName\": \"ER20190860001_20190517_1512_VA.pdf\",\r\n            \"type\": \"VA_CertificatdeDeces\",\r\n            \"size\": 219619,\r\n            \"mimeType\": \"application/pdf\"\r\n        },\r\n        {\r\n            \"fileName\": \"ER20190860001_20190517_1512_VA.xml\",\r\n            \"type\": \"VA_CertificatdeDeces\",\r\n            \"size\": 6917,\r\n            \"mimeType\": \"application/xml\"\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/events",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teledossiers",
+												"{{version}}",
+												"cases",
+												":caseId",
+												"events"
+											],
+											"variable": [
+												{
+													"key": "caseId",
+													"value": "{{latestCaseCreatedPOF}}",
+													"description": "da70c8d6-0610-44a0-a914-276edcfd265d"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "upload event attachment1 pour le SI",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"204\", function () {\r",
+													"    pm.response.to.have.status(204);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"No Content\", () => {\r",
+													"  pm.response.to.have.status(\"No Content\");\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{currentOSLToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/octet-stream",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "file",
+											"file": {
+												"src": "/Users/dinum/Downloads/valise_générique/JDD/CERTDC/ER20190860001_20190517_1512_VA.pdf"
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/events/:eventId/attachments/:attachmentId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teledossiers",
+												"{{version}}",
+												"cases",
+												":caseId",
+												"events",
+												":eventId",
+												"attachments",
+												":attachmentId"
+											],
+											"variable": [
+												{
+													"key": "caseId",
+													"value": "{{latestCaseCreatedPOF}}",
+													"description": "37df9f5b-93e4-437c-b28c-e0c8fe8c09f7"
+												},
+												{
+													"key": "eventId",
+													"value": "{{latestEventCreated}}",
+													"description": "4a70ed55-45d7-4773-9ed3-782f996d4968"
+												},
+												{
+													"key": "attachmentId",
+													"value": "{{eventAttach1}}",
+													"description": "1baa6c67-bbf9-4cd9-a51e-2d1572411694"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "upload event attachment2 pour le SI",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"204\", function () {\r",
+													"    pm.response.to.have.status(204);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"No Content\", () => {\r",
+													"  pm.response.to.have.status(\"No Content\");\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{currentOSLToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/octet-stream",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "file",
+											"file": {
+												"src": "/Users/dinum/Downloads/valise_générique/JDD/CERTDC/ER20190860001_20190517_1512_VA.xml"
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/events/:eventId/attachments/:attachmentId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teledossiers",
+												"{{version}}",
+												"cases",
+												":caseId",
+												"events",
+												":eventId",
+												"attachments",
+												":attachmentId"
+											],
+											"variable": [
+												{
+													"key": "caseId",
+													"value": "{{latestCaseCreatedPOF}}",
+													"description": "37df9f5b-93e4-437c-b28c-e0c8fe8c09f7"
+												},
+												{
+													"key": "eventId",
+													"value": "{{latestEventCreated}}",
+													"description": "4a70ed55-45d7-4773-9ed3-782f996d4968"
+												},
+												{
+													"key": "attachmentId",
+													"value": "{{eventAttach2}}",
+													"description": "1baa6c67-bbf9-4cd9-a51e-2d1572411694"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Modification du status du case",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"204\", function () {\r",
+													"    pm.response.to.have.status(204);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"No Content\", () => {\r",
+													"  pm.response.to.have.status(\"No Content\");\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{currentOSLToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"status\": \"HUBEE_NOTIFIED\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teledossiers",
+												"{{version}}",
+												"cases",
+												":caseId"
+											],
+											"variable": [
+												{
+													"key": "caseId",
+													"value": "{{latestCaseCreatedPOF}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "case by caseId EventId",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"204\", function () {\r",
+													"    pm.response.to.have.status(204);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"No Content\", () => {\r",
+													"  pm.response.to.have.status(\"No Content\");\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{currentOSLToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"status\": \"SENT\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/teledossiers/{{version}}/cases/:caseId/events/:eventId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"teledossiers",
+												"{{version}}",
+												"cases",
+												":caseId",
+												"events",
+												":eventId"
+											],
+											"variable": [
+												{
+													"key": "caseId",
+													"value": "{{latestCaseCreatedPOF}}",
+													"description": "subfolder d2ff34aa-e848-4ae9-b313-bb002eef2c14"
+												},
+												{
+													"key": "eventId",
+													"value": "{{latestEventCreated}}",
+													"description": "6184477b-eb76-4e75-aff8-9369cdb73675"
+												}
+											]
+										},
+										"description": "Modification du status d'un event - 204"
+									},
+									"response": []
 								}
 							]
 						}
