@@ -22,6 +22,7 @@ jobs:
       run: |
         zip -r DocumentationsTechniques.zip 'Documentations Techniques'
         zip -r DocumentationsFonctionnelles.zip 'Documentations Fonctionnelles'
+        zip -r SolutionSI.zip 'SolutionSI'
         cd 'Documentations Techniques'
         zip -r swagger.zip Swagger
         mv swagger.zip ../swagger.zip
