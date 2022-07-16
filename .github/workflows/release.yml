@@ -1,6 +1,6 @@
 name: Zipping files
 on:
-  merge:
+  push:
     branches:
       - main
 jobs:
