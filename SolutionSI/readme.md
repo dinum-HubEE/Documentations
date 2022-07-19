@@ -28,7 +28,7 @@ Il s'agit d'un script qui permet d'automatiser la récupération des télédossi
  - config.py contient la configuration à modifier
 
 ## configuration
-- Pour changer la configuration dans le fichier config.py
+- la configuration est disponible dans le fichier config.py
 
 ### environnement
 - token: url pour le TOKEN
