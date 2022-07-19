@@ -7,8 +7,8 @@ def HUBEE_changementDeStatuts(NombreRetry, token, index):
   patchCase(NombreRetry, token, index["caseId"], config["statusMaximal"])
   postEvent(NombreRetry, token, index["caseId"], config["statusMinimal"],config["statusMaximal"])
 
-def HUBEE_recuperationTeledossier():
-  token = getToken(config["NombreRetry"])
+def HUBEE_recuperationTeledossier(clientId, clientSecret, repository):
+  token = getToken(config["NombreRetry"], clientId, clientSecret)
   notification = getNotification(config["NombreRetry"], token)
 
   if(len(notification) > 0):
@@ -19,7 +19,7 @@ def HUBEE_recuperationTeledossier():
         case = getCase(config["NombreRetry"], token, index["caseId"])
 
         for PJ in case["attachments"]:
-          getCasePJ(config["NombreRetry"], token, index["caseId"], PJ["id"], PJ["fileName"], case["externalId"])
+          getCasePJ(config["NombreRetry"], token, index["caseId"], PJ["id"], PJ["fileName"], case["externalId"], repository)
 
         HUBEE_changementDeStatuts(config["NombreRetry"], token, index)
       else:
@@ -40,7 +40,7 @@ def HUBEE_recuperationTeledossier():
 
               for PJ in event["attachments"]:
                 # téléchargement des Pjs de l'event
-                getCaseEventPJ(config["NombreRetry"], token, index["caseId"], index["eventId"], PJ["id"], PJ["fileName"], case["externalId"])
+                getCaseEventPJ(config["NombreRetry"], token, index["caseId"], index["eventId"], PJ["id"], PJ["fileName"], case["externalId"], repository)
 
               # changement des status du case et création d'events
               HUBEE_changementDeStatuts(config["NombreRetry"], token, index)
@@ -51,8 +51,10 @@ def HUBEE_recuperationTeledossier():
 
       deleteNotification(config["NombreRetry"], token, index["id"])
 
-    HUBEE_recuperationTeledossier()
+    HUBEE_recuperationTeledossier(clientId, clientSecret, repository)
   else:
     print("Il n'y a pas de notification")
 
-HUBEE_recuperationTeledossier()
+for process in config["credentials"]:
+  print("Traitement de la démarche: ", process["demarcheName"])
+  HUBEE_recuperationTeledossier(process["clientId"], process["clientSecret"], process["dossierDeTelechargement"])

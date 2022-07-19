@@ -30,29 +30,65 @@ Il s'agit d'un script qui permet d'automatiser la récupération des télédossi
 ## configuration
 - la configuration est disponible dans le fichier config.py
 
-### environnement
-- token: url pour le TOKEN
-- api: url de l'API
+## utilisation de une ou plusieurs démarches
+ - Il est possible d'utiliser une ou plusieurs démarches, vous devez paramétrer dans le fichier de configuration afin de rajouter dans l'objet credentials les informations liées à une ou plusieurs démarches :
+```
+{
+    'demarcheName':'nomDeLaDemarche',
+    'clientId':'votreClientId',
+    'clientSecret':'votreClientSecret',
+    'dossierDeTelechargement':'data/file/download/nomDeLaDemarche/',
+}
+```
 
+### environnement
+```
+'environnement' :{
+    'token':'url pour le TOKEN',
+    'api':'url de l'API'
+}
+```
 ### credentials
 - vos identifiants sont disponibles sur le portail HUBEE
 - il y a un couple différent ClientId/ClientSecret par démarche
-- clientId: votre clientId de l'abonnement en question
-- clientSecret: votre clientSecret de l'abonnement en question
+```
+{
+    'clientId':'votreClientId',
+    'clientSecret':'votreClientSecret',
+}
+```
 
 ### récupération des notifications
-- par défaut vous récupérez les notifications par 25, merci de ne pas toucher à cette valeur sans raison
-- nombreDeNotifications: nombre de notification à récupérer à chaque cycle
+- vous récupérez les notifications par lot de 25 par défaut, merci de ne pas toucher à cette valeur sans raison
+```
+{
+    'nombreDeNotifications':'25'
+}
+```
 
 ### utilisation des statuts
 - suivant la démarche vous devez changer les statuts à mettre sur le télédossier
 - statusMinimal: l'utilisation du premier statut, il peut être SENT, SI_RECEIVED ou IN_PROGRESS
-- statusMaximal: l'utilisation du statut inal, il doit être DONE ou REFUSED
+- statusMaximal: l'utilisation du statut final, il doit être DONE ou REFUSED
+```
+{
+    'statusMinimal':'IN_PROGRESS',
+    'statusMaximal':'DONE'
+}
+```
 
 ### retry
-- En cas d'erreur un retry est en place pour rejouer la requête
-- NombreRetry: par défaut à 5, ne pas toucher à cette valeur sans raison
+- En cas d'erreur un retry va rejouer la requête par défaut 5 fois, ne pas toucher à cette valeur sans raison
+```
+{
+    'NombreRetry': 5
+}
+```
 
 ### dossier de téléchargement
-- à la réception d'un télédossier les Pjs iront directement dans le répertoire de sorti
-- dossierDeTelechargement: vous devez renseigner le répertoire de sorti
+- à la réception d'un télédossier les Pjs iront directements dans le répertoire de sorti, il est possible de paramétrer un répertoire différent pour chaque démarche
+```
+{
+    'dossierDeTelechargement':'data/file/download/nomDeLaDemarche/'
+}
+```

@@ -6,7 +6,7 @@ from requests.exceptions import HTTPError
 from config import *
 
 
-def getToken(nbRetry):
+def getToken(nbRetry, clientId, clientSecret):
     try:
         payload = 'scope=' + config["acteurType"] + '&grant_type=client_credentials'
         headers = {
@@ -16,7 +16,7 @@ def getToken(nbRetry):
             'Content-Type': 'application/x-www-form-urlencoded'
         }
         response = requests.request(
-            "POST", config["environnement"]["token"], auth=(config["credentials"]["clientId"], config["credentials"]["clientSecret"]), headers=headers, data=payload)
+            "POST", config["environnement"]["token"], auth=(clientId, clientSecret), headers=headers, data=payload)
         response.raise_for_status()
         
         print(response.request.method, response.status_code, response.request.url,"-", round(response.elapsed.total_seconds() * 1000), "ms")
@@ -66,7 +66,7 @@ def getNotification(nbRetry, token):
         exit()
 
 
-def getCasePJ(nbRetry, token, case, attachment, fileName, externalId):
+def getCasePJ(nbRetry, token, case, attachment, fileName, externalId, repository):
     try:
         headers = {
             'Authorization': 'Bearer ' + token,
@@ -81,11 +81,11 @@ def getCasePJ(nbRetry, token, case, attachment, fileName, externalId):
         print(response.request.method, response.status_code, response.request.url,"-", round(response.elapsed.total_seconds() * 1000), "ms")
         #print("téléchar", fileName)
 
-        isFile = os.path.isdir(config["dossierDeTelechargement"] + externalId)
+        isFile = os.path.isdir(repository + externalId)
         if(isFile == False):
-            os.makedirs(config["dossierDeTelechargement"] + externalId)
+            os.makedirs(repository + externalId)
 
-        f = open(config["dossierDeTelechargement"] + externalId + "/" + fileName, "w")
+        f = open(repository + externalId + "/" + fileName, "w")
         f.write(response.text)
         f.close()
 
@@ -103,7 +103,7 @@ def getCasePJ(nbRetry, token, case, attachment, fileName, externalId):
         exit()
 
 
-def getCaseEventPJ(nbRetry, token, case, eventId, attachment, fileName, externalId):
+def getCaseEventPJ(nbRetry, token, case, eventId, attachment, fileName, externalId, repository):
     try:
         headers = {
             'Authorization': 'Bearer ' + token,
@@ -118,11 +118,11 @@ def getCaseEventPJ(nbRetry, token, case, eventId, attachment, fileName, external
         print(response.request.method, response.status_code, response.request.url,"-", round(response.elapsed.total_seconds() * 1000), "ms")
         print("téléchar", fileName)
 
-        isFile = os.path.isdir(config["dossierDeTelechargement"] + externalId)
+        isFile = os.path.isdir(repository + externalId)
         if(isFile == False):
-            os.makedirs(config["dossierDeTelechargement"] + externalId)
+            os.makedirs(repository + externalId)
 
-        f = open("data/file/download/" + externalId + "/" + fileName, "w")
+        f = open(repository + externalId + "/" + fileName, "w")
         f.write(response.text)
         f.close()
 

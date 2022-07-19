@@ -1,11 +1,7 @@
 config = {
     'environnement' :{
-        'token':'https://auth.pprd.hubee.numerique.gouv.fr/oauth2/token',
-        'api':'https://api.pprd.hubee.numerique.gouv.fr/'
-    },
-    'credentials' :{
-        'clientId':'',
-        'clientSecret':''
+        'token':'',
+        'api':''
     },
     'nombreDeNotifications': 25,
     'acteurType':'SI',
@@ -17,5 +13,28 @@ config = {
         'applicationName':'serveur_SI',
         'softwareVersion':'1.0.1'
     },
-    'dossierDeTelechargement':'data/file/download/'
+    'credentials' :[{
+        'demarcheName':'CERTDC',
+        'clientId':'',
+        'clientSecret':'',
+        'dossierDeTelechargement':'data/file/download/CERTDC/',
+    },
+    {
+        'demarcheName':'AEC',
+        'clientId':'',
+        'clientSecret':'',
+        'dossierDeTelechargement':'data/file/download/AEC/',
+    },
+    {
+        'demarcheName':'RSA',
+        'clientId':'',
+        'clientSecret':'',
+        'dossierDeTelechargement':'data/file/download/RSA/',
+    },
+    {
+        'demarcheName':'JCC',
+        'clientId':'',
+        'clientSecret':'',
+        'dossierDeTelechargement':'data/file/download/JCC/',
+    }],
 }
