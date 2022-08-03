@@ -68,12 +68,10 @@ Il s'agit d'un script qui permet d'automatiser la récupération des télédossi
 
 ### utilisation des statuts
 - suivant la démarche vous devez changer les statuts à mettre sur le télédossier
-- statusMinimal: l'utilisation du premier statut, il peut être SENT, SI_RECEIVED ou IN_PROGRESS
-- statusMaximal: l'utilisation du statut final, il doit être DONE ou REFUSED
 ```
 {
-    'statusMinimal':'IN_PROGRESS',
-    'statusMaximal':'DONE'
+    'statusMinimal':'IN_PROGRESS',   -> il peut être SENT, SI_RECEIVED ou IN_PROGRESS
+    'statusMaximal':'DONE'           -> il doit être DONE ou REFUSED
 }
 ```
 
@@ -91,4 +89,14 @@ Il s'agit d'un script qui permet d'automatiser la récupération des télédossi
 {
     'dossierDeTelechargement':'data/file/download/nomDeLaDemarche/'
 }
+```
+
+### header
+- Pour identifier chaque requête, vous devez renseigner les éléments avec vos informations
+```
+    'header':{
+        'editorName':'SI_XYZ',            -> nom de votre orgnaisation, par exemple COMMUNE X
+        'applicationName':'serveur_SI',   -> nom de votre logiciel / serveur
+        'softwareVersion':'1.0.1'         -> version de votre logiciel
+    },
 ```
