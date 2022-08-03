@@ -95,7 +95,7 @@ Il s'agit d'un script qui permet d'automatiser la récupération des télédossi
 - Pour identifier chaque requête, vous devez renseigner les éléments avec vos informations
 ```
     'header':{
-        'editorName':'SI_XYZ',            -> nom de votre orgnaisation, par exemple COMMUNE X
+        'editorName':'SI_XYZ',            -> nom de votre organisation, par exemple COMMUNE X
         'applicationName':'serveur_SI',   -> nom de votre logiciel / serveur
         'softwareVersion':'1.0.1'         -> version de votre logiciel
     },
