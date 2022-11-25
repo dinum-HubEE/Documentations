@@ -1,4 +1,4 @@
-![Hubee logo](https://apirecettenhube.imfr.cgi.com/authenticationendpoint/images/logo_hubee.png)
+![Hubee logo](https://global-uploads.webflow.com/62987c69557994988d440d3c/629e2185dc21ae5084313260_logo_hubee%20(002)-p-1080.png)
 
 
 
