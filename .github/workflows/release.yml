@@ -23,11 +23,22 @@ jobs:
         zip -r DocumentationsTechniques.zip 'Documentations Techniques'
         zip -r DocumentationsFonctionnelles.zip 'Documentations Fonctionnelles'
         zip -r SolutionSI.zip 'SolutionSI'
+        zip -r HubeeDocumentation.zip 'SolutionSI' 'Documentations Fonctionnelles' 'Documentations Techniques'
         cd 'Documentations Techniques'
         zip -r swagger.zip Swagger
         mv swagger.zip ../swagger.zip
         zip -r valiseGenerique.zip valise_générique
         mv valiseGenerique.zip ../valiseGenerique.zip
+        
+    - name: Fixing Sources ${{ github.run_number }}
+      uses: actions/upload-release-asset@v1
+      env:
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+        asset_path: HubeeDocumentation.zip
+        asset_name: HubeeDocumentation.zip
+        asset_content_type: application/zip
         
     - name: Fixing swagger ${{ github.run_number }}
       uses: actions/upload-release-asset@v1
