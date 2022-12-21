@@ -41,26 +41,27 @@ Outil de prévisualisation du swagger - [Swagger Editor](https://editor.swagger.
 |preproduction|https://api.bas.hubee.numerique.gouv.fr|https://auth.bas.hubee.numerique.gouv.fr/oauth2/token|https://portail.bas.hubee.numerique.gouv.fr/|
 
 ### Démarches disponibles
-|Démarche|ProcessCode|Opérateur de service en ligne|Destinataires|PJs autorisées|
-|-|-|-|-|-|
-|Flux Bénéficiaires quotidiens RSA|RSABEI-RSABAI|CNAF|Conseils départementaux|application/xml|
-|Flux Bénéficiaires exceptionnels RSA|RSABEX-RSABAX|CNAF|Conseils départementaux|application/xml|
-|Flux Financiers mensuels RSA|RSAFIM|CNAF|Conseils départementaux|A venir|
-|Flux Financiers annuels RSA|RSAFIX|CNAF|Conseils départementaux|A venir|
-|Flux Créances Transférées RSA|RSACTM|CNAF|Conseils départementaux|A venir|
-|Flux Instructions RSA|IRSACG-IRSDCG|CNAF|Conseils départementaux|A venir|
-|Flux grossesses Cristal GRO|GRO|CNAF|Conseils départementaux|A venir|
-|Flux grossesses image GED/SGR|SGR|CNAF|Conseils départementaux|A venir|
-|Flux Bénéficiaires quotidiens RSA|MSABEI|CNAF|Conseils départementaux|A venir|
-|Flux Bénéficiaires mensuels RSA|MSABEM|CNAF|Conseils départementaux|A venir|
-|Flux Bénéficiaires exceptionnels RSA|MSABEX|CNAF|Conseils départementaux|A venir|
-|Flux Financiers mensuels RSA|MSAFIM|CNAF|Conseils départementaux|A venir|
-|Flux Bénéficiaires mensuels RSA|RSABEM-RSABAM|CNAF|Conseils départementaux|A venir|
-|Flux simplification grossesses DSG|DSG|CNAF|Conseils départementaux|A venir|
-|Récupération des coordonnees de contacts allocataires du RSA|ContactsAllocataires-BRSA|CNAF|Conseils départementaux|A venir|
-|Certificat de décès électronique|CERTDC|DGS|Communes|A venir|
-|Service National d’Accueil Téléphonique pour l’Enfance en Danger|SNATED|SNATED|Conseils départementaux|A venir|
-|depotDossierPACS|depotDossierPACS|DILA|Communes|A venir|
-|Demande d'acte d'Etat civil|EtatCivil|DILA|Communes|A venir|
-|Recensement Citoyen Obligatoire|recensementCitoyen|DILA|Communes|A venir|
-|Déclaration de Changement de Coordonnées|JeChangeDeCoordonnees|DILA|Communes|A venir|
+|Démarche|ProcessCode|Opérateur de service en ligne|Destinataires
+|-|-|-|-|
+|Flux Bénéficiaires quotidiens RSA|RSABEI-RSABAI|CNAF|Conseils départementaux|
+|Flux Bénéficiaires exceptionnels RSA|RSABEX-RSABAX|CNAF|Conseils départementaux|
+|Flux Financiers mensuels RSA|RSAFIM|CNAF|Conseils départementaux|
+|Flux Financiers annuels RSA|RSAFIX|CNAF|Conseils départementaux|
+|Flux Créances Transférées RSA|RSACTM|CNAF|Conseils départementaux|
+|Flux Instructions RSA|IRSACG-IRSDCG|CNAF|Conseils départementaux|
+|Flux grossesses Cristal GRO|GRO|CNAF|Conseils départementaux|
+|Flux grossesses image GED/SGR|SGR|CNAF|Conseils départementaux|
+|Flux Bénéficiaires quotidiens RSA|MSABEI|CNAF|Conseils départementaux|
+|Flux Bénéficiaires mensuels RSA|MSABEM|CNAF|Conseils départementaux|
+|Flux Bénéficiaires exceptionnels RSA|MSABEX|CNAF|Conseils départementaux|
+|Flux Financiers mensuels RSA|MSAFIM|CNAF|Conseils départementaux|
+|Flux Bénéficiaires mensuels RSA|RSABEM-RSABAM|CNAF|Conseils départementaux|
+|Flux simplification grossesses DSG|DSG|CNAF|Conseils départementaux|
+|Récupération des coordonnees de contacts allocataires du RSA|ContactsAllocataires-BRSA|CNAF|Conseils départementaux|
+|Certificat de décès électronique|CERTDC|DGS|Communes|
+|Service National d’Accueil Téléphonique pour l’Enfance en Danger|SNATED|SNATED|Conseils départementaux|
+|depotDossierPACS|depotDossierPACS|DILA|Communes|
+|Demande d'acte d'Etat civil|EtatCivil|DILA|Communes|
+|Recensement Citoyen Obligatoire|recensementCitoyen|DILA|Communes|
+|Déclaration de Changement de Coordonnées|JeChangeDeCoordonnees|DILA|Communes|
+|Déclaration d'un Hébergement de Tourisme|HebergementTourisme|DILA|Communes|
