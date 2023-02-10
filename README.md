@@ -37,8 +37,8 @@ Outil de prévisualisation du swagger - [Swagger Editor](https://editor.swagger.
 |Environnement|API|TOKEN|PORTAIL|
 |-|-|-|-|
 |Production|||https://hubee.numerique.gouv.fr|
-|recette|https://apibacasablehubee.imfr.cgi.com|https://apibacasablehubee.imfr.cgi.com/token|https://portailbacasablehubee.imfr.cgi.com/|
-|preproduction|https://api.bas.hubee.numerique.gouv.fr|https://auth.bas.hubee.numerique.gouv.fr/oauth2/token|https://portail.bas.hubee.numerique.gouv.fr/|
+|recette|https://api.basrec.hubee.numerique.gouv.fr|https://auth.basrec.hubee.numerique.gouv.fr/oauth2/token|https://basrec.hubee.numerique.gouv.fr|
+|preproduction|https://api.bas.hubee.numerique.gouv.fr|https://auth.bas.hubee.numerique.gouv.fr/oauth2/token|https://portail.bas.hubee.numerique.gouv.fr|
 
 ### Démarches disponibles
 |Démarche|ProcessCode|Opérateur de service en ligne|Destinataires
