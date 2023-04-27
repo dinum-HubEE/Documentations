@@ -28,12 +28,17 @@ def getToken(nbRetry, clientId, clientSecret):
     except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')
         if(nbRetry > 1):
-            getToken(nbRetry - 1)
-        print('merci de vérifiez vos credentials')
-        exit()
+            getToken(nbRetry - 1, clientId, clientSecret)
+        else:
+            print('Erreur technique, merci de vérifiez vos credentials')
+            exit()
     except Exception as err:
         print(f'Other error occurred: {err}')
-
+        if(nbRetry > 1):
+            getToken(nbRetry - 1, clientId, clientSecret)
+        else:
+            print('Erreur technique, merci de vérifiez vos credentials')
+            exit()
 
 def getNotification(nbRetry, token):
     try:
@@ -55,16 +60,17 @@ def getNotification(nbRetry, token):
     except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')
         if(nbRetry > 1):
-            getNotification(nbRetry - 1)
-        print('il est impossible de récupérer les notifications, merci de vous rapprocher de votre équipe technique')
-        exit()
+            getNotification(nbRetry - 1, token)
+        else:
+            print('il est impossible de récupérer les notifications, merci de vous rapprocher de votre équipe technique')
+            exit()
     except Exception as err:
         print(f'Other error occurred: {err}')
         if(nbRetry > 1):
-            getNotification(nbRetry - 1)
-        print('il est impossible de récupérer les notifications, merci de vous rapprocher de votre équipe technique')
-        exit()
-
+            getNotification(nbRetry - 1, token)
+        else:
+            print('il est impossible de récupérer les notifications, merci de vous rapprocher de votre équipe technique')
+            exit()
 
 def getCasePJ(nbRetry, token, case, attachment, fileName, externalId, repository):
     try:
@@ -92,15 +98,17 @@ def getCasePJ(nbRetry, token, case, attachment, fileName, externalId, repository
     except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')
         if(nbRetry > 1):
-            getCasePJ(nbRetry - 1)
-        print('impossible de récupérer la pièce jointe :', attachment)
-        exit()
+            getCasePJ(nbRetry - 1, token, case, attachment, fileName, externalId, repository)
+        else:
+            print('impossible de récupérer la pièce jointe :', attachment)
+            exit()
     except Exception as err:
         print(f'Other error occurred: {err}')
         if(nbRetry > 1):
-            getCasePJ(nbRetry - 1)
-        print('impossible de récupérer la pièce jointe :', attachment)
-        exit()
+            getCasePJ(nbRetry - 1, token, case, attachment, fileName, externalId, repository)
+        else:
+            print('impossible de récupérer la pièce jointe :', attachment)
+            exit()
 
 
 def getCaseEventPJ(nbRetry, token, case, eventId, attachment, fileName, externalId, repository):
@@ -129,16 +137,17 @@ def getCaseEventPJ(nbRetry, token, case, eventId, attachment, fileName, external
     except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')
         if(nbRetry > 1):
-            getCaseEventPJ(nbRetry - 1)
-        print('impossible de récupérer la pièce jointe :', attachment)
-        exit()
+            getCaseEventPJ(nbRetry - 1, token, case, eventId, attachment, fileName, externalId, repository)
+        else:
+            print('impossible de récupérer la pièce jointe :', attachment)
+            exit()
     except Exception as err:
         print(f'Other error occurred: {err}')
         if(nbRetry > 1):
-            getCaseEventPJ(nbRetry - 1)
-        print('impossible de récupérer la pièce jointe :', attachment)
-        exit()
-
+            getCaseEventPJ(nbRetry - 1, token, case, eventId, attachment, fileName, externalId, repository)
+        else:
+            print('impossible de récupérer la pièce jointe :', attachment)
+            exit()
 
 def getCase(nbRetry, token, case):
     try:
@@ -160,15 +169,17 @@ def getCase(nbRetry, token, case):
     except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')
         if(nbRetry > 1):
-            getCase(nbRetry - 1)
-        print('impossible de récupérer le case:', case)
-        exit()
+            getCase(nbRetry - 1, token, case)
+        else:
+            print('impossible de récupérer le case:', case)
+            exit()
     except Exception as err:
         print(f'Other error occurred: {err}')
         if(nbRetry > 1):
-            getCase(nbRetry - 1)
-        print('impossible de récupérer le case:', case)
-        exit()
+            getCase(nbRetry - 1, token, case)
+        else:
+            print('impossible de récupérer le case:', case)
+            exit()
 
 
 def patchEvent(nbRetry, token, case, event, status):
@@ -191,15 +202,17 @@ def patchEvent(nbRetry, token, case, event, status):
     except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')
         if(nbRetry > 1):
-            patchEvent(nbRetry - 1)
-        print('impossible de modifier le status de levent:', case)
-        exit()
+            patchEvent(nbRetry - 1, token, case, event, status)
+        else:
+            print('impossible de modifier le status de levent:', case)
+            exit()
     except Exception as err:
         print(f'Other error occurred: {err}')
         if(nbRetry > 1):
-            patchEvent(nbRetry - 1)
-        print('impossible de modifier le status de levent:', case)
-        exit()
+            patchEvent(nbRetry - 1, token, case, event, status)
+        else:
+            print('impossible de modifier le status de levent:', case)
+            exit()
 
 
 def patchCase(nbRetry, token, case, status):
@@ -222,15 +235,17 @@ def patchCase(nbRetry, token, case, status):
     except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')
         if(nbRetry > 1):
-            patchCase(nbRetry - 1)
-        print('impossible de modifier le status du case:', case)
-        exit()
+            patchCase(nbRetry - 1, token, case, status)
+        else:
+            print('impossible de modifier le status du case:', case)
+            exit()
     except Exception as err:
         print(f'Other error occurred: {err}')
         if(nbRetry > 1):
-            patchCase(nbRetry - 1)
-        print('impossible de modifier le status du case:', case)
-        exit()
+            patchCase(nbRetry - 1, token, case, status)
+        else:
+            print('impossible de modifier le status du case:', case)
+            exit()
 
 
 def getEvent(nbRetry, token, case, event):
@@ -251,17 +266,17 @@ def getEvent(nbRetry, token, case, event):
         return jsonResponse
 
     except HTTPError as http_err:
-        print(f'HTTP error occurred: {http_err}')
         if(nbRetry > 1):
-            getEvent(nbRetry - 1)
-        print('impossible de récupérer un event:', event)
-        exit()
+            getEvent(nbRetry - 1, token, case, event)
+        else:
+            print('impossible de récupérer un event:', event)
+            exit()
     except Exception as err:
-        print(f'Other error occurred: {err}')
         if(nbRetry > 1):
-            getEvent(nbRetry - 1)
-        print('impossible de récupérer un event:', event)
-        exit()
+            getEvent(nbRetry - 1, token, case, event)
+        else:
+            print('impossible de récupérer un event:', event)
+            exit()
 
 
 def deleteNotification(nbRetry, token, notification):
@@ -284,15 +299,17 @@ def deleteNotification(nbRetry, token, notification):
     except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')
         if(nbRetry > 1):
-            deleteNotification(nbRetry - 1)
-        print('impossible de supprimer la notification:', notification)
-        exit()
+            deleteNotification(nbRetry - 1, token, notification)
+        else:
+            print('impossible de supprimer la notification:', notification)
+            exit()
     except Exception as err:
         print(f'DELETE NOTIFICATION - Other error occurred: {err}')
         if(nbRetry > 1):
-            deleteNotification(nbRetry - 1)
-        print('impossible de supprimer la notification:', notification)
-        exit()
+            deleteNotification(nbRetry - 1, token, notification)
+        else:
+            print('impossible de supprimer la notification:', notification)
+            exit()
 
 
 def postEvent(nbRetry, token, case, currentStatus, newStatus):
@@ -324,12 +341,14 @@ def postEvent(nbRetry, token, case, currentStatus, newStatus):
     except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')
         if(nbRetry > 1):
-            postEvent(nbRetry - 1)
-        print('impossible de créer un event:', case)
-        exit()
+            postEvent(nbRetry - 1, token, case, currentStatus, newStatus)
+        else:
+            print('impossible de créer un event:', case)
+            exit()
     except Exception as err:
         print(f'Other error occurred: {err}')
         if(nbRetry > 1):
-            postEvent(nbRetry - 1)
-        print('impossible de créer un event:', case)
-        exit()
+            postEvent(nbRetry - 1, token, case, currentStatus, newStatus)
+        else:
+            print('impossible de créer un event:', case)
+            exit()
