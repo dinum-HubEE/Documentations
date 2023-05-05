@@ -1,29 +1,30 @@
 from API import *
 from config import *
 
-def HUBEE_changementDeStatuts(NombreRetry, token, index):
-  patchCase(NombreRetry, token, index["caseId"], config["statusMinimal"])
-  postEvent(NombreRetry, token, index["caseId"], "HUBEE_NOTIFIED",config["statusMinimal"])
-  patchCase(NombreRetry, token, index["caseId"], config["statusMaximal"])
-  postEvent(NombreRetry, token, index["caseId"], config["statusMinimal"],config["statusMaximal"])
+def HUBEE_changementDeStatuts(NombreRetry, token, case):
+  patchCase(NombreRetry, token, case["caseId"], config["statusMinimal"])
+  postEvent(NombreRetry, token, case["caseId"], "HUBEE_NOTIFIED",config["statusMinimal"])
+  patchCase(NombreRetry, token, case["caseId"], config["statusMaximal"])
+  postEvent(NombreRetry, token, case["caseId"], config["statusMinimal"],config["statusMaximal"])
 
 def HUBEE_recuperationTeledossier(clientId, clientSecret, repository):
   token = getToken(config["NombreRetry"], clientId, clientSecret)
-  notification = getNotification(config["NombreRetry"], token)
+  notifications = getNotification(config["NombreRetry"], token)
 
-  if(len(notification) > 0):
+  if(len(notifications) > 0):
 
-    for index in notification:
+    for notification in notifications:
+      print("Traitement de la notification:",notification["id"])
       # traitement d'une notification
-      if(index["eventId"] == None):
-        case = getCase(config["NombreRetry"], token, index["caseId"])
+      if(notification["eventId"] == None):
+        case = getCase(config["NombreRetry"], token, notification["caseId"])
 
         for PJ in case["attachments"]:
-          getCasePJ(config["NombreRetry"], token, index["caseId"], PJ["id"], PJ["fileName"], case["externalId"], repository)
+          getCasePJ(config["NombreRetry"], token, notification["caseId"], PJ["id"], PJ["fileName"], case["externalId"], repository)
 
-        HUBEE_changementDeStatuts(config["NombreRetry"], token, index)
+        HUBEE_changementDeStatuts(config["NombreRetry"], token, notification)
       else:
-        event = getEvent(config["NombreRetry"], token, index["caseId"], index["eventId"])
+        event = getEvent(config["NombreRetry"], token, notification["caseId"], notification["eventId"])
 
         if(event["status"] == "SENT"):
           
@@ -36,20 +37,20 @@ def HUBEE_recuperationTeledossier(clientId, clientSecret, repository):
               print("message  [", event["message"], "]")
             case "ATTACH_DEPOSIT":
               # ceci est un event ATTACH_DEPOSIT
-              case = getCase(config["NombreRetry"], token, index["caseId"])
+              case = getCase(config["NombreRetry"], token, notification["caseId"])
 
               for PJ in event["attachments"]:
                 # téléchargement des Pjs de l'event
-                getCaseEventPJ(config["NombreRetry"], token, index["caseId"], index["eventId"], PJ["id"], PJ["fileName"], case["externalId"], repository)
+                getCaseEventPJ(config["NombreRetry"], token, notification["caseId"], notification["eventId"], PJ["id"], PJ["fileName"], case["externalId"], repository)
 
               # changement des status du case et création d'events
-              HUBEE_changementDeStatuts(config["NombreRetry"], token, index)
+              HUBEE_changementDeStatuts(config["NombreRetry"], token, notification)
             case _:
               print("erreur lors de la récupération de l'event")
 
-          patchEvent(config["NombreRetry"], token, index["caseId"], index["eventId"], "RECEIVED")
+          patchEvent(config["NombreRetry"], token, notification["caseId"], notification["eventId"], "RECEIVED")
 
-      deleteNotification(config["NombreRetry"], token, index["id"])
+      deleteNotification(config["NombreRetry"], token, notification["id"])
 
     HUBEE_recuperationTeledossier(clientId, clientSecret, repository)
   else:
