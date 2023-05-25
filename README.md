@@ -25,7 +25,7 @@ Pour les services instructeurs :
 
 Outil de prévisualisation du swagger - [Swagger Editor](https://editor.swagger.io/)
 
-## Valise Générique
+## Postman | Valise Générique
 
 - [Valise Générique](https://github.com/dinum-HubEE/Documentations/releases/latest/download/valiseGenerique.zip)
 - [Postman](https://www.postman.com/downloads/)
