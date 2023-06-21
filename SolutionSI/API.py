@@ -95,6 +95,10 @@ def getCasePJ(nbRetry, token, case, attachment, fileName, externalId, repository
         f.write(response.text)
         f.close()
 
+        fileExist = os.path.isfile(repository + externalId + "/" + fileName)
+        if(fileExist == False):
+            raise ValueError("FILE IS NOT CREATED")
+
     except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')
         if(nbRetry > 1):
@@ -133,6 +137,10 @@ def getCaseEventPJ(nbRetry, token, case, eventId, attachment, fileName, external
         f = open(repository + externalId + "/" + fileName, "w", encoding='utf-8')
         f.write(response.text)
         f.close()
+
+        fileExist = os.path.isfile(repository + externalId + "/" + fileName)
+        if(fileExist == False):
+            raise ValueError("FILE IS NOT CREATED")
 
     except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')
