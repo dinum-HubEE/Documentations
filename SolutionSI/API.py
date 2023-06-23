@@ -91,8 +91,8 @@ def getCasePJ(nbRetry, token, case, attachment, fileName, externalId, repository
         if(isFile == False):
             os.makedirs(repository + externalId)
 
-        f = open(repository + externalId + "/" + fileName, "w", encoding='utf-8')
-        f.write(response.text)
+        f = open(repository + externalId + "/" + fileName, "wb")
+        f.write(response.content)
         f.close()
 
         fileExist = os.path.isfile(repository + externalId + "/" + fileName)
@@ -134,8 +134,8 @@ def getCaseEventPJ(nbRetry, token, case, eventId, attachment, fileName, external
         if(isFile == False):
             os.makedirs(repository + externalId)
 
-        f = open(repository + externalId + "/" + fileName, "w", encoding='utf-8')
-        f.write(response.text)
+        f = open(repository + externalId + "/" + fileName, "wb")
+        f.write(response.content)
         f.close()
 
         fileExist = os.path.isfile(repository + externalId + "/" + fileName)
