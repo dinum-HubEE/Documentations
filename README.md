@@ -36,7 +36,7 @@ Outil de prévisualisation du swagger - [Swagger Editor](https://editor.swagger.
 ### Les environnements
 |Environnement|API|TOKEN|PORTAIL|
 |-|-|-|-|
-|Production|||https://hubee.numerique.gouv.fr|
+|Production|||https://portail.hubee.numerique.gouv.fr|
 |recette|https://api.basrec.hubee.numerique.gouv.fr|https://auth.basrec.hubee.numerique.gouv.fr/oauth2/token|https://portail.basrec.hubee.numerique.gouv.fr|
 |preproduction|https://api.bas.hubee.numerique.gouv.fr|https://auth.bas.hubee.numerique.gouv.fr/oauth2/token|https://portail.bas.hubee.numerique.gouv.fr|
 
