@@ -3,7 +3,7 @@ config = {
         'token':'',
         'api':''
     },
-    'nombreDeNotifications': 25,
+    'notificationMax': 25,
     'acteurType':'SI',
     'statusMinimal':'IN_PROGRESS',
     'statusMaximal':'DONE',
@@ -13,28 +13,16 @@ config = {
         'applicationName':'serveur_SI',
         'softwareVersion':'1.0.1'
     },
-    'credentials' :[{
-        'demarcheName':'CERTDC',
+    'demarches' :[{
+        'demarcheNom':'CERTDC',
         'clientId':'',
         'clientSecret':'',
         'dossierDeTelechargement':'data/file/download/CERTDC/',
     },
     {
-        'demarcheName':'AEC',
+        'demarcheNom':'EtatCivil',
         'clientId':'',
         'clientSecret':'',
-        'dossierDeTelechargement':'data/file/download/AEC/',
-    },
-    {
-        'demarcheName':'RSA',
-        'clientId':'',
-        'clientSecret':'',
-        'dossierDeTelechargement':'data/file/download/RSA/',
-    },
-    {
-        'demarcheName':'JCC',
-        'clientId':'',
-        'clientSecret':'',
-        'dossierDeTelechargement':'data/file/download/JCC/',
+        'dossierDeTelechargement':'data/file/download/EtatCivil/',
     }],
 }

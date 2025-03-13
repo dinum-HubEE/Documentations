@@ -49,7 +49,7 @@ def getNotification(nbRetry, token):
             'softwareVersion':config["header"]["softwareVersion"]
         }
         response = requests.request(
-            "GET", config["environnement"]["api"] + "teledossiers/v1/notifications?maxResult=" + str(config["nombreDeNotifications"]), headers=headers, data={})
+            "GET", config["environnement"]["api"] + "teledossiers/v1/notifications?eventDetails=true&maxResult=" + str(config["notificationMax"]), headers=headers, data={})
         response.raise_for_status()
 
         print(response.request.method, response.status_code, response.request.url,"-", round(response.elapsed.total_seconds() * 1000), "ms")
@@ -62,7 +62,7 @@ def getNotification(nbRetry, token):
         if(nbRetry > 1):
             getNotification(nbRetry - 1, token)
         else:
-            print('il est impossible de récupérer les notifications, merci de vous rapprocher de votre équipe technique')
+            print('Impossible de récupérer les notifications, merci de vous rapprocher de votre équipe technique')
             exit()
     except Exception as err:
         print(f'Other error occurred: {err}')
@@ -223,39 +223,6 @@ def patchEvent(nbRetry, token, case, event, status):
             exit()
 
 
-def patchCase(nbRetry, token, case, status):
-    try:
-        headers = {
-            'Authorization': 'Bearer ' + token,
-            'Content-Type': 'application/json',
-            'editorName':config["header"]["editorName"],
-            'applicationName':config["header"]["applicationName"],
-            'softwareVersion':config["header"]["softwareVersion"]
-        }
-        response = requests.request(
-            "PATCH", config["environnement"]["api"] + "teledossiers/v1/cases/" + case, headers=headers, data=json.dumps({"status": status}))
-        response.raise_for_status()
-        
-        print(response.request.method, response.status_code, response.request.url,"-", round(response.elapsed.total_seconds() * 1000), "ms")
-
-        return response
-
-    except HTTPError as http_err:
-        print(f'HTTP error occurred: {http_err}')
-        if(nbRetry > 1):
-            patchCase(nbRetry - 1, token, case, status)
-        else:
-            print('impossible de modifier le status du case:', case)
-            exit()
-    except Exception as err:
-        print(f'Other error occurred: {err}')
-        if(nbRetry > 1):
-            patchCase(nbRetry - 1, token, case, status)
-        else:
-            print('impossible de modifier le status du case:', case)
-            exit()
-
-
 def getEvent(nbRetry, token, case, event):
     try:
         headers = {
@@ -320,7 +287,7 @@ def deleteNotification(nbRetry, token, notification):
             exit()
 
 
-def postEvent(nbRetry, token, case, currentStatus, newStatus):
+def postEvent(nbRetry, token, case, newStatus):
     try:
         headers = {
             'Authorization': 'Bearer ' + token,
@@ -335,7 +302,6 @@ def postEvent(nbRetry, token, case, currentStatus, newStatus):
                 "actionType": "STATUS_UPDATE",
                 "author": "me",
                 "notification": True,
-                "caseCurrentStatus": currentStatus,
                 "caseNewStatus": newStatus
             }))
 
