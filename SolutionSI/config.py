@@ -10,7 +10,7 @@ config = {
     'NombreRetry': 5,
     'header':{
         'editorName':'SI_XYZ',
-        'applicationName':'serveur_SI',
+        'applicationName':'script_HUBEE_DINUM',
         'softwareVersion':'1.0.1'
     },
     'demarches' :[{
