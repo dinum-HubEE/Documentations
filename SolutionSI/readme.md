@@ -96,7 +96,7 @@ Il s'agit d'un script qui permet d'automatiser la récupération des télédossi
 ```
     'header':{
         'editorName':'SI_XYZ',            -> nom de votre organisation, par exemple COMMUNE X
-        'applicationName':'serveur_SI',   -> nom de votre logiciel / serveur
+        'applicationName':'script_HUBEE_DINUM',   -> ne pas toucher si vous utilisez ce script
         'softwareVersion':'1.0.1'         -> version de votre logiciel
     },
 ```
