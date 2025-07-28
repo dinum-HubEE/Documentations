@@ -10,7 +10,6 @@
 - Contact : contact@hubee.numerique.gouv.fr
 
 ## Documentations
-- [Documentations Fonctionnelles](https://github.com/dinum-HubEE/Documentations/releases/latest/download/DocumentationsFonctionnelles.zip)
 - [Documentations Techniques](https://github.com/dinum-HubEE/Documentations/releases/latest/download/DocumentationsTechniques.zip)
 
 ## Contrat d'interface
