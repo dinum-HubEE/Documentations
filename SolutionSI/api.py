@@ -18,7 +18,7 @@ class HubeeAPI:
     ) -> str:
         """Récupère un token d'authentification OAuth2 depuis l'API HUBEE."""
         try:
-            payload = "scope=" + config["acteurType"] + "&grant_type=client_credentials"
+            payload = f"scope={config['acteurType']}&grant_type=client_credentials"
             headers = {
                 "editorName": config["header"]["editorName"],
                 "applicationName": config["header"]["applicationName"],
@@ -73,9 +73,7 @@ class HubeeAPI:
             }
             response = requests.request(
                 "GET",
-                config["environnement"]["api"]
-                + "teledossiers/v1/notifications?eventDetails=true&maxResult="
-                + str(config["notificationMax"]),
+                f"{config['environnement']['api']}teledossiers/v1/notifications?eventDetails=true&maxResult={config['notificationMax']}",
                 headers=headers,
                 data={},
             )
@@ -132,11 +130,7 @@ class HubeeAPI:
             }
             response = requests.request(
                 "GET",
-                config["environnement"]["api"]
-                + "teledossiers/v1/cases/"
-                + case
-                + "/attachments/"
-                + attachment,
+                f"{config['environnement']['api']}teledossiers/v1/cases/{case}/attachments/{attachment}",
                 headers=headers,
                 data={},
             )
@@ -213,13 +207,7 @@ class HubeeAPI:
             }
             response = requests.request(
                 "GET",
-                config["environnement"]["api"]
-                + "teledossiers/v1/cases/"
-                + case
-                + "/events/"
-                + event_id
-                + "/attachments/"
-                + attachment,
+                f"{config['environnement']['api']}teledossiers/v1/cases/{case}/events/{event_id}/attachments/{attachment}",
                 headers=headers,
                 data={},
             )
@@ -288,7 +276,7 @@ class HubeeAPI:
             }
             response = requests.request(
                 "GET",
-                config["environnement"]["api"] + "teledossiers/v1/cases/" + case,
+                f"{config['environnement']['api']}teledossiers/v1/cases/{case}",
                 headers=headers,
                 data={},
             )
@@ -335,11 +323,7 @@ class HubeeAPI:
             }
             response = requests.request(
                 "PATCH",
-                config["environnement"]["api"]
-                + "teledossiers/v1/cases/"
-                + case
-                + "/events/"
-                + event,
+                f"{config['environnement']['api']}teledossiers/v1/cases/{case}/events/{event}",
                 headers=headers,
                 data=json.dumps({"status": status}),
             )
@@ -388,11 +372,7 @@ class HubeeAPI:
             }
             response = requests.request(
                 "GET",
-                config["environnement"]["api"]
-                + "teledossiers/v1/cases/"
-                + case
-                + "/events/"
-                + event,
+                f"{config['environnement']['api']}teledossiers/v1/cases/{case}/events/{event}",
                 headers=headers,
                 data={},
             )
@@ -436,9 +416,7 @@ class HubeeAPI:
             }
             response = requests.request(
                 "DELETE",
-                config["environnement"]["api"]
-                + "teledossiers/v1/notifications/"
-                + notification,
+                f"{config['environnement']['api']}teledossiers/v1/notifications/{notification}",
                 headers=headers,
             )
             response.raise_for_status()
@@ -484,14 +462,11 @@ class HubeeAPI:
             }
             response = requests.request(
                 "POST",
-                config["environnement"]["api"]
-                + "teledossiers/v1/cases/"
-                + case
-                + "/events",
+                f"{config['environnement']['api']}teledossiers/v1/cases/{case}/events",
                 headers=headers,
                 data=json.dumps(
                     {
-                        "message": "passage du teledossier a" + new_status,
+                        "message": f"passage du télédossier à {new_status}",
                         "actionType": "STATUS_UPDATE",
                         "author": "me",
                         "notification": True,
