@@ -30,13 +30,10 @@ class HubeeAPI:
             "applicationName": config["header"]["applicationName"],
             "softwareVersion": config["header"]["softwareVersion"],
         }
-
         if token:
             headers["Authorization"] = f"Bearer {token}"
-
         if content_type:
             headers["Content-Type"] = content_type
-
         return headers
 
     def _log_request(self, response: requests.Response) -> None:
@@ -50,78 +47,71 @@ class HubeeAPI:
             "ms",
         )
 
+    def _handle_request_with_retry(
+        self,
+        method: str,
+        url: str,
+        headers: dict,
+        nb_retry: int,
+        error_message: str,
+        data=None,
+        auth=None,
+    ) -> requests.Response:
+        """Gère les requêtes HTTP avec retry automatique."""
+        try:
+            response = requests.request(
+                method, url, headers=headers, data=data, auth=auth
+            )
+            response.raise_for_status()
+            self._log_request(response)
+            return response
+        except (HTTPError, Exception) as e:
+            error_type = "HTTP" if isinstance(e, HTTPError) else "Other"
+            print(f"{error_type} error occurred: {e}")
+
+            if nb_retry > 1:
+                return self._handle_request_with_retry(
+                    method=method,
+                    url=url,
+                    headers=headers,
+                    nb_retry=nb_retry - 1,
+                    error_message=error_message,
+                    data=data,
+                    auth=auth,
+                )
+
+            raise RuntimeError(error_message)
+
     def get_access_token(
         self, nb_retry: int, client_id: str, client_secret: str
     ) -> str:
         """Récupère un token d'authentification OAuth2 depuis l'API HUBEE."""
-        try:
-            payload = f"scope={config['acteurType']}&grant_type=client_credentials"
-            headers = self._get_headers(content_type="application/x-www-form-urlencoded")
-            response = requests.request(
-                "POST",
-                config["environnement"]["token"],
-                auth=(client_id, client_secret),
-                headers=headers,
-                data=payload,
-            )
-            response.raise_for_status()
-
-            self._log_request(response)
-
-            json_response = response.json()
-
-            return json_response["access_token"]
-
-        except HTTPError as e:
-            print(f"HTTP error occurred: {e}")
-            if nb_retry > 1:
-                return self.get_access_token(nb_retry - 1, client_id, client_secret)
-            else:
-                print("Erreur technique, merci de vérifiez vos credentials")
-                exit()
-        except Exception as e:
-            print(f"Other error occurred: {e}")
-            if nb_retry > 1:
-                return self.get_access_token(nb_retry - 1, client_id, client_secret)
-            else:
-                print("Erreur technique, merci de vérifiez vos credentials")
-                exit()
+        payload: str = f"scope={config['acteurType']}&grant_type=client_credentials"
+        headers: Dict[str, str] = self._get_headers(
+            content_type="application/x-www-form-urlencoded"
+        )
+        response: requests.Response = self._handle_request_with_retry(
+            method="POST",
+            url=config["environnement"]["token"],
+            headers=headers,
+            nb_retry=nb_retry,
+            error_message="Erreur technique, merci de vérifiez vos credentials",
+            data=payload,
+            auth=(client_id, client_secret),
+        )
+        return response.json()["access_token"]
 
     def get_notifications(self, nb_retry: int, token: str) -> Dict[str, Any]:
         """Récupère la liste des notifications depuis l'API HUBEE."""
-        try:
-            headers = self._get_headers(token=token)
-            response = requests.request(
-                "GET",
-                f"{config['environnement']['api']}teledossiers/v1/notifications?eventDetails=true&maxResult={config['notificationMax']}",
-                headers=headers,
-                data={},
-            )
-            response.raise_for_status()
-
-            self._log_request(response)
-
-            json_response = response.json()
-            return json_response
-
-        except HTTPError as e:
-            print(f"HTTP error occurred: {e}")
-            if nb_retry > 1:
-                return self.get_notifications(nb_retry - 1, token)
-            else:
-                print(
-                    "Impossible de récupérer les notifications, merci de vous rapprocher de votre équipe technique"
-                )
-                exit()
-        except Exception as e:
-            print(f"Other error occurred: {e}")
-            if nb_retry > 1:
-                return self.get_notifications(nb_retry - 1, token)
-            else:
-                print(
-                    "il est impossible de récupérer les notifications, merci de vous rapprocher de votre équipe technique"
-                )
-                exit()
+        headers: Dict[str, str] = self._get_headers(token=token)
+        response: requests.Response = self._handle_request_with_retry(
+            method="GET",
+            url=f"{config['environnement']['api']}teledossiers/v1/notifications?eventDetails=true&maxResult={config['notificationMax']}",
+            headers=headers,
+            nb_retry=nb_retry,
+            error_message="Impossible de récupérer les notifications, merci de vous rapprocher de votre équipe technique",
+        )
+        return response.json()
 
     def download_case_attachment(
         self,
@@ -134,58 +124,25 @@ class HubeeAPI:
         download_dir: Path,
     ) -> None:
         """Télécharge une pièce jointe d'un télédossier et la sauvegarde localement."""
-        try:
-            headers = self._get_headers(token=token)
-            response = requests.request(
-                "GET",
-                f"{config['environnement']['api']}teledossiers/v1/cases/{case}/attachments/{attachment}",
-                headers=headers,
-                data={},
-            )
-            response.raise_for_status()
+        headers: Dict[str, str] = self._get_headers(token=token)
+        response: requests.Response = self._handle_request_with_retry(
+            method="GET",
+            url=f"{config['environnement']['api']}teledossiers/v1/cases/{case}/attachments/{attachment}",
+            headers=headers,
+            nb_retry=nb_retry,
+            error_message=f"impossible de récupérer la pièce jointe : {attachment}",
+        )
 
-            self._log_request(response)
-            # print("téléchar", file_name)
+        # Logique métier de téléchargement (après la réponse)
+        # print("téléchar", file_name)
+        download_path: Path = download_dir / external_id / file_name
+        download_path.parent.mkdir(parents=True, exist_ok=True)
 
-            download_path = download_dir / external_id / file_name
-            download_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(download_path, "wb") as f:
+            f.write(response.content)
 
-            with open(download_path, "wb") as f:
-                f.write(response.content)
-
-            if not download_path.exists():
-                raise ValueError("FILE IS NOT CREATED")
-
-        except HTTPError as e:
-            print(f"HTTP error occurred: {e}")
-            if nb_retry > 1:
-                return self.download_case_attachment(
-                    nb_retry - 1,
-                    token,
-                    case,
-                    attachment,
-                    file_name,
-                    external_id,
-                    download_dir,
-                )
-            else:
-                print("impossible de récupérer la pièce jointe :", attachment)
-                exit()
-        except Exception as e:
-            print(f"Other error occurred: {e}")
-            if nb_retry > 1:
-                return self.download_case_attachment(
-                    nb_retry - 1,
-                    token,
-                    case,
-                    attachment,
-                    file_name,
-                    external_id,
-                    download_dir,
-                )
-            else:
-                print("impossible de récupérer la pièce jointe :", attachment)
-                exit()
+        if not download_path.exists():
+            raise ValueError("FILE IS NOT CREATED")
 
     def download_event_attachment(
         self,
@@ -199,234 +156,104 @@ class HubeeAPI:
         download_dir: Path,
     ) -> None:
         """Télécharge une pièce jointe d'un événement et la sauvegarde localement."""
-        try:
-            headers = self._get_headers(token=token)
-            response = requests.request(
-                "GET",
-                f"{config['environnement']['api']}teledossiers/v1/cases/{case}/events/{event_id}/attachments/{attachment}",
-                headers=headers,
-                data={},
-            )
-            response.raise_for_status()
+        headers: Dict[str, str] = self._get_headers(token=token)
+        response: requests.Response = self._handle_request_with_retry(
+            method="GET",
+            url=f"{config['environnement']['api']}teledossiers/v1/cases/{case}/events/{event_id}/attachments/{attachment}",
+            headers=headers,
+            nb_retry=nb_retry,
+            error_message=f"impossible de récupérer la pièce jointe : {attachment}",
+        )
 
-            self._log_request(response)
-            print("téléchar", file_name)
+        # Logique métier de téléchargement (après la réponse)
+        print("téléchar", file_name)
+        download_path: Path = download_dir / external_id / file_name
+        download_path.parent.mkdir(parents=True, exist_ok=True)
 
-            download_path: Path = download_dir / external_id / file_name
-            download_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(download_path, "wb") as e:
+            e.write(response.content)
 
-            with open(download_path, "wb") as e:
-                e.write(response.content)
-
-            if not download_path.exists():
-                raise ValueError("FILE IS NOT CREATED")
-
-        except HTTPError as e:
-            print(f"HTTP error occurred: {e}")
-            if nb_retry > 1:
-                return self.download_event_attachment(
-                    nb_retry - 1,
-                    token,
-                    case,
-                    event_id,
-                    attachment,
-                    file_name,
-                    external_id,
-                    download_dir,
-                )
-            else:
-                print("impossible de récupérer la pièce jointe :", attachment)
-                exit()
-        except Exception as err:
-            print(f"Other error occurred: {err}")
-            if nb_retry > 1:
-                return self.download_event_attachment(
-                    nb_retry - 1,
-                    token,
-                    case,
-                    event_id,
-                    attachment,
-                    file_name,
-                    external_id,
-                    download_dir,
-                )
-            else:
-                print("impossible de récupérer la pièce jointe :", attachment)
-                exit()
+        if not download_path.exists():
+            raise ValueError("FILE IS NOT CREATED")
 
     def get_case(self, nb_retry: int, token: str, case: str) -> Dict[str, Any]:
         """Récupère les informations d'un télédossier depuis l'API HUBEE."""
-        try:
-            headers = self._get_headers(token=token)
-            response = requests.request(
-                "GET",
-                f"{config['environnement']['api']}teledossiers/v1/cases/{case}",
-                headers=headers,
-                data={},
-            )
-            response.raise_for_status()
-
-            self._log_request(response)
-
-            json_response = response.json()
-            return json_response
-
-        except HTTPError as e:
-            print(f"HTTP error occurred: {e}")
-            if nb_retry > 1:
-                return self.get_case(nb_retry - 1, token, case)
-            else:
-                print("impossible de récupérer le case:", case)
-                exit()
-        except Exception as err:
-            print(f"Other error occurred: {err}")
-            if nb_retry > 1:
-                return self.get_case(nb_retry - 1, token, case)
-            else:
-                print("impossible de récupérer le case:", case)
-                exit()
+        headers: Dict[str, str] = self._get_headers(token=token)
+        response: requests.Response = self._handle_request_with_retry(
+            method="GET",
+            url=f"{config['environnement']['api']}teledossiers/v1/cases/{case}",
+            headers=headers,
+            nb_retry=nb_retry,
+            error_message=f"impossible de récupérer le case: {case}",
+        )
+        return response.json()
 
     def update_event_status(
         self, nb_retry: int, token: str, case: str, event: str, status: str
     ) -> requests.Response:
         """Met à jour le statut d'un événement dans l'API HUBEE."""
-        try:
-            headers = self._get_headers(token=token, content_type="application/json")
-            response = requests.request(
-                "PATCH",
-                f"{config['environnement']['api']}teledossiers/v1/cases/{case}/events/{event}",
-                headers=headers,
-                data=json.dumps({"status": status}),
-            )
-            response.raise_for_status()
-
-            self._log_request(response)
-
-            return response
-
-        except HTTPError as e:
-            print(f"HTTP error occurred: {e}")
-            if nb_retry > 1:
-                return self.update_event_status(
-                    nb_retry - 1, token, case, event, status
-                )
-            else:
-                print("impossible de modifier le status de levent:", case)
-                exit()
-        except Exception as e:
-            print(f"Other error occurred: {e}")
-            if nb_retry > 1:
-                return self.update_event_status(
-                    nb_retry - 1, token, case, event, status
-                )
-            else:
-                print("impossible de modifier le status de levent:", case)
-                exit()
+        headers: Dict[str, str] = self._get_headers(
+            token=token, content_type="application/json"
+        )
+        response: requests.Response = self._handle_request_with_retry(
+            method="PATCH",
+            url=f"{config['environnement']['api']}teledossiers/v1/cases/{case}/events/{event}",
+            headers=headers,
+            nb_retry=nb_retry,
+            error_message=f"impossible de modifier le status de levent: {case}",
+            data=json.dumps({"status": status}),
+        )
+        return response
 
     def get_event(
         self, nb_retry: int, token: str, case: str, event: str
     ) -> Dict[str, Any]:
         """Récupère les informations d'un événement depuis l'API HUBEE."""
-        try:
-            headers = self._get_headers(token=token)
-            response = requests.request(
-                "GET",
-                f"{config['environnement']['api']}teledossiers/v1/cases/{case}/events/{event}",
-                headers=headers,
-                data={},
-            )
-            response.raise_for_status()
-
-            self._log_request(response)
-
-            json_response = response.json()
-            return json_response
-
-        except HTTPError:
-            if nb_retry > 1:
-                return self.get_event(nb_retry - 1, token, case, event)
-            else:
-                print("impossible de récupérer un event:", event)
-                exit()
-        except Exception:
-            if nb_retry > 1:
-                return self.get_event(nb_retry - 1, token, case, event)
-            else:
-                print("impossible de récupérer un event:", event)
-                exit()
+        headers: Dict[str, str] = self._get_headers(token=token)
+        response: requests.Response = self._handle_request_with_retry(
+            method="GET",
+            url=f"{config['environnement']['api']}teledossiers/v1/cases/{case}/events/{event}",
+            headers=headers,
+            nb_retry=nb_retry,
+            error_message=f"impossible de récupérer un event: {event}",
+        )
+        return response.json()
 
     def delete_notification(
         self, nb_retry: int, token: str, notification: str
     ) -> requests.Response:
         """Supprime une notification depuis l'API HUBEE."""
-        try:
-            headers = self._get_headers(token=token)
-            response = requests.request(
-                "DELETE",
-                f"{config['environnement']['api']}teledossiers/v1/notifications/{notification}",
-                headers=headers,
-            )
-            response.raise_for_status()
-
-            self._log_request(response)
-
-            # json_response = response.json()
-            return response
-
-        except HTTPError as e:
-            print(f"HTTP error occurred: {e}")
-            if nb_retry > 1:
-                return self.delete_notification(nb_retry - 1, token, notification)
-            else:
-                print("impossible de supprimer la notification:", notification)
-                exit()
-        except Exception as err:
-            print(f"DELETE NOTIFICATION - Other error occurred: {err}")
-            if nb_retry > 1:
-                return self.delete_notification(nb_retry - 1, token, notification)
-            else:
-                print("impossible de supprimer la notification:", notification)
-                exit()
+        headers: Dict[str, str] = self._get_headers(token=token)
+        response: requests.Response = self._handle_request_with_retry(
+            method="DELETE",
+            url=f"{config['environnement']['api']}teledossiers/v1/notifications/{notification}",
+            headers=headers,
+            nb_retry=nb_retry,
+            error_message=f"impossible de supprimer la notification: {notification}",
+        )
+        return response
 
     def create_status_event(
         self, nb_retry: int, token: str, case: str, new_status: str
     ) -> Dict[str, Any]:
         """Crée un nouvel événement de changement de statut dans l'API HUBEE."""
-        try:
-            headers = self._get_headers(token=token, content_type="application/json")
-            response = requests.request(
-                "POST",
-                f"{config['environnement']['api']}teledossiers/v1/cases/{case}/events",
-                headers=headers,
-                data=json.dumps(
-                    {
-                        "message": f"passage du télédossier à {new_status}",
-                        "actionType": "STATUS_UPDATE",
-                        "author": "me",
-                        "notification": True,
-                        "caseNewStatus": new_status,
-                    }
-                ),
-            )
-
-            response.raise_for_status()
-
-            self._log_request(response)
-
-            json_response = response.json()
-            return json_response
-
-        except HTTPError as e:
-            print(f"HTTP error occurred: {e}")
-            if nb_retry > 1:
-                return self.create_status_event(nb_retry - 1, token, case, new_status)
-            else:
-                print("impossible de créer un event:", case)
-                exit()
-        except Exception as e:
-            print(f"Other error occurred: {e}")
-            if nb_retry > 1:
-                return self.create_status_event(nb_retry - 1, token, case, new_status)
-            else:
-                print("impossible de créer un event:", case)
-                exit()
+        headers: Dict[str, str] = self._get_headers(
+            token=token, content_type="application/json"
+        )
+        response: requests.Response = self._handle_request_with_retry(
+            method="POST",
+            url=f"{config['environnement']['api']}teledossiers/v1/cases/{case}/events",
+            headers=headers,
+            nb_retry=nb_retry,
+            error_message=f"impossible de créer un event: {case}",
+            data=json.dumps(
+                {
+                    "message": f"passage du télédossier à {new_status}",
+                    "actionType": "STATUS_UPDATE",
+                    "author": "me",
+                    "notification": True,
+                    "caseNewStatus": new_status,
+                }
+            ),
+        )
+        return response.json()
