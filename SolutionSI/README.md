@@ -1,6 +1,6 @@
 # Script de récupération des pièces jointes
 
-Ce script Python est conçu pour les **Services Instructeurs (SI)** afin de simplifier et optimiser la récupération des télédossiers depuis la plateforme HUBEE jusqu'à un répertoire cible.
+Ce script Python est conçu pour les **Services Instructeurs (SI)** afin de permettre la récupération des télédossiers depuis la plateforme HUBEE jusqu'à un répertoire local cible.
 
 ## 🚀 Fonctionnalités HUBEE supportées
 
@@ -13,9 +13,15 @@ Ce script Python est conçu pour les **Services Instructeurs (SI)** afin de simp
 
 ## 📁 Structure du projet
 
-- `main.py`: script principal, contient la logique d'utilisation de l'API
-- `config.toml`: fichier de configuration TOML à modifier
-- `api.py`: contient toutes les requêtes API
+Le projet est organisé en quatre fichiers principaux :
+
+- **`main.py`** : **À exécuter**. Script principal qui lance le traitement des démarches HUBEE.
+
+- **`config.toml`** : **À modifier**. Fichier de configuration où vous définissez vos URLs, credentials et paramètres.
+
+- **`pyproject.toml`** : **Ne pas toucher**. Fichier de configuration du projet Python qui définit les dépendances et métadonnées.
+
+- **`api.py`** : **Ne pas toucher**. Module technique qui gère les interactions avec l'API HUBEE.
 
 ## 🚀 Usage
 
@@ -62,7 +68,6 @@ Le script utilise un fichier de configuration au format TOML (`config.toml`) pou
 1. **Editer le fichier** `config.toml` dans le répertoire du script
 2. **Configurer les URLs de l'environnement** `api_url` et `token_url`
 3. **Configurer vos credentials** pour chaque démarche
-4. **Ajuster les paramètres** selon vos besoins (statuts, dossiers, etc.)
 
 ### 🌍 Configuration de l'environnement
 
@@ -113,29 +118,26 @@ statut_minimal = "IN_PROGRESS"   # il peut être SENT, SI_RECEIVED ou IN_PROGRES
 statut_maximal = "DONE"          # il doit être DONE ou REFUSED
 ```
 
-### 📨 Configuration de la récupération des notifications
+### 📋 Header
+
+Pour identifier chaque requête, vous devez renseigner le nom de votre organisation :
+```toml
+[header]
+editor_name = "SI_XYZ"                    # nom de votre organisation, par exemple COMMUNE X
+application_name = "script_HUBEE_DINUM"   # ne pas toucher si vous utilisez ce script
+software_version = "2.0.0"                # ne pas toucher si vous utilisez ce script
+```
+
+### ⚙️ Autres configurations
 
 Le script récupère les notifications par lot de 25 par défaut. Ne pas toucher à cette valeur sans raison :
 ```toml
 notification_max = 25
 ```
 
-### 🔄  Configuration du retry
-
 En cas d'erreur de communication avec l'API Hubee, le script va retenter de communiquer avec l'API un nombre de fois défini par `nombre_retry` dans la configuration. Par défaut, cette valeur est de 5, il est déconseillé de le modifier.
 ```toml
 nombre_retry = 5
-```
-
-### 📋 Header
-
-Pour identifier chaque requête, vous devez renseigner les éléments avec vos informations :
-
-```toml
-[header]
-editor_name = "SI_XYZ"                    # nom de votre organisation, par exemple COMMUNE X
-application_name = "script_HUBEE_DINUM"   # ne pas toucher si vous utilisez ce script
-software_version = "1.0.1"                # version de votre logiciel
 ```
 
 ## 🤝 Contribution
@@ -144,6 +146,4 @@ Avant de contribuer au dépôt et de faire une PR, il est nécessaire de formate
 
 ```bash
 ruff check --fix . && ruff format .
-```
-
 ```
