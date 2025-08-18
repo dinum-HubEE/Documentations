@@ -12,8 +12,8 @@ from api import (
 from config import config
 
 
-def HUBEE_recuperationTeledossier(clientId, clientSecret, repository):
-    token = getToken(config["NombreRetry"], clientId, clientSecret)
+def process_hubee_telefolders(client_id: str, client_secret: str, download_dir: str) -> None:
+    token = getToken(config["NombreRetry"], client_id, client_secret)
     notifications = getNotification(config["NombreRetry"], token)
 
     if len(notifications) > 0:
@@ -32,7 +32,7 @@ def HUBEE_recuperationTeledossier(clientId, clientSecret, repository):
                         PJ["id"],
                         PJ["fileName"],
                         case["externalId"],
-                        repository,
+                        download_dir,
                     )
 
                 postEvent(
@@ -89,7 +89,7 @@ def HUBEE_recuperationTeledossier(clientId, clientSecret, repository):
                                     PJ["id"],
                                     PJ["fileName"],
                                     case["externalId"],
-                                    repository,
+                                    download_dir,
                                 )
 
                             # changement des status du case et création d'events
@@ -116,13 +116,13 @@ def HUBEE_recuperationTeledossier(clientId, clientSecret, repository):
                         "RECEIVED",
                     )
 
-        HUBEE_recuperationTeledossier(clientId, clientSecret, repository)
+        process_hubee_telefolders(client_id, client_secret, download_dir)
     else:
         print("Il n'y a pas de notification")
 
 
 for process in config["demarches"]:
     print("Traitement de la démarche: ", process["demarcheNom"])
-    HUBEE_recuperationTeledossier(
+    process_hubee_telefolders(
         process["clientId"], process["clientSecret"], process["dossierDeTelechargement"]
     )
