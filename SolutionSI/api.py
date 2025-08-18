@@ -97,7 +97,7 @@ class HubeeAPI:
     def get_access_token(self, client_id: str, client_secret: str) -> str:
         """Récupère un token d'authentification OAuth2 depuis l'API HUBEE."""
         payload: str = (
-            f"scope={self.config['acteur_type']}&grant_type=client_credentials"
+            f"scope={self.config['type_acteur']}&grant_type=client_credentials"
         )
         headers: dict[str, str] = self._get_headers(
             content_type="application/x-www-form-urlencoded"

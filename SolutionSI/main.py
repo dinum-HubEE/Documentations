@@ -4,8 +4,19 @@ from api import HubeeAPI
 
 
 def process_hubee_teledossier(
-    hubee_api: HubeeAPI, client_id: str, client_secret: str, download_dir: Path
+    hubee_api: HubeeAPI, client_id: str, client_secret: str, download_path: Path
 ) -> None:
+    """Traite les télédossiers pour une démarche donnée.
+
+    Effectue les opérations suivantes: récupération des notifications, téléchargement
+    des pièces jointes, mise à jour des statuts et acquittement des events.
+
+    Paramètres:
+      - hubee_api: instance configurée de HubeeAPI
+      - client_id: identifiant client de la démarche
+      - client_secret: secret client de la démarche
+      - download_path: répertoire cible pour enregistrer les pièces jointes pour la démarche
+    """
     token: str = hubee_api.get_access_token(client_id, client_secret)
     notifications: dict = hubee_api.get_notifications(token)
 
@@ -14,9 +25,8 @@ def process_hubee_teledossier(
         return
 
     for notif in notifications:
-        print("Traitement de la notification:", notif["id"])
-        # print(notif)
-        # traitement d'une notification
+        print("Traitement de la notification [", notif["id"], "]")
+
         if notif["eventId"] is None:
             case = hubee_api.get_case(token, notif["caseId"])
 
@@ -27,7 +37,7 @@ def process_hubee_teledossier(
                     PJ["id"],
                     PJ["fileName"],
                     case["externalId"],
-                    download_dir,
+                    download_path,
                 )
 
             hubee_api.create_status_event(
@@ -78,7 +88,7 @@ def process_hubee_teledossier(
                                 PJ["id"],
                                 PJ["fileName"],
                                 case["externalId"],
-                                download_dir,
+                                download_path,
                             )
 
                         # changement des status du case et création d'events
@@ -102,7 +112,7 @@ def process_hubee_teledossier(
                     "RECEIVED",
                 )
 
-    process_hubee_teledossier(hubee_api, client_id, client_secret, download_dir)
+    process_hubee_teledossier(hubee_api, client_id, client_secret, download_path)
 
 
 def main():
@@ -112,11 +122,30 @@ def main():
 
     for process in hubee_api.config["demarches"]:
         print("Traitement de la démarche: ", process["demarche_nom"])
+
+        # Dossier de téléchargement (avec fallback) + création du répertoire
+        configured_dir: str | None = process.get("dossier_telechargement")
+        if configured_dir:
+            download_path: Path = Path(configured_dir)
+        else:
+            fallback_dir: str = f"./downloads/{process['demarche_nom']}/"
+            print(
+                f"  Dossier de téléchargement non configuré, utilisation du fallback: {fallback_dir}"
+            )
+            download_path = Path(fallback_dir)
+
+        existed_before: bool = download_path.exists()
+        if not existed_before:
+            download_path.mkdir(parents=True, exist_ok=True)
+            print(
+                f"  Création du répertoire de téléchargement: {download_path.resolve()}"
+            )
+
         process_hubee_teledossier(
-            hubee_api,
-            process["client_id"],
-            process["client_secret"],
-            process["dossier_telechargement"],
+            hubee_api=hubee_api,
+            client_id=process["client_id"],
+            client_secret=process["client_secret"],
+            download_path=download_path,
         )
 
 
