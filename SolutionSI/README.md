@@ -11,9 +11,9 @@ Ce script Python est conçu pour les **Services Instructeurs (SI)** afin de simp
 - Récupération des events ``STATUS_UPDATE`
 
 ## Structure du projet
- - `api.py` contient toutes les requêtes API
- - `hubee.py` contient la logique d'utilisation de l'API
- - `config.py` contient la configuration à modifier
+- `main.py`: script principal, contient la logique d'utilisation de l'API
+- `config.py`: fichier de configuration à modifier
+- `api.py`: contient toutes les requêtes API
 
 ## Prérequis
 **Python** >= 3.10
@@ -30,7 +30,7 @@ pip install requests
 ## Lancement
 Dans votre environnement virtuel, faire:
 ```bash
-python3 hubee.py
+python3 main.py
 ```
 
 ## Configuration

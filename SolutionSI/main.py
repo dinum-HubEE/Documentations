@@ -1,4 +1,4 @@
-from API import *
+from api import *
 from config import *
 
 def HUBEE_recuperationTeledossier(clientId, clientSecret, repository):

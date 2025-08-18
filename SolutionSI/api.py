@@ -1,4 +1,3 @@
-from os import access
 import os
 import requests
 import json
@@ -240,13 +239,13 @@ def getEvent(nbRetry, token, case, event):
         jsonResponse = response.json()
         return jsonResponse
 
-    except HTTPError as http_err:
+    except HTTPError:
         if(nbRetry > 1):
             getEvent(nbRetry - 1, token, case, event)
         else:
             print('impossible de récupérer un event:', event)
             exit()
-    except Exception as err:
+    except Exception:
         if(nbRetry > 1):
             getEvent(nbRetry - 1, token, case, event)
         else:
