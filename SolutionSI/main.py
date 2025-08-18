@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from api import (
     get_access_token,
     get_notifications,
@@ -12,7 +14,7 @@ from api import (
 from config import config
 
 
-def process_hubee_telefolders(client_id: str, client_secret: str, download_dir: str) -> None:
+def process_hubee_telefolders(client_id: str, client_secret: str, download_dir: Path) -> None:
     token = get_access_token(config["NombreRetry"], client_id, client_secret)
     notifications = get_notifications(config["NombreRetry"], token)
 

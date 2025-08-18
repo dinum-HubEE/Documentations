@@ -1,6 +1,6 @@
-import os
 import requests
 import json
+from pathlib import Path
 from typing import Dict, Any
 from requests.exceptions import HTTPError
 from config import config
@@ -110,7 +110,7 @@ def download_case_attachment(
     attachment: str,
     file_name: str,
     external_id: str,
-    download_dir: str,
+    download_dir: Path,
 ) -> None:
     try:
         headers = {
@@ -141,16 +141,13 @@ def download_case_attachment(
         )
         # print("téléchar", file_name)
 
-        is_file = os.path.isdir(download_dir + external_id)
-        if not is_file:
-            os.makedirs(download_dir + external_id)
+        download_path = download_dir / external_id / file_name
+        download_path.parent.mkdir(parents=True, exist_ok=True)
 
-        f = open(download_dir + external_id + "/" + file_name, "wb")
-        f.write(response.content)
-        f.close()
+        with open(download_path, "wb") as f:
+            f.write(response.content)
 
-        file_exist = os.path.isfile(download_dir + external_id + "/" + file_name)
-        if not file_exist:
+        if not download_path.exists():
             raise ValueError("FILE IS NOT CREATED")
 
     except HTTPError as e:
@@ -181,7 +178,7 @@ def download_event_attachment(
     attachment: str,
     file_name: str,
     external_id: str,
-    download_dir: str,
+    download_dir: Path,
 ) -> None:
     try:
         headers = {
@@ -214,16 +211,13 @@ def download_event_attachment(
         )
         print("téléchar", file_name)
 
-        is_file = os.path.isdir(download_dir + external_id)
-        if not is_file:
-            os.makedirs(download_dir + external_id)
+        download_path: Path = download_dir / external_id / file_name
+        download_path.parent.mkdir(parents=True, exist_ok=True)
 
-        f = open(download_dir + external_id + "/" + file_name, "wb")
-        f.write(response.content)
-        f.close()
+        with open(download_path, "wb") as f:
+            f.write(response.content)
 
-        file_exist = os.path.isfile(download_dir + external_id + "/" + file_name)
-        if not file_exist:
+        if not download_path.exists():
             raise ValueError("FILE IS NOT CREATED")
 
     except HTTPError as e:
