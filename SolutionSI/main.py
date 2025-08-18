@@ -1,22 +1,17 @@
 from pathlib import Path
 
-from api import (
-    get_access_token,
-    get_notifications,
-    get_case,
-    download_case_attachment,
-    create_status_event,
-    delete_notification,
-    get_event,
-    download_event_attachment,
-    update_event_status,
-)
+from api import HubeeAPI
 from config import config
 
 
-def process_hubee_telefolders(client_id: str, client_secret: str, download_dir: Path) -> None:
-    token = get_access_token(config["NombreRetry"], client_id, client_secret)
-    notifications = get_notifications(config["NombreRetry"], token)
+def process_hubee_telefolders(
+    client_id: str, client_secret: str, download_dir: Path
+) -> None:
+    hubee_api = HubeeAPI()
+    token: str = hubee_api.get_access_token(
+        config["NombreRetry"], client_id, client_secret
+    )
+    notifications = hubee_api.get_notifications(config["NombreRetry"], token)
 
     if len(notifications) > 0:
         for notification in notifications:
@@ -24,10 +19,12 @@ def process_hubee_telefolders(client_id: str, client_secret: str, download_dir: 
             # print(notification)
             # traitement d'une notification
             if notification["eventId"] is None:
-                case = get_case(config["NombreRetry"], token, notification["caseId"])
+                case = hubee_api.get_case(
+                    config["NombreRetry"], token, notification["caseId"]
+                )
 
                 for PJ in case["attachments"]:
-                    download_case_attachment(
+                    hubee_api.download_case_attachment(
                         config["NombreRetry"],
                         token,
                         notification["caseId"],
@@ -37,25 +34,29 @@ def process_hubee_telefolders(client_id: str, client_secret: str, download_dir: 
                         download_dir,
                     )
 
-                create_status_event(
+                hubee_api.create_status_event(
                     config["NombreRetry"],
                     token,
                     notification["caseId"],
                     config["statusMinimal"],
                 )
-                create_status_event(
+                hubee_api.create_status_event(
                     config["NombreRetry"],
                     token,
                     notification["caseId"],
                     config["statusMaximal"],
                 )
-                delete_notification(config["NombreRetry"], token, notification["id"])
+                hubee_api.delete_notification(
+                    config["NombreRetry"], token, notification["id"]
+                )
             else:
                 if notification["eventStatus"] == "RECEIVED":
-                    delete_notification(config["NombreRetry"], token, notification["id"])
+                    hubee_api.delete_notification(
+                        config["NombreRetry"], token, notification["id"]
+                    )
 
                 else:
-                    event = get_event(
+                    event = hubee_api.get_event(
                         config["NombreRetry"],
                         token,
                         notification["caseId"],
@@ -77,13 +78,13 @@ def process_hubee_telefolders(client_id: str, client_secret: str, download_dir: 
                             print("message  [", event["message"], "]")
                         case "ATTACH_DEPOSIT":
                             # ceci est un event ATTACH_DEPOSIT
-                            case = get_case(
+                            case = hubee_api.get_case(
                                 config["NombreRetry"], token, notification["caseId"]
                             )
 
                             for PJ in event["attachments"]:
                                 # téléchargement des Pjs de l'event
-                                download_event_attachment(
+                                hubee_api.download_event_attachment(
                                     config["NombreRetry"],
                                     token,
                                     notification["caseId"],
@@ -95,13 +96,13 @@ def process_hubee_telefolders(client_id: str, client_secret: str, download_dir: 
                                 )
 
                             # changement des status du case et création d'events
-                            create_status_event(
+                            hubee_api.create_status_event(
                                 config["NombreRetry"],
                                 token,
                                 notification["caseId"],
                                 config["statusMinimal"],
                             )
-                            create_status_event(
+                            hubee_api.create_status_event(
                                 config["NombreRetry"],
                                 token,
                                 notification["caseId"],
@@ -110,7 +111,7 @@ def process_hubee_telefolders(client_id: str, client_secret: str, download_dir: 
                         case _:
                             print("erreur lors de la récupération de l'event")
 
-                    update_event_status(
+                    hubee_api.update_event_status(
                         config["NombreRetry"],
                         token,
                         notification["caseId"],
