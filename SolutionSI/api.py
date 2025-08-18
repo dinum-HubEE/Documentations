@@ -6,7 +6,7 @@ from requests.exceptions import HTTPError
 from config import config
 
 
-def getToken(nbRetry: int, clientId: str, clientSecret: str) -> str:
+def get_access_token(nb_retry: int, client_id: str, client_secret: str) -> str:
     try:
         payload = "scope=" + config["acteurType"] + "&grant_type=client_credentials"
         headers = {
@@ -18,7 +18,7 @@ def getToken(nbRetry: int, clientId: str, clientSecret: str) -> str:
         response = requests.request(
             "POST",
             config["environnement"]["token"],
-            auth=(clientId, clientSecret),
+            auth=(client_id, client_secret),
             headers=headers,
             data=payload,
         )
@@ -33,27 +33,27 @@ def getToken(nbRetry: int, clientId: str, clientSecret: str) -> str:
             "ms",
         )
 
-        jsonResponse = response.json()
+        json_response = response.json()
 
-        return jsonResponse["access_token"]
+        return json_response["access_token"]
 
-    except HTTPError as http_err:
-        print(f"HTTP error occurred: {http_err}")
-        if nbRetry > 1:
-            getToken(nbRetry - 1, clientId, clientSecret)
+    except HTTPError as e:
+        print(f"HTTP error occurred: {e}")
+        if nb_retry > 1:
+            get_access_token(nb_retry - 1, client_id, client_secret)
         else:
             print("Erreur technique, merci de vérifiez vos credentials")
             exit()
-    except Exception as err:
-        print(f"Other error occurred: {err}")
-        if nbRetry > 1:
-            getToken(nbRetry - 1, clientId, clientSecret)
+    except Exception as e:
+        print(f"Other error occurred: {e}")
+        if nb_retry > 1:
+            get_access_token(nb_retry - 1, client_id, client_secret)
         else:
             print("Erreur technique, merci de vérifiez vos credentials")
             exit()
 
 
-def getNotification(nbRetry: int, token: str) -> Dict[str, Any]:
+def get_notifications(nb_retry: int, token: str) -> Dict[str, Any]:
     try:
         headers = {
             "Authorization": "Bearer " + token,
@@ -80,22 +80,22 @@ def getNotification(nbRetry: int, token: str) -> Dict[str, Any]:
             "ms",
         )
 
-        jsonResponse = response.json()
-        return jsonResponse
+        json_response = response.json()
+        return json_response
 
-    except HTTPError as http_err:
-        print(f"HTTP error occurred: {http_err}")
-        if nbRetry > 1:
-            getNotification(nbRetry - 1, token)
+    except HTTPError as e:
+        print(f"HTTP error occurred: {e}")
+        if nb_retry > 1:
+            get_notifications(nb_retry - 1, token)
         else:
             print(
                 "Impossible de récupérer les notifications, merci de vous rapprocher de votre équipe technique"
             )
             exit()
-    except Exception as err:
-        print(f"Other error occurred: {err}")
-        if nbRetry > 1:
-            getNotification(nbRetry - 1, token)
+    except Exception as e:
+        print(f"Other error occurred: {e}")
+        if nb_retry > 1:
+            get_notifications(nb_retry - 1, token)
         else:
             print(
                 "il est impossible de récupérer les notifications, merci de vous rapprocher de votre équipe technique"
@@ -103,14 +103,14 @@ def getNotification(nbRetry: int, token: str) -> Dict[str, Any]:
             exit()
 
 
-def getCasePJ(
-    nbRetry: int,
+def download_case_attachment(
+    nb_retry: int,
     token: str,
     case: str,
     attachment: str,
-    fileName: str,
-    externalId: str,
-    repository: str,
+    file_name: str,
+    external_id: str,
+    download_dir: str,
 ) -> None:
     try:
         headers = {
@@ -139,49 +139,49 @@ def getCasePJ(
             round(response.elapsed.total_seconds() * 1000),
             "ms",
         )
-        # print("téléchar", fileName)
+        # print("téléchar", file_name)
 
-        isFile = os.path.isdir(repository + externalId)
-        if not isFile:
-            os.makedirs(repository + externalId)
+        is_file = os.path.isdir(download_dir + external_id)
+        if not is_file:
+            os.makedirs(download_dir + external_id)
 
-        f = open(repository + externalId + "/" + fileName, "wb")
+        f = open(download_dir + external_id + "/" + file_name, "wb")
         f.write(response.content)
         f.close()
 
-        fileExist = os.path.isfile(repository + externalId + "/" + fileName)
-        if not fileExist:
+        file_exist = os.path.isfile(download_dir + external_id + "/" + file_name)
+        if not file_exist:
             raise ValueError("FILE IS NOT CREATED")
 
-    except HTTPError as http_err:
-        print(f"HTTP error occurred: {http_err}")
-        if nbRetry > 1:
-            getCasePJ(
-                nbRetry - 1, token, case, attachment, fileName, externalId, repository
+    except HTTPError as e:
+        print(f"HTTP error occurred: {e}")
+        if nb_retry > 1:
+            download_case_attachment(
+                nb_retry - 1, token, case, attachment, file_name, external_id, download_dir
             )
         else:
             print("impossible de récupérer la pièce jointe :", attachment)
             exit()
-    except Exception as err:
-        print(f"Other error occurred: {err}")
-        if nbRetry > 1:
-            getCasePJ(
-                nbRetry - 1, token, case, attachment, fileName, externalId, repository
+    except Exception as e:
+        print(f"Other error occurred: {e}")
+        if nb_retry > 1:
+            download_case_attachment(
+                nb_retry - 1, token, case, attachment, file_name, external_id, download_dir
             )
         else:
             print("impossible de récupérer la pièce jointe :", attachment)
             exit()
 
 
-def getCaseEventPJ(
-    nbRetry: int,
+def download_event_attachment(
+    nb_retry: int,
     token: str,
     case: str,
-    eventId: str,
+    event_id: str,
     attachment: str,
-    fileName: str,
-    externalId: str,
-    repository: str,
+    file_name: str,
+    external_id: str,
+    download_dir: str,
 ) -> None:
     try:
         headers = {
@@ -196,7 +196,7 @@ def getCaseEventPJ(
             + "teledossiers/v1/cases/"
             + case
             + "/events/"
-            + eventId
+            + event_id
             + "/attachments/"
             + attachment,
             headers=headers,
@@ -212,55 +212,55 @@ def getCaseEventPJ(
             round(response.elapsed.total_seconds() * 1000),
             "ms",
         )
-        print("téléchar", fileName)
+        print("téléchar", file_name)
 
-        isFile = os.path.isdir(repository + externalId)
-        if not isFile:
-            os.makedirs(repository + externalId)
+        is_file = os.path.isdir(download_dir + external_id)
+        if not is_file:
+            os.makedirs(download_dir + external_id)
 
-        f = open(repository + externalId + "/" + fileName, "wb")
+        f = open(download_dir + external_id + "/" + file_name, "wb")
         f.write(response.content)
         f.close()
 
-        fileExist = os.path.isfile(repository + externalId + "/" + fileName)
-        if not fileExist:
+        file_exist = os.path.isfile(download_dir + external_id + "/" + file_name)
+        if not file_exist:
             raise ValueError("FILE IS NOT CREATED")
 
-    except HTTPError as http_err:
-        print(f"HTTP error occurred: {http_err}")
-        if nbRetry > 1:
-            getCaseEventPJ(
-                nbRetry - 1,
+    except HTTPError as e:
+        print(f"HTTP error occurred: {e}")
+        if nb_retry > 1:
+            download_event_attachment(
+                nb_retry - 1,
                 token,
                 case,
-                eventId,
+                event_id,
                 attachment,
-                fileName,
-                externalId,
-                repository,
+                file_name,
+                external_id,
+                download_dir,
             )
         else:
             print("impossible de récupérer la pièce jointe :", attachment)
             exit()
     except Exception as err:
         print(f"Other error occurred: {err}")
-        if nbRetry > 1:
-            getCaseEventPJ(
-                nbRetry - 1,
+        if nb_retry > 1:
+            download_event_attachment(
+                nb_retry - 1,
                 token,
                 case,
-                eventId,
+                event_id,
                 attachment,
-                fileName,
-                externalId,
-                repository,
+                file_name,
+                external_id,
+                download_dir,
             )
         else:
             print("impossible de récupérer la pièce jointe :", attachment)
             exit()
 
 
-def getCase(nbRetry: int, token: str, case: str) -> Dict[str, Any]:
+def get_case(nb_retry: int, token: str, case: str) -> Dict[str, Any]:
     try:
         headers = {
             "Authorization": "Bearer " + token,
@@ -285,27 +285,27 @@ def getCase(nbRetry: int, token: str, case: str) -> Dict[str, Any]:
             "ms",
         )
 
-        jsonResponse = response.json()
-        return jsonResponse
+        json_response = response.json()
+        return json_response
 
-    except HTTPError as http_err:
-        print(f"HTTP error occurred: {http_err}")
-        if nbRetry > 1:
-            getCase(nbRetry - 1, token, case)
+    except HTTPError as e:
+        print(f"HTTP error occurred: {e}")
+        if nb_retry > 1:
+            get_case(nb_retry - 1, token, case)
         else:
             print("impossible de récupérer le case:", case)
             exit()
     except Exception as err:
         print(f"Other error occurred: {err}")
-        if nbRetry > 1:
-            getCase(nbRetry - 1, token, case)
+        if nb_retry > 1:
+            get_case(nb_retry - 1, token, case)
         else:
             print("impossible de récupérer le case:", case)
             exit()
 
 
-def patchEvent(
-    nbRetry: int, token: str, case: str, event: str, status: str
+def update_event_status(
+    nb_retry: int, token: str, case: str, event: str, status: str
 ) -> requests.Response:
     try:
         headers = {
@@ -338,23 +338,23 @@ def patchEvent(
 
         return response
 
-    except HTTPError as http_err:
-        print(f"HTTP error occurred: {http_err}")
-        if nbRetry > 1:
-            patchEvent(nbRetry - 1, token, case, event, status)
+    except HTTPError as e:
+        print(f"HTTP error occurred: {e}")
+        if nb_retry > 1:
+            update_event_status(nb_retry - 1, token, case, event, status)
         else:
             print("impossible de modifier le status de levent:", case)
             exit()
-    except Exception as err:
-        print(f"Other error occurred: {err}")
-        if nbRetry > 1:
-            patchEvent(nbRetry - 1, token, case, event, status)
+    except Exception as e:
+        print(f"Other error occurred: {e}")
+        if nb_retry > 1:
+            update_event_status(nb_retry - 1, token, case, event, status)
         else:
             print("impossible de modifier le status de levent:", case)
             exit()
 
 
-def getEvent(nbRetry: int, token: str, case: str, event: str) -> Dict[str, Any]:
+def get_event(nb_retry: int, token: str, case: str, event: str) -> Dict[str, Any]:
     try:
         headers = {
             "Authorization": "Bearer " + token,
@@ -383,25 +383,25 @@ def getEvent(nbRetry: int, token: str, case: str, event: str) -> Dict[str, Any]:
             "ms",
         )
 
-        jsonResponse = response.json()
-        return jsonResponse
+        json_response = response.json()
+        return json_response
 
     except HTTPError:
-        if nbRetry > 1:
-            getEvent(nbRetry - 1, token, case, event)
+        if nb_retry > 1:
+            get_event(nb_retry - 1, token, case, event)
         else:
             print("impossible de récupérer un event:", event)
             exit()
     except Exception:
-        if nbRetry > 1:
-            getEvent(nbRetry - 1, token, case, event)
+        if nb_retry > 1:
+            get_event(nb_retry - 1, token, case, event)
         else:
             print("impossible de récupérer un event:", event)
             exit()
 
 
-def deleteNotification(
-    nbRetry: int, token: str, notification: str
+def delete_notification(
+    nb_retry: int, token: str, notification: str
 ) -> requests.Response:
     try:
         headers = {
@@ -428,26 +428,26 @@ def deleteNotification(
             "ms",
         )
 
-        # jsonResponse = response.json()
+        # json_response = response.json()
         return response
 
-    except HTTPError as http_err:
-        print(f"HTTP error occurred: {http_err}")
-        if nbRetry > 1:
-            deleteNotification(nbRetry - 1, token, notification)
+    except HTTPError as e:
+        print(f"HTTP error occurred: {e}")
+        if nb_retry > 1:
+            delete_notification(nb_retry - 1, token, notification)
         else:
             print("impossible de supprimer la notification:", notification)
             exit()
     except Exception as err:
         print(f"DELETE NOTIFICATION - Other error occurred: {err}")
-        if nbRetry > 1:
-            deleteNotification(nbRetry - 1, token, notification)
+        if nb_retry > 1:
+            delete_notification(nb_retry - 1, token, notification)
         else:
             print("impossible de supprimer la notification:", notification)
             exit()
 
 
-def postEvent(nbRetry: int, token: str, case: str, newStatus: str) -> Dict[str, Any]:
+def create_status_event(nb_retry: int, token: str, case: str, new_status: str) -> Dict[str, Any]:
     try:
         headers = {
             "Authorization": "Bearer " + token,
@@ -465,11 +465,11 @@ def postEvent(nbRetry: int, token: str, case: str, newStatus: str) -> Dict[str, 
             headers=headers,
             data=json.dumps(
                 {
-                    "message": "passage du teledossier a" + newStatus,
+                    "message": "passage du teledossier a" + new_status,
                     "actionType": "STATUS_UPDATE",
                     "author": "me",
                     "notification": True,
-                    "caseNewStatus": newStatus,
+                    "caseNewStatus": new_status,
                 }
             ),
         )
@@ -485,20 +485,20 @@ def postEvent(nbRetry: int, token: str, case: str, newStatus: str) -> Dict[str, 
             "ms",
         )
 
-        jsonResponse = response.json()
-        return jsonResponse
+        json_response = response.json()
+        return json_response
 
-    except HTTPError as http_err:
-        print(f"HTTP error occurred: {http_err}")
-        if nbRetry > 1:
-            postEvent(nbRetry - 1, token, case, newStatus)
+    except HTTPError as e:
+        print(f"HTTP error occurred: {e}")
+        if nb_retry > 1:
+            create_status_event(nb_retry - 1, token, case, new_status)
         else:
             print("impossible de créer un event:", case)
             exit()
-    except Exception as err:
-        print(f"Other error occurred: {err}")
-        if nbRetry > 1:
-            postEvent(nbRetry - 1, token, case, newStatus)
+    except Exception as e:
+        print(f"Other error occurred: {e}")
+        if nb_retry > 1:
+            create_status_event(nb_retry - 1, token, case, new_status)
         else:
             print("impossible de créer un event:", case)
             exit()

@@ -1,20 +1,20 @@
 from api import (
-    getToken,
-    getNotification,
-    getCase,
-    getCasePJ,
-    postEvent,
-    deleteNotification,
-    getEvent,
-    getCaseEventPJ,
-    patchEvent,
+    get_access_token,
+    get_notifications,
+    get_case,
+    download_case_attachment,
+    create_status_event,
+    delete_notification,
+    get_event,
+    download_event_attachment,
+    update_event_status,
 )
 from config import config
 
 
 def process_hubee_telefolders(client_id: str, client_secret: str, download_dir: str) -> None:
-    token = getToken(config["NombreRetry"], client_id, client_secret)
-    notifications = getNotification(config["NombreRetry"], token)
+    token = get_access_token(config["NombreRetry"], client_id, client_secret)
+    notifications = get_notifications(config["NombreRetry"], token)
 
     if len(notifications) > 0:
         for notification in notifications:
@@ -22,10 +22,10 @@ def process_hubee_telefolders(client_id: str, client_secret: str, download_dir: 
             # print(notification)
             # traitement d'une notification
             if notification["eventId"] is None:
-                case = getCase(config["NombreRetry"], token, notification["caseId"])
+                case = get_case(config["NombreRetry"], token, notification["caseId"])
 
                 for PJ in case["attachments"]:
-                    getCasePJ(
+                    download_case_attachment(
                         config["NombreRetry"],
                         token,
                         notification["caseId"],
@@ -35,25 +35,25 @@ def process_hubee_telefolders(client_id: str, client_secret: str, download_dir: 
                         download_dir,
                     )
 
-                postEvent(
+                create_status_event(
                     config["NombreRetry"],
                     token,
                     notification["caseId"],
                     config["statusMinimal"],
                 )
-                postEvent(
+                create_status_event(
                     config["NombreRetry"],
                     token,
                     notification["caseId"],
                     config["statusMaximal"],
                 )
-                deleteNotification(config["NombreRetry"], token, notification["id"])
+                delete_notification(config["NombreRetry"], token, notification["id"])
             else:
                 if notification["eventStatus"] == "RECEIVED":
-                    deleteNotification(config["NombreRetry"], token, notification["id"])
+                    delete_notification(config["NombreRetry"], token, notification["id"])
 
                 else:
-                    event = getEvent(
+                    event = get_event(
                         config["NombreRetry"],
                         token,
                         notification["caseId"],
@@ -75,13 +75,13 @@ def process_hubee_telefolders(client_id: str, client_secret: str, download_dir: 
                             print("message  [", event["message"], "]")
                         case "ATTACH_DEPOSIT":
                             # ceci est un event ATTACH_DEPOSIT
-                            case = getCase(
+                            case = get_case(
                                 config["NombreRetry"], token, notification["caseId"]
                             )
 
                             for PJ in event["attachments"]:
                                 # téléchargement des Pjs de l'event
-                                getCaseEventPJ(
+                                download_event_attachment(
                                     config["NombreRetry"],
                                     token,
                                     notification["caseId"],
@@ -93,13 +93,13 @@ def process_hubee_telefolders(client_id: str, client_secret: str, download_dir: 
                                 )
 
                             # changement des status du case et création d'events
-                            postEvent(
+                            create_status_event(
                                 config["NombreRetry"],
                                 token,
                                 notification["caseId"],
                                 config["statusMinimal"],
                             )
-                            postEvent(
+                            create_status_event(
                                 config["NombreRetry"],
                                 token,
                                 notification["caseId"],
@@ -108,7 +108,7 @@ def process_hubee_telefolders(client_id: str, client_secret: str, download_dir: 
                         case _:
                             print("erreur lors de la récupération de l'event")
 
-                    patchEvent(
+                    update_event_status(
                         config["NombreRetry"],
                         token,
                         notification["caseId"],
