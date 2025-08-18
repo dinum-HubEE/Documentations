@@ -1,3 +1,10 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# dependencies = [
+#     "requests",
+# ]
+# ///
+
 from pathlib import Path
 
 from api import HubeeAPI

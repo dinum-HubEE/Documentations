@@ -17,25 +17,40 @@ Ce script Python est conçu pour les **Services Instructeurs (SI)** afin de simp
 - `config.toml`: fichier de configuration TOML à modifier
 - `api.py`: contient toutes les requêtes API
 
-## ⚙️ Prérequis
+## 🚀 Usage
+
+### Prérequis
 
 **Python** >= 3.10
 
-## 📦 Installation
+### Lancement
+
+**Gestionnaire de paquets** : Le script peut être exécuté de deux façons :
+- **Méthode classique** : Avec pip et un environnement virtuel Python
+- **Méthode moderne** : Avec [uv](https://docs.astral.sh/uv/) qui gère automatiquement les dépendances
+
+#### Méthode 1 : Python classique
+
+Cette méthode nécessite un environnement virtuel Python pour isoler les dépendances du projet :
 
 ```bash
-# Installation avec pip depuis le répertoire du projet
+# Installation des dépendances Python
 pip install -e .
 
-# Ou installation directe des dépendances
-pip install requests
+# Lancement du script Python
+python3 main.py
 ```
 
-## 🚀 Lancement
+#### Méthode 2 : Exécution directe
 
-Dans votre environnement virtuel, faire:
+Cette méthode gère automatiquement l'environnement virtuel et les dépendances :
+
 ```bash
-python3 main.py
+# Rendre le script exécutable
+chmod +x main.py
+
+# Lancer le script
+./main.py
 ```
 
 ## ⚙️ Configuration
@@ -129,4 +144,6 @@ Avant de contribuer au dépôt et de faire une PR, il est nécessaire de formate
 
 ```bash
 ruff check --fix . && ruff format .
+```
+
 ```
