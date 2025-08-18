@@ -3,7 +3,7 @@ from pathlib import Path
 from api import HubeeAPI
 
 
-def process_hubee_telefolders(
+def process_hubee_teledossier(
     hubee_api: HubeeAPI, client_id: str, client_secret: str, download_dir: Path
 ) -> None:
     token: str = hubee_api.get_access_token(client_id, client_secret)
@@ -102,17 +102,23 @@ def process_hubee_telefolders(
                     "RECEIVED",
                 )
 
-    process_hubee_telefolders(hubee_api, client_id, client_secret, download_dir)
+    process_hubee_teledossier(hubee_api, client_id, client_secret, download_dir)
 
 
-# Lecture de la configuration depuis HubeeAPI
-hubee_api = HubeeAPI()
+def main():
+    """Fonction principale du script."""
+    # Lecture de la configuration depuis HubeeAPI
+    hubee_api = HubeeAPI()
 
-for process in hubee_api.config["demarches"]:
-    print("Traitement de la démarche: ", process["demarche_nom"])
-    process_hubee_telefolders(
-        hubee_api,
-        process["client_id"],
-        process["client_secret"],
-        process["dossier_telechargement"],
-    )
+    for process in hubee_api.config["demarches"]:
+        print("Traitement de la démarche: ", process["demarche_nom"])
+        process_hubee_teledossier(
+            hubee_api,
+            process["client_id"],
+            process["client_secret"],
+            process["dossier_telechargement"],
+        )
+
+
+if __name__ == "__main__":
+    main()
