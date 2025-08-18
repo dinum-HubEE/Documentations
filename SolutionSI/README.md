@@ -80,8 +80,8 @@ notification_max = 25
 
 - suivant la démarche vous devez changer les statuts à mettre sur le télédossier
 ```toml
-status_minimal = "IN_PROGRESS"   # il peut être SENT, SI_RECEIVED ou IN_PROGRESS
-status_maximal = "DONE"          # il doit être DONE ou REFUSED
+statut_minimal = "IN_PROGRESS"   # il peut être SENT, SI_RECEIVED ou IN_PROGRESS
+statut_maximal = "DONE"          # il doit être DONE ou REFUSED
 ```
 
 ### 🔄 Retry

@@ -2,8 +2,8 @@
 nombre_retry = 5
 notification_max = 25
 acteur_type = "SI"
-status_minimal = "IN_PROGRESS"
-status_maximal = "DONE"
+statut_minimal = "IN_PROGRESS"
+statut_maximal = "DONE"
 
 [environnement]
 token_url = ""

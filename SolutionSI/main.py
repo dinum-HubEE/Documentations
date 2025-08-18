@@ -4,14 +4,13 @@ from api import HubeeAPI
 
 
 def process_hubee_telefolders(
-    client_id: str, client_secret: str, download_dir: Path
+    hubee_api: HubeeAPI, client_id: str, client_secret: str, download_dir: Path
 ) -> None:
-    hubee_api = HubeeAPI()
     token: str = hubee_api.get_access_token(client_id, client_secret)
     notifications: dict = hubee_api.get_notifications(token)
 
     if len(notifications) == 0:
-        print("Il n'y a pas de notification")
+        print("Il n'y a pas de notification.")
         return
 
     for notif in notifications:
@@ -34,12 +33,12 @@ def process_hubee_telefolders(
             hubee_api.create_status_event(
                 token,
                 notif["caseId"],
-                hubee_api.config["status_minimal"],
+                hubee_api.config["statut_minimal"],
             )
             hubee_api.create_status_event(
                 token,
                 notif["caseId"],
-                hubee_api.config["status_maximal"],
+                hubee_api.config["statut_maximal"],
             )
             hubee_api.delete_notification(token, notif["id"])
         else:
@@ -86,12 +85,12 @@ def process_hubee_telefolders(
                         hubee_api.create_status_event(
                             token,
                             notif["caseId"],
-                            hubee_api.config["status_minimal"],
+                            hubee_api.config["statut_minimal"],
                         )
                         hubee_api.create_status_event(
                             token,
                             notif["caseId"],
-                            hubee_api.config["status_maximal"],
+                            hubee_api.config["statut_maximal"],
                         )
                     case _:
                         print("erreur lors de la récupération de l'event")
@@ -103,7 +102,7 @@ def process_hubee_telefolders(
                     "RECEIVED",
                 )
 
-    process_hubee_telefolders(client_id, client_secret, download_dir)
+    process_hubee_telefolders(hubee_api, client_id, client_secret, download_dir)
 
 
 # Lecture de la configuration depuis HubeeAPI
@@ -112,6 +111,7 @@ hubee_api = HubeeAPI()
 for process in hubee_api.config["demarches"]:
     print("Traitement de la démarche: ", process["demarche_nom"])
     process_hubee_telefolders(
+        hubee_api,
         process["client_id"],
         process["client_secret"],
         process["dossier_telechargement"],
