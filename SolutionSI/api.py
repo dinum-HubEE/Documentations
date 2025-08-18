@@ -13,18 +13,39 @@ class HubeeAPI:
         """Initialise l'API avec la configuration."""
         pass
 
+    def _get_headers(
+        self, token: str = None, content_type: str = None
+    ) -> Dict[str, str]:
+        """Génère les headers communs avec options.
+
+        Args:
+            token: Token d'authentification (optionnel)
+            content_type: Type de contenu (optionnel)
+
+        Returns:
+            Dictionnaire des headers
+        """
+        headers = {
+            "editorName": config["header"]["editorName"],
+            "applicationName": config["header"]["applicationName"],
+            "softwareVersion": config["header"]["softwareVersion"],
+        }
+
+        if token:
+            headers["Authorization"] = f"Bearer {token}"
+
+        if content_type:
+            headers["Content-Type"] = content_type
+
+        return headers
+
     def get_access_token(
         self, nb_retry: int, client_id: str, client_secret: str
     ) -> str:
         """Récupère un token d'authentification OAuth2 depuis l'API HUBEE."""
         try:
             payload = f"scope={config['acteurType']}&grant_type=client_credentials"
-            headers = {
-                "editorName": config["header"]["editorName"],
-                "applicationName": config["header"]["applicationName"],
-                "softwareVersion": config["header"]["softwareVersion"],
-                "Content-Type": "application/x-www-form-urlencoded",
-            }
+            headers = self._get_headers(content_type="application/x-www-form-urlencoded")
             response = requests.request(
                 "POST",
                 config["environnement"]["token"],
@@ -65,12 +86,7 @@ class HubeeAPI:
     def get_notifications(self, nb_retry: int, token: str) -> Dict[str, Any]:
         """Récupère la liste des notifications depuis l'API HUBEE."""
         try:
-            headers = {
-                "Authorization": "Bearer " + token,
-                "editorName": config["header"]["editorName"],
-                "applicationName": config["header"]["applicationName"],
-                "softwareVersion": config["header"]["softwareVersion"],
-            }
+            headers = self._get_headers(token=token)
             response = requests.request(
                 "GET",
                 f"{config['environnement']['api']}teledossiers/v1/notifications?eventDetails=true&maxResult={config['notificationMax']}",
@@ -122,12 +138,7 @@ class HubeeAPI:
     ) -> None:
         """Télécharge une pièce jointe d'un télédossier et la sauvegarde localement."""
         try:
-            headers = {
-                "Authorization": "Bearer " + token,
-                "editorName": config["header"]["editorName"],
-                "applicationName": config["header"]["applicationName"],
-                "softwareVersion": config["header"]["softwareVersion"],
-            }
+            headers = self._get_headers(token=token)
             response = requests.request(
                 "GET",
                 f"{config['environnement']['api']}teledossiers/v1/cases/{case}/attachments/{attachment}",
@@ -199,12 +210,7 @@ class HubeeAPI:
     ) -> None:
         """Télécharge une pièce jointe d'un événement et la sauvegarde localement."""
         try:
-            headers = {
-                "Authorization": "Bearer " + token,
-                "editorName": config["header"]["editorName"],
-                "applicationName": config["header"]["applicationName"],
-                "softwareVersion": config["header"]["softwareVersion"],
-            }
+            headers = self._get_headers(token=token)
             response = requests.request(
                 "GET",
                 f"{config['environnement']['api']}teledossiers/v1/cases/{case}/events/{event_id}/attachments/{attachment}",
@@ -268,12 +274,7 @@ class HubeeAPI:
     def get_case(self, nb_retry: int, token: str, case: str) -> Dict[str, Any]:
         """Récupère les informations d'un télédossier depuis l'API HUBEE."""
         try:
-            headers = {
-                "Authorization": "Bearer " + token,
-                "editorName": config["header"]["editorName"],
-                "applicationName": config["header"]["applicationName"],
-                "softwareVersion": config["header"]["softwareVersion"],
-            }
+            headers = self._get_headers(token=token)
             response = requests.request(
                 "GET",
                 f"{config['environnement']['api']}teledossiers/v1/cases/{case}",
@@ -314,13 +315,7 @@ class HubeeAPI:
     ) -> requests.Response:
         """Met à jour le statut d'un événement dans l'API HUBEE."""
         try:
-            headers = {
-                "Authorization": "Bearer " + token,
-                "Content-Type": "application/json",
-                "editorName": config["header"]["editorName"],
-                "applicationName": config["header"]["applicationName"],
-                "softwareVersion": config["header"]["softwareVersion"],
-            }
+            headers = self._get_headers(token=token, content_type="application/json")
             response = requests.request(
                 "PATCH",
                 f"{config['environnement']['api']}teledossiers/v1/cases/{case}/events/{event}",
@@ -364,12 +359,7 @@ class HubeeAPI:
     ) -> Dict[str, Any]:
         """Récupère les informations d'un événement depuis l'API HUBEE."""
         try:
-            headers = {
-                "Authorization": "Bearer " + token,
-                "editorName": config["header"]["editorName"],
-                "applicationName": config["header"]["applicationName"],
-                "softwareVersion": config["header"]["softwareVersion"],
-            }
+            headers = self._get_headers(token=token)
             response = requests.request(
                 "GET",
                 f"{config['environnement']['api']}teledossiers/v1/cases/{case}/events/{event}",
@@ -408,12 +398,7 @@ class HubeeAPI:
     ) -> requests.Response:
         """Supprime une notification depuis l'API HUBEE."""
         try:
-            headers = {
-                "Authorization": "Bearer " + token,
-                "editorName": config["header"]["editorName"],
-                "applicationName": config["header"]["applicationName"],
-                "softwareVersion": config["header"]["softwareVersion"],
-            }
+            headers = self._get_headers(token=token)
             response = requests.request(
                 "DELETE",
                 f"{config['environnement']['api']}teledossiers/v1/notifications/{notification}",
@@ -453,13 +438,7 @@ class HubeeAPI:
     ) -> Dict[str, Any]:
         """Crée un nouvel événement de changement de statut dans l'API HUBEE."""
         try:
-            headers = {
-                "Authorization": "Bearer " + token,
-                "Content-Type": "application/json",
-                "editorName": config["header"]["editorName"],
-                "applicationName": config["header"]["applicationName"],
-                "softwareVersion": config["header"]["softwareVersion"],
-            }
+            headers = self._get_headers(token=token, content_type="application/json")
             response = requests.request(
                 "POST",
                 f"{config['environnement']['api']}teledossiers/v1/cases/{case}/events",
