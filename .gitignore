@@ -1,0 +1,24 @@
+# Python build assets
+*.pyc
+__pycache__
+
+# Python venvs
+pyenv/
+venv/
+.venv/
+
+# Ruff
+.ruff_cache/
+
+# MacOS
+.DS_Store
+
+# Editors
+.vscode
+.cursor/
+.cursorignore
+
+# Python packaging
+.python-version
+uv.lock
+mise.toml
