@@ -6,7 +6,7 @@ from requests.exceptions import HTTPError
 import tomllib
 
 
-class HubeeAPI:
+class HubeeClient:
     """Classe pour interagir avec l'API HUBEE."""
 
     def __init__(self):

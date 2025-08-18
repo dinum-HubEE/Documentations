@@ -21,7 +21,7 @@ Le projet est organisé en quatre fichiers principaux :
 
 - **`pyproject.toml`** : **Ne pas toucher**. Fichier de configuration du projet Python qui définit les dépendances et métadonnées.
 
-- **`api.py`** : **Ne pas toucher**. Module technique qui gère les interactions avec l'API HUBEE.
+- **`hubee_client.py`** : **Ne pas toucher**. Module technique qui gère les interactions avec l'API HUBEE via la classe `HubeeClient`.
 
 ## 🚀 Usage
 

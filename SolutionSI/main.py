@@ -7,11 +7,11 @@
 
 from pathlib import Path
 
-from api import HubeeAPI
+from hubee_client import HubeeClient
 
 
 def process_hubee_teledossier(
-    hubee_api: HubeeAPI, client_id: str, client_secret: str, download_path: Path
+    hubee_client: HubeeClient, client_id: str, client_secret: str, download_path: Path
 ) -> None:
     """Traite les télédossiers pour une démarche donnée.
 
@@ -19,13 +19,13 @@ def process_hubee_teledossier(
     des pièces jointes, mise à jour des statuts et acquittement des events.
 
     Paramètres:
-      - hubee_api: instance configurée de HubeeAPI
+      - hubee_client: instance configurée de HubeeClient
       - client_id: identifiant client de la démarche
       - client_secret: secret client de la démarche
       - download_path: répertoire cible pour enregistrer les pièces jointes pour la démarche
     """
-    token: str = hubee_api.get_access_token(client_id, client_secret)
-    notifications: dict = hubee_api.get_notifications(token)
+    token: str = hubee_client.get_access_token(client_id, client_secret)
+    notifications: dict = hubee_client.get_notifications(token)
 
     if len(notifications) == 0:
         print("Il n'y a pas de notification.")
@@ -35,10 +35,10 @@ def process_hubee_teledossier(
         print("Traitement de la notification [", notif["id"], "]")
 
         if notif["eventId"] is None:
-            case = hubee_api.get_case(token, notif["caseId"])
+            case = hubee_client.get_case(token, notif["caseId"])
 
             for PJ in case["attachments"]:
-                hubee_api.download_case_attachment(
+                hubee_client.download_case_attachment(
                     token,
                     notif["caseId"],
                     PJ["id"],
@@ -47,23 +47,23 @@ def process_hubee_teledossier(
                     download_path,
                 )
 
-            hubee_api.create_status_event(
+            hubee_client.create_status_event(
                 token,
                 notif["caseId"],
-                hubee_api.config["statut_minimal"],
+                hubee_client.config["statut_minimal"],
             )
-            hubee_api.create_status_event(
+            hubee_client.create_status_event(
                 token,
                 notif["caseId"],
-                hubee_api.config["statut_maximal"],
+                hubee_client.config["statut_maximal"],
             )
-            hubee_api.delete_notification(token, notif["id"])
+            hubee_client.delete_notification(token, notif["id"])
         else:
             if notif["eventStatus"] == "RECEIVED":
-                hubee_api.delete_notification(token, notif["id"])
+                hubee_client.delete_notification(token, notif["id"])
 
             else:
-                event = hubee_api.get_event(
+                event = hubee_client.get_event(
                     token,
                     notif["caseId"],
                     notif["eventId"],
@@ -84,11 +84,11 @@ def process_hubee_teledossier(
                         print("message  [", event["message"], "]")
                     case "ATTACH_DEPOSIT":
                         # ceci est un event ATTACH_DEPOSIT
-                        case = hubee_api.get_case(token, notif["caseId"])
+                        case = hubee_client.get_case(token, notif["caseId"])
 
                         for PJ in event["attachments"]:
                             # téléchargement des Pjs de l'event
-                            hubee_api.download_event_attachment(
+                            hubee_client.download_event_attachment(
                                 token,
                                 notif["caseId"],
                                 notif["eventId"],
@@ -99,35 +99,35 @@ def process_hubee_teledossier(
                             )
 
                         # changement des status du case et création d'events
-                        hubee_api.create_status_event(
+                        hubee_client.create_status_event(
                             token,
                             notif["caseId"],
-                            hubee_api.config["statut_minimal"],
+                            hubee_client.config["statut_minimal"],
                         )
-                        hubee_api.create_status_event(
+                        hubee_client.create_status_event(
                             token,
                             notif["caseId"],
-                            hubee_api.config["statut_maximal"],
+                            hubee_client.config["statut_maximal"],
                         )
                     case _:
                         print("erreur lors de la récupération de l'event")
 
-                hubee_api.update_event_status(
+                hubee_client.update_event_status(
                     token,
                     notif["caseId"],
                     notif["eventId"],
                     "RECEIVED",
                 )
 
-    process_hubee_teledossier(hubee_api, client_id, client_secret, download_path)
+    process_hubee_teledossier(hubee_client, client_id, client_secret, download_path)
 
 
 def main():
     """Fonction principale du script."""
-    # Lecture de la configuration depuis HubeeAPI
-    hubee_api = HubeeAPI()
+    # Lecture de la configuration depuis HubeeClient
+    hubee_client = HubeeClient()
 
-    for process in hubee_api.config["demarches"]:
+    for process in hubee_client.config["demarches"]:
         print("Traitement de la démarche: ", process["demarche_nom"])
 
         # Dossier de téléchargement (avec fallback) + création du répertoire
@@ -149,7 +149,7 @@ def main():
             )
 
         process_hubee_teledossier(
-            hubee_api=hubee_api,
+            hubee_client=hubee_client,
             client_id=process["client_id"],
             client_secret=process["client_secret"],
             download_path=download_path,
