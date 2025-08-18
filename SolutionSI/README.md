@@ -14,7 +14,7 @@ Ce script Python est conçu pour les **Services Instructeurs (SI)** afin de simp
 ## 📁 Structure du projet
 
 - `main.py`: script principal, contient la logique d'utilisation de l'API
-- `config.py`: fichier de configuration à modifier
+- `config.toml`: fichier de configuration TOML à modifier
 - `api.py`: contient toutes les requêtes API
 
 ## ⚙️ Prérequis
@@ -40,85 +40,72 @@ python3 main.py
 
 ## ⚙️ Configuration
 
-- la configuration est disponible dans le fichier `config.py`
+- la configuration est disponible dans le fichier `config.toml`
 
 ## 🔧 Utilisation d'une ou plusieurs démarches
 
  - Il est possible d'utiliser une ou plusieurs démarches, vous devez paramétrer dans le fichier de configuration afin d'ajouter dans l'objet credentials les informations liées à une ou plusieurs démarches :
-```python
-{
-    'demarcheName':'nomDeLaDemarche',
-    'clientId':'votreClientId',
-    'clientSecret':'votreClientSecret',
-    'dossierDeTelechargement':'data/file/download/nomDeLaDemarche/',
-}
+```toml
+[[demarches]]
+demarche_nom = "nomDeLaDemarche"
+client_id = "votreClientId"
+client_secret = "votreClientSecret"
+dossier_telechargement = "data/file/download/nomDeLaDemarche/"
 ```
 
 ### 🌍 Environnement
 
-```python
-'environnement' :{
-    'token':'url pour le TOKEN',
-    'api':'url de l'API'
-}
+```toml
+[environnement]
+token_url = "url pour le TOKEN"
+api_url = "url de l'API"
 ```
 ### 🔑 Credentials
 
 - Vos identifiants sont disponibles sur le portail HUBEE
 - il y a un couple différent ClientId/ClientSecret par démarche
-```python
-{
-    'clientId':'votreClientId',
-    'clientSecret':'votreClientSecret',
-}
+```toml
+client_id = "votreClientId"
+client_secret = "votreClientSecret"
 ```
 
 ### 📨 Récupération des notifications
 
 - vous récupérez les notifications par lot de 25 par défaut, merci de ne pas toucher à cette valeur sans raison
-```python
-{
-    'nombreDeNotifications':'25'
-}
+```toml
+notification_max = 25
 ```
 
 ### 📊 Utilisation des statuts
 
 - suivant la démarche vous devez changer les statuts à mettre sur le télédossier
-```python
-{
-    'statusMinimal':'IN_PROGRESS',   -> il peut être SENT, SI_RECEIVED ou IN_PROGRESS
-    'statusMaximal':'DONE'           -> il doit être DONE ou REFUSED
-}
+```toml
+status_minimal = "IN_PROGRESS"   # il peut être SENT, SI_RECEIVED ou IN_PROGRESS
+status_maximal = "DONE"          # il doit être DONE ou REFUSED
 ```
 
 ### 🔄 Retry
 
 - En cas d'erreur un retry va rejouer la requête par défaut 5 fois. Ne pas toucher à cette valeur sans raison
-```python
-{
-    'NombreRetry': 5
-}
+```toml
+nombre_retry = 5
 ```
 
 ### 📂 Dossier de téléchargement
 
 - À la réception d'un télédossier, les PJs iront directement dans le répertoire de sortie, il est possible de paramétrer un répertoire différent pour chaque démarche
-```python
-{
-    'dossierDeTelechargement':'data/file/download/nomDeLaDemarche/'
-}
+```toml
+dossier_telechargement = "data/file/download/nomDeLaDemarche/"
 ```
 
 ### 📋 Header
 
 - Pour identifier chaque requête, vous devez renseigner les éléments avec vos informations :
-```python
-    'header':{
-        'editorName':'SI_XYZ',            -> nom de votre organisation, par exemple COMMUNE X
-        'applicationName':'script_HUBEE_DINUM',   -> ne pas toucher si vous utilisez ce script
-        'softwareVersion':'1.0.1'         -> version de votre logiciel
-    },
+```toml
+[header]
+editor_name = "SI_XYZ"                    # nom de votre organisation, par exemple COMMUNE X
+application_name = "script_HUBEE_DINUM"   # ne pas toucher si vous utilisez ce script
+software_version = "1.0.1"               # version de votre logiciel
 ```
 
 ## 🤝 Contribution

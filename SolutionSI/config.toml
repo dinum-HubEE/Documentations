@@ -1,0 +1,27 @@
+# Configuration principale
+nombre_retry = 5
+notification_max = 25
+acteur_type = "SI"
+status_minimal = "IN_PROGRESS"
+status_maximal = "DONE"
+
+[environnement]
+token_url = ""
+api_url = ""
+
+[header]
+editor_name = "SI_XYZ"
+application_name = "script_HUBEE_DINUM"
+software_version = "1.0.1"
+
+[[demarches]]
+demarche_nom = "CERTDC"
+client_id = ""
+client_secret = ""
+dossier_telechargement = "data/file/download/CERTDC/"
+
+[[demarches]]
+demarche_nom = "EtatCivil"
+client_id = ""
+client_secret = ""
+dossier_telechargement = "data/file/download/EtatCivil/"
