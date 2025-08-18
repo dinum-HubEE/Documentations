@@ -1,7 +1,7 @@
 import requests
 import json
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any
 from requests.exceptions import HTTPError
 from config import config
 
@@ -15,7 +15,7 @@ class HubeeAPI:
 
     def _get_headers(
         self, token: str = None, content_type: str = None
-    ) -> Dict[str, str]:
+    ) -> dict[str, str]:
         """Génère les headers communs avec options.
 
         Args:
@@ -23,7 +23,7 @@ class HubeeAPI:
             content_type: Type de contenu (optionnel)
 
         Returns:
-            Dictionnaire des headers
+            dictionnaire des headers
         """
         headers = {
             "editorName": config["header"]["editorName"],
@@ -60,7 +60,11 @@ class HubeeAPI:
         """Gère les requêtes HTTP avec retry automatique."""
         try:
             response = requests.request(
-                method, url, headers=headers, data=data, auth=auth
+                method=method, 
+                url=url, 
+                headers=headers, 
+                data=data, 
+                auth=auth
             )
             response.raise_for_status()
             self._log_request(response)
@@ -87,7 +91,7 @@ class HubeeAPI:
     ) -> str:
         """Récupère un token d'authentification OAuth2 depuis l'API HUBEE."""
         payload: str = f"scope={config['acteurType']}&grant_type=client_credentials"
-        headers: Dict[str, str] = self._get_headers(
+        headers: dict[str, str] = self._get_headers(
             content_type="application/x-www-form-urlencoded"
         )
         response: requests.Response = self._handle_request_with_retry(
@@ -101,9 +105,9 @@ class HubeeAPI:
         )
         return response.json()["access_token"]
 
-    def get_notifications(self, nb_retry: int, token: str) -> Dict[str, Any]:
+    def get_notifications(self, nb_retry: int, token: str) -> dict[str, Any]:
         """Récupère la liste des notifications depuis l'API HUBEE."""
-        headers: Dict[str, str] = self._get_headers(token=token)
+        headers: dict[str, str] = self._get_headers(token=token)
         response: requests.Response = self._handle_request_with_retry(
             method="GET",
             url=f"{config['environnement']['api']}teledossiers/v1/notifications?eventDetails=true&maxResult={config['notificationMax']}",
@@ -124,7 +128,7 @@ class HubeeAPI:
         download_dir: Path,
     ) -> None:
         """Télécharge une pièce jointe d'un télédossier et la sauvegarde localement."""
-        headers: Dict[str, str] = self._get_headers(token=token)
+        headers: dict[str, str] = self._get_headers(token=token)
         response: requests.Response = self._handle_request_with_retry(
             method="GET",
             url=f"{config['environnement']['api']}teledossiers/v1/cases/{case}/attachments/{attachment}",
@@ -156,7 +160,7 @@ class HubeeAPI:
         download_dir: Path,
     ) -> None:
         """Télécharge une pièce jointe d'un événement et la sauvegarde localement."""
-        headers: Dict[str, str] = self._get_headers(token=token)
+        headers: dict[str, str] = self._get_headers(token=token)
         response: requests.Response = self._handle_request_with_retry(
             method="GET",
             url=f"{config['environnement']['api']}teledossiers/v1/cases/{case}/events/{event_id}/attachments/{attachment}",
@@ -166,7 +170,7 @@ class HubeeAPI:
         )
 
         # Logique métier de téléchargement (après la réponse)
-        print("téléchar", file_name)
+        # print("téléchar", file_name)
         download_path: Path = download_dir / external_id / file_name
         download_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -176,9 +180,9 @@ class HubeeAPI:
         if not download_path.exists():
             raise ValueError("FILE IS NOT CREATED")
 
-    def get_case(self, nb_retry: int, token: str, case: str) -> Dict[str, Any]:
+    def get_case(self, nb_retry: int, token: str, case: str) -> dict[str, Any]:
         """Récupère les informations d'un télédossier depuis l'API HUBEE."""
-        headers: Dict[str, str] = self._get_headers(token=token)
+        headers: dict[str, str] = self._get_headers(token=token)
         response: requests.Response = self._handle_request_with_retry(
             method="GET",
             url=f"{config['environnement']['api']}teledossiers/v1/cases/{case}",
@@ -192,7 +196,7 @@ class HubeeAPI:
         self, nb_retry: int, token: str, case: str, event: str, status: str
     ) -> requests.Response:
         """Met à jour le statut d'un événement dans l'API HUBEE."""
-        headers: Dict[str, str] = self._get_headers(
+        headers: dict[str, str] = self._get_headers(
             token=token, content_type="application/json"
         )
         response: requests.Response = self._handle_request_with_retry(
@@ -207,9 +211,9 @@ class HubeeAPI:
 
     def get_event(
         self, nb_retry: int, token: str, case: str, event: str
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Récupère les informations d'un événement depuis l'API HUBEE."""
-        headers: Dict[str, str] = self._get_headers(token=token)
+        headers: dict[str, str] = self._get_headers(token=token)
         response: requests.Response = self._handle_request_with_retry(
             method="GET",
             url=f"{config['environnement']['api']}teledossiers/v1/cases/{case}/events/{event}",
@@ -223,7 +227,7 @@ class HubeeAPI:
         self, nb_retry: int, token: str, notification: str
     ) -> requests.Response:
         """Supprime une notification depuis l'API HUBEE."""
-        headers: Dict[str, str] = self._get_headers(token=token)
+        headers: dict[str, str] = self._get_headers(token=token)
         response: requests.Response = self._handle_request_with_retry(
             method="DELETE",
             url=f"{config['environnement']['api']}teledossiers/v1/notifications/{notification}",
@@ -235,9 +239,9 @@ class HubeeAPI:
 
     def create_status_event(
         self, nb_retry: int, token: str, case: str, new_status: str
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Crée un nouvel événement de changement de statut dans l'API HUBEE."""
-        headers: Dict[str, str] = self._get_headers(
+        headers: dict[str, str] = self._get_headers(
             token=token, content_type="application/json"
         )
         response: requests.Response = self._handle_request_with_retry(
