@@ -39,6 +39,17 @@ class HubeeAPI:
 
         return headers
 
+    def _log_request(self, response: requests.Response) -> None:
+        """Log les informations de la requête HTTP."""
+        print(
+            response.request.method,
+            response.status_code,
+            response.request.url,
+            "-",
+            round(response.elapsed.total_seconds() * 1000),
+            "ms",
+        )
+
     def get_access_token(
         self, nb_retry: int, client_id: str, client_secret: str
     ) -> str:
@@ -55,14 +66,7 @@ class HubeeAPI:
             )
             response.raise_for_status()
 
-            print(
-                response.request.method,
-                response.status_code,
-                response.request.url,
-                "-",
-                round(response.elapsed.total_seconds() * 1000),
-                "ms",
-            )
+            self._log_request(response)
 
             json_response = response.json()
 
@@ -95,14 +99,7 @@ class HubeeAPI:
             )
             response.raise_for_status()
 
-            print(
-                response.request.method,
-                response.status_code,
-                response.request.url,
-                "-",
-                round(response.elapsed.total_seconds() * 1000),
-                "ms",
-            )
+            self._log_request(response)
 
             json_response = response.json()
             return json_response
@@ -147,14 +144,7 @@ class HubeeAPI:
             )
             response.raise_for_status()
 
-            print(
-                response.request.method,
-                response.status_code,
-                response.request.url,
-                "-",
-                round(response.elapsed.total_seconds() * 1000),
-                "ms",
-            )
+            self._log_request(response)
             # print("téléchar", file_name)
 
             download_path = download_dir / external_id / file_name
@@ -219,14 +209,7 @@ class HubeeAPI:
             )
             response.raise_for_status()
 
-            print(
-                response.request.method,
-                response.status_code,
-                response.request.url,
-                "-",
-                round(response.elapsed.total_seconds() * 1000),
-                "ms",
-            )
+            self._log_request(response)
             print("téléchar", file_name)
 
             download_path: Path = download_dir / external_id / file_name
@@ -283,14 +266,7 @@ class HubeeAPI:
             )
             response.raise_for_status()
 
-            print(
-                response.request.method,
-                response.status_code,
-                response.request.url,
-                "-",
-                round(response.elapsed.total_seconds() * 1000),
-                "ms",
-            )
+            self._log_request(response)
 
             json_response = response.json()
             return json_response
@@ -324,14 +300,7 @@ class HubeeAPI:
             )
             response.raise_for_status()
 
-            print(
-                response.request.method,
-                response.status_code,
-                response.request.url,
-                "-",
-                round(response.elapsed.total_seconds() * 1000),
-                "ms",
-            )
+            self._log_request(response)
 
             return response
 
@@ -368,14 +337,7 @@ class HubeeAPI:
             )
             response.raise_for_status()
 
-            print(
-                response.request.method,
-                response.status_code,
-                response.request.url,
-                "-",
-                round(response.elapsed.total_seconds() * 1000),
-                "ms",
-            )
+            self._log_request(response)
 
             json_response = response.json()
             return json_response
@@ -406,14 +368,7 @@ class HubeeAPI:
             )
             response.raise_for_status()
 
-            print(
-                response.request.method,
-                response.status_code,
-                response.request.url,
-                "-",
-                round(response.elapsed.total_seconds() * 1000),
-                "ms",
-            )
+            self._log_request(response)
 
             # json_response = response.json()
             return response
@@ -456,14 +411,7 @@ class HubeeAPI:
 
             response.raise_for_status()
 
-            print(
-                response.request.method,
-                response.status_code,
-                response.request.url,
-                "-",
-                round(response.elapsed.total_seconds() * 1000),
-                "ms",
-            )
+            self._log_request(response)
 
             json_response = response.json()
             return json_response
