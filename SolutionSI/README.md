@@ -40,11 +40,27 @@ python3 main.py
 
 ## ⚙️ Configuration
 
-- la configuration est disponible dans le fichier `config.toml`
+Le script utilise un fichier de configuration au format TOML (`config.toml`) pour définir tous les paramètres nécessaires à son fonctionnement. Ce fichier doit être placé dans le même répertoire que le script.
 
-## 🔧 Utilisation d'une ou plusieurs démarches
+**Étapes de configuration :**
 
- - Il est possible d'utiliser une ou plusieurs démarches, vous devez paramétrer dans le fichier de configuration afin d'ajouter dans l'objet credentials les informations liées à une ou plusieurs démarches :
+1. **Editer le fichier** `config.toml` dans le répertoire du script
+2. **Configurer les URLs de l'environnement** `api_url` et `token_url`
+3. **Configurer vos credentials** pour chaque démarche
+4. **Ajuster les paramètres** selon vos besoins (statuts, dossiers, etc.)
+
+### 🌍 Configuration de l'environnement
+
+```toml
+[environnement]
+api_url = "url de l'API"
+token_url = "url pour le TOKEN"
+```
+
+### 🔧 Utilisation d'une ou plusieurs démarches
+
+Il est possible d'utiliser une ou plusieurs démarches. Vous devez paramétrer dans le fichier de configuration afin d'ajouter les informations liées à une ou plusieurs démarches, de la manière suivante :
+
 ```toml
 [[demarches]]
 demarche_nom = "nomDeLaDemarche"
@@ -53,64 +69,64 @@ client_secret = "votreClientSecret"
 dossier_telechargement = "data/file/download/nomDeLaDemarche/"
 ```
 
-### 🌍 Environnement
+Pour chaque démarche, il y a un couple différent `client_id` / `client_secret` à compléter.
+Vos identifiants sont disponibles sur le portail HUBEE.
 
-```toml
-[environnement]
-token_url = "url pour le TOKEN"
-api_url = "url de l'API"
-```
-### 🔑 Credentials
+À la réception d'un télédossier, les pièces jointes (PJs) iront directement dans un répertore local de votre choix, défini par `dossier_telechargement`.
+Il est possible de paramétrer un répertoire différent pour chaque démarche.
 
-- Vos identifiants sont disponibles sur le portail HUBEE
-- il y a un couple différent ClientId/ClientSecret par démarche
+**Exemple de configuration :**
 ```toml
+[[demarches]]
+demarche_nom = "CERTDC"
 client_id = "votreClientId"
 client_secret = "votreClientSecret"
+dossier_telechargement = "./downloads/CERTDC/"
+
+[[demarches]]
+demarche_nom = "EtatCivil"
+client_id = "votreClientId"
+client_secret = "votreClientSecret"
+dossier_telechargement = "./downloads/EtatCivil/"
 ```
 
-### 📨 Récupération des notifications
+### 📊 Configuration de l'utilisation des statuts
 
-- vous récupérez les notifications par lot de 25 par défaut, merci de ne pas toucher à cette valeur sans raison
-```toml
-notification_max = 25
-```
-
-### 📊 Utilisation des statuts
-
-- suivant la démarche vous devez changer les statuts à mettre sur le télédossier
+Suivant la démarche, vous devez changer les statuts à mettre sur le télédossier :
 ```toml
 statut_minimal = "IN_PROGRESS"   # il peut être SENT, SI_RECEIVED ou IN_PROGRESS
 statut_maximal = "DONE"          # il doit être DONE ou REFUSED
 ```
 
-### 🔄 Retry
+### 📨 Configuration de la récupération des notifications
 
-- En cas d'erreur un retry va rejouer la requête par défaut 5 fois. Ne pas toucher à cette valeur sans raison
+Le script récupère les notifications par lot de 25 par défaut. Ne pas toucher à cette valeur sans raison :
+```toml
+notification_max = 25
+```
+
+### 🔄  Configuration du retry
+
+En cas d'erreur de communication avec l'API Hubee, le script va retenter de communiquer avec l'API un nombre de fois défini par `nombre_retry` dans la configuration. Par défaut, cette valeur est de 5, il est déconseillé de le modifier.
 ```toml
 nombre_retry = 5
 ```
 
-### 📂 Dossier de téléchargement
-
-- À la réception d'un télédossier, les PJs iront directement dans le répertoire de sortie, il est possible de paramétrer un répertoire différent pour chaque démarche
-```toml
-dossier_telechargement = "data/file/download/nomDeLaDemarche/"
-```
-
 ### 📋 Header
 
-- Pour identifier chaque requête, vous devez renseigner les éléments avec vos informations :
+Pour identifier chaque requête, vous devez renseigner les éléments avec vos informations :
+
 ```toml
 [header]
 editor_name = "SI_XYZ"                    # nom de votre organisation, par exemple COMMUNE X
 application_name = "script_HUBEE_DINUM"   # ne pas toucher si vous utilisez ce script
-software_version = "1.0.1"               # version de votre logiciel
+software_version = "1.0.1"                # version de votre logiciel
 ```
 
 ## 🤝 Contribution
 
 Avant de contribuer au dépôt et de faire une PR, il est nécessaire de formater, linter et trier les imports avec [Ruff](https://docs.astral.sh/ruff/) avant de commiter :
+
 ```bash
 ruff check --fix . && ruff format .
 ```
