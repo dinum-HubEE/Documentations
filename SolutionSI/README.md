@@ -2,23 +2,27 @@
 
 Ce script Python est conçu pour les **Services Instructeurs (SI)** afin de simplifier et optimiser la récupération des télédossiers depuis la plateforme HUBEE jusqu'à un répertoire cible.
 
-## Fonctionnalités HUBEE supportées
-- Récupération des PJs du télédossier
+## 🚀 Fonctionnalités HUBEE supportées
+
+- Récupération des pièces jointes du télédossier
 - Changement de statut
 - Acquittement des events
 - Récupération des events `SENDING_MESSAGE`
 - Récupération des events `ATTACH_DEPOSIT`
-- Récupération des events ``STATUS_UPDATE`
+- Récupération des events `STATUS_UPDATE`
 
-## Structure du projet
+## 📁 Structure du projet
+
 - `main.py`: script principal, contient la logique d'utilisation de l'API
 - `config.py`: fichier de configuration à modifier
 - `api.py`: contient toutes les requêtes API
 
-## Prérequis
+## ⚙️ Prérequis
+
 **Python** >= 3.10
 
-## Installation
+## 📦 Installation
+
 ```bash
 # Installation avec pip depuis le répertoire du projet
 pip install -e .
@@ -27,16 +31,19 @@ pip install -e .
 pip install requests
 ```
 
-## Lancement
+## 🚀 Lancement
+
 Dans votre environnement virtuel, faire:
 ```bash
 python3 main.py
 ```
 
-## Configuration
+## ⚙️ Configuration
+
 - la configuration est disponible dans le fichier `config.py`
 
-## Utilisation d'une ou plusieurs démarches
+## 🔧 Utilisation d'une ou plusieurs démarches
+
  - Il est possible d'utiliser une ou plusieurs démarches, vous devez paramétrer dans le fichier de configuration afin d'ajouter dans l'objet credentials les informations liées à une ou plusieurs démarches :
 ```python
 {
@@ -47,14 +54,16 @@ python3 main.py
 }
 ```
 
-### Environnement
+### 🌍 Environnement
+
 ```python
 'environnement' :{
     'token':'url pour le TOKEN',
     'api':'url de l'API'
 }
 ```
-### Credentials
+### 🔑 Credentials
+
 - Vos identifiants sont disponibles sur le portail HUBEE
 - il y a un couple différent ClientId/ClientSecret par démarche
 ```python
@@ -64,7 +73,8 @@ python3 main.py
 }
 ```
 
-### Récupération des notifications
+### 📨 Récupération des notifications
+
 - vous récupérez les notifications par lot de 25 par défaut, merci de ne pas toucher à cette valeur sans raison
 ```python
 {
@@ -72,7 +82,8 @@ python3 main.py
 }
 ```
 
-### Utilisation des statuts
+### 📊 Utilisation des statuts
+
 - suivant la démarche vous devez changer les statuts à mettre sur le télédossier
 ```python
 {
@@ -81,7 +92,8 @@ python3 main.py
 }
 ```
 
-### Retry
+### 🔄 Retry
+
 - En cas d'erreur un retry va rejouer la requête par défaut 5 fois. Ne pas toucher à cette valeur sans raison
 ```python
 {
@@ -89,7 +101,8 @@ python3 main.py
 }
 ```
 
-### Dossier de téléchargement
+### 📂 Dossier de téléchargement
+
 - À la réception d'un télédossier, les PJs iront directement dans le répertoire de sortie, il est possible de paramétrer un répertoire différent pour chaque démarche
 ```python
 {
@@ -97,7 +110,8 @@ python3 main.py
 }
 ```
 
-### Header
+### 📋 Header
+
 - Pour identifier chaque requête, vous devez renseigner les éléments avec vos informations :
 ```python
     'header':{
@@ -105,4 +119,11 @@ python3 main.py
         'applicationName':'script_HUBEE_DINUM',   -> ne pas toucher si vous utilisez ce script
         'softwareVersion':'1.0.1'         -> version de votre logiciel
     },
+```
+
+## 🤝 Contribution
+
+Avant de contribuer au dépôt et de faire une PR, il est nécessaire de formater, linter et trier les imports avec [Ruff](https://docs.astral.sh/ruff/) avant de commiter :
+```bash
+ruff check --fix . && ruff format .
 ```
