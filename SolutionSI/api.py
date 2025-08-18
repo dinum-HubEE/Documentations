@@ -7,6 +7,7 @@ from config import config
 
 
 def get_access_token(nb_retry: int, client_id: str, client_secret: str) -> str:
+    """Récupère un token d'authentification OAuth2 depuis l'API HUBEE."""
     try:
         payload = "scope=" + config["acteurType"] + "&grant_type=client_credentials"
         headers = {
@@ -54,6 +55,7 @@ def get_access_token(nb_retry: int, client_id: str, client_secret: str) -> str:
 
 
 def get_notifications(nb_retry: int, token: str) -> Dict[str, Any]:
+    """Récupère la liste des notifications depuis l'API HUBEE."""
     try:
         headers = {
             "Authorization": "Bearer " + token,
@@ -112,6 +114,7 @@ def download_case_attachment(
     external_id: str,
     download_dir: Path,
 ) -> None:
+    """Télécharge une pièce jointe d'un télédossier et la sauvegarde localement."""
     try:
         headers = {
             "Authorization": "Bearer " + token,
@@ -180,6 +183,7 @@ def download_event_attachment(
     external_id: str,
     download_dir: Path,
 ) -> None:
+    """Télécharge une pièce jointe d'un événement et la sauvegarde localement."""
     try:
         headers = {
             "Authorization": "Bearer " + token,
@@ -255,6 +259,7 @@ def download_event_attachment(
 
 
 def get_case(nb_retry: int, token: str, case: str) -> Dict[str, Any]:
+    """Récupère les informations d'un télédossier depuis l'API HUBEE."""
     try:
         headers = {
             "Authorization": "Bearer " + token,
@@ -301,6 +306,7 @@ def get_case(nb_retry: int, token: str, case: str) -> Dict[str, Any]:
 def update_event_status(
     nb_retry: int, token: str, case: str, event: str, status: str
 ) -> requests.Response:
+    """Met à jour le statut d'un événement dans l'API HUBEE."""
     try:
         headers = {
             "Authorization": "Bearer " + token,
@@ -349,6 +355,7 @@ def update_event_status(
 
 
 def get_event(nb_retry: int, token: str, case: str, event: str) -> Dict[str, Any]:
+    """Récupère les informations d'un événement depuis l'API HUBEE."""
     try:
         headers = {
             "Authorization": "Bearer " + token,
@@ -397,6 +404,7 @@ def get_event(nb_retry: int, token: str, case: str, event: str) -> Dict[str, Any
 def delete_notification(
     nb_retry: int, token: str, notification: str
 ) -> requests.Response:
+    """Supprime une notification depuis l'API HUBEE."""
     try:
         headers = {
             "Authorization": "Bearer " + token,
@@ -442,6 +450,7 @@ def delete_notification(
 
 
 def create_status_event(nb_retry: int, token: str, case: str, new_status: str) -> Dict[str, Any]:
+    """Crée un nouvel événement de changement de statut dans l'API HUBEE."""
     try:
         headers = {
             "Authorization": "Bearer " + token,
