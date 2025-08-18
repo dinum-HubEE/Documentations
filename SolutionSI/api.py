@@ -1,11 +1,12 @@
 import os
 import requests
 import json
+from typing import Dict, Any
 from requests.exceptions import HTTPError
 from config import *
 
 
-def getToken(nbRetry, clientId, clientSecret):
+def getToken(nbRetry: int, clientId: str, clientSecret: str) -> str:
     try:
         payload = 'scope=' + config["acteurType"] + '&grant_type=client_credentials'
         headers = {
@@ -39,7 +40,7 @@ def getToken(nbRetry, clientId, clientSecret):
             print('Erreur technique, merci de vérifiez vos credentials')
             exit()
 
-def getNotification(nbRetry, token):
+def getNotification(nbRetry: int, token: str) -> Dict[str, Any]:
     try:
         headers = {
             'Authorization': 'Bearer ' + token,
@@ -71,7 +72,7 @@ def getNotification(nbRetry, token):
             print('il est impossible de récupérer les notifications, merci de vous rapprocher de votre équipe technique')
             exit()
 
-def getCasePJ(nbRetry, token, case, attachment, fileName, externalId, repository):
+def getCasePJ(nbRetry: int, token: str, case: str, attachment: str, fileName: str, externalId: str, repository: str) -> None:
     try:
         headers = {
             'Authorization': 'Bearer ' + token,
@@ -114,7 +115,7 @@ def getCasePJ(nbRetry, token, case, attachment, fileName, externalId, repository
             exit()
 
 
-def getCaseEventPJ(nbRetry, token, case, eventId, attachment, fileName, externalId, repository):
+def getCaseEventPJ(nbRetry: int, token: str, case: str, eventId: str, attachment: str, fileName: str, externalId: str, repository: str) -> None:
     try:
         headers = {
             'Authorization': 'Bearer ' + token,
@@ -156,7 +157,7 @@ def getCaseEventPJ(nbRetry, token, case, eventId, attachment, fileName, external
             print('impossible de récupérer la pièce jointe :', attachment)
             exit()
 
-def getCase(nbRetry, token, case):
+def getCase(nbRetry: int, token: str, case: str) -> Dict[str, Any]:
     try:
         headers = {
             'Authorization': 'Bearer ' + token,
@@ -189,7 +190,7 @@ def getCase(nbRetry, token, case):
             exit()
 
 
-def patchEvent(nbRetry, token, case, event, status):
+def patchEvent(nbRetry: int, token: str, case: str, event: str, status: str) -> requests.Response:
     try:
         headers = {
             'Authorization': 'Bearer ' + token,
@@ -222,7 +223,7 @@ def patchEvent(nbRetry, token, case, event, status):
             exit()
 
 
-def getEvent(nbRetry, token, case, event):
+def getEvent(nbRetry: int, token: str, case: str, event: str) -> Dict[str, Any]:
     try:
         headers = {
             'Authorization': 'Bearer ' + token,
@@ -253,7 +254,7 @@ def getEvent(nbRetry, token, case, event):
             exit()
 
 
-def deleteNotification(nbRetry, token, notification):
+def deleteNotification(nbRetry: int, token: str, notification: str) -> requests.Response:
     try:
         headers = {
             'Authorization': 'Bearer ' + token,
@@ -286,7 +287,7 @@ def deleteNotification(nbRetry, token, notification):
             exit()
 
 
-def postEvent(nbRetry, token, case, newStatus):
+def postEvent(nbRetry: int, token: str, case: str, newStatus: str) -> Dict[str, Any]:
     try:
         headers = {
             'Authorization': 'Bearer ' + token,
