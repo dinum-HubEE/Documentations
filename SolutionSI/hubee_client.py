@@ -11,16 +11,24 @@ from requests.exceptions import HTTPError
 class HubeeStatus(Enum):
     """Statuts possibles pour les télédossiers HUBEE."""
 
-    SENT = "SENT"  # Nouveau
-    SI_RECEIVED = "SI_RECEIVED"  # Reçu par le service instructeur
-    IN_PROGRESS = "IN_PROGRESS"  # En cours de traitement par le service instructeur
-    DONE = "DONE"  # Traité par le service instructeur
-    REFUSED = "REFUSED"  # Refusé par le service instructeur
+    SENT = "Nouveau"
+    SI_RECEIVED = "Reçu par le service instructeur"
+    IN_PROGRESS = "En cours de traitement par le service instructeur"
+    DONE = "Traité par le service instructeur"
+    REFUSED = "Refusé par le service instructeur"
 
     @classmethod
     def is_valid(cls, status: str) -> bool:
         """Vérifie si un statut est valide selon les valeurs HUBEE autorisées."""
-        return status in [s.value for s in cls]
+        return status in [s.name for s in cls]
+
+    @classmethod
+    def get_description(cls, status: str) -> str:
+        """Retourne la description française d'un statut."""
+        for s in cls:
+            if s.name == status:
+                return s.value
+        return f"Statut inconnu: {status}"
 
 
 class HubeeClient:
@@ -171,7 +179,7 @@ class HubeeClient:
         """Crée un nouvel événement de changement de statut dans l'API HUBEE."""
         # Validation du statut avant envoi à l'API
         if not HubeeStatus.is_valid(new_status):
-            valid_statuses = [s.value for s in HubeeStatus]
+            valid_statuses = [s.name for s in HubeeStatus]
             raise ValueError(
                 f"Statut invalide: '{new_status}'. Statuts autorisés: {valid_statuses}. "
             )
@@ -200,7 +208,7 @@ class HubeeClient:
         """Met à jour le statut d'un événement dans l'API HUBEE."""
         # Validation du statut avant envoi à l'API
         if not HubeeStatus.is_valid(status):
-            valid_statuses = [s.value for s in HubeeStatus]
+            valid_statuses = [s.name for s in HubeeStatus]
             raise ValueError(f"Statut invalide: '{status}'. Statuts autorisés: {valid_statuses}. ")
 
         headers: dict[str, str] = self._get_headers(token=token, content_type="application/json")

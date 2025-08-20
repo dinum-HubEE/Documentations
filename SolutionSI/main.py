@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from hubee_client import HubeeClient
+from hubee_client import HubeeClient, HubeeStatus
 
 
 def process_hubee_teledossier(
@@ -74,12 +74,9 @@ def process_hubee_teledossier(
                 match event["actionType"]:
                     case "STATUS_UPDATE":
                         # ceci est un event STATUS_UPDATE
+                        status_desc = HubeeStatus.get_description(event["caseNewStatus"])
                         print(
-                            "caseNewStatus [",
-                            event["caseNewStatus"],
-                            "]  message  [",
-                            event["message"],
-                            "]",
+                            f"  → Changement de statut: {event['caseNewStatus']} ({status_desc}) - Message: {event['message']}"
                         )
                     case "SENDING_MESSAGE":
                         # ceci est un event SENDING_MESSAGE
@@ -101,10 +98,16 @@ def process_hubee_teledossier(
                             )
 
                         # changement des status du case et création d'events
+                        print(
+                            f"  → Passage au statut: {statut_minimal} ({HubeeStatus.get_description(statut_minimal)})"
+                        )
                         hubee_client.create_event(
                             token,
                             notif["caseId"],
                             statut_minimal,
+                        )
+                        print(
+                            f"  → Passage au statut: {statut_maximal} ({HubeeStatus.get_description(statut_maximal)})"
                         )
                         hubee_client.create_event(
                             token,
