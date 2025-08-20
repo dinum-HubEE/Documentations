@@ -1,0 +1,29 @@
+# Configuration principale
+retry_nb = 5
+max_notifications = 25
+type_acteur = "SI"
+
+[environnement]
+api_url = "https://api.bas.hubee.numerique.gouv.fr"
+token_url = "https://auth.bas.hubee.numerique.gouv.fr/oauth2/token"
+
+[header]
+editor_name = "SI_XYZ"
+application_name = "script_HUBEE_DINUM"
+software_version = "2.0.0"
+
+[[demarches]]
+name = "CERTDC"
+client_id = ""
+client_secret = ""
+download_path = "./downloads/CERTDC/"
+min_status = "IN_PROGRESS"    # statut intermédiaire : SENT, SI_RECEIVED ou IN_PROGRESS
+max_status = "DONE"           # statut final : DONE ou REFUSED
+
+[[demarches]]
+name = "EtatCivil"
+client_id = ""
+client_secret = ""
+download_path = "./downloads/EtatCivil/"
+min_status = "IN_PROGRESS"    # statut intermédiaire : SENT, SI_RECEIVED ou IN_PROGRESS
+max_status = "DONE"           # statut final : DONE ou REFUSED
