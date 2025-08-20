@@ -68,20 +68,20 @@ Il est possible d'utiliser une ou plusieurs démarches. Chaque démarche peut av
 **Structure de configuration pour chaque démarche :**
 ```toml
 [[demarches]]
-demarche_nom = "nomDeLaDemarche"
+name = "nomDeLaDemarche"
 client_id = "votreClientId"
 client_secret = "votreClientSecret"
-dossier_telechargement = "./downloads/MaDemarche/"
-statut_minimal = "IN_PROGRESS"   # statut initial : SENT, SI_RECEIVED ou IN_PROGRESS
-statut_maximal = "DONE"          # statut final : DONE ou REFUSED
+download_path = "./downloads/MaDemarche/"
+min_status = "IN_PROGRESS"   # statut initial : SENT, SI_RECEIVED ou IN_PROGRESS
+max_status = "DONE"          # statut final : DONE ou REFUSED
 ```
 
 **Paramètres expliqués :**
-- **`demarche_nom`** : Nom de la démarche HUBEE (consultez la [documentation HUBEE](https://github.com/dinum-HubEE/Documentations) pour la liste complète des démarches disponibles)
+- **`name`** : Nom de la démarche HUBEE (consultez la [documentation HUBEE](https://github.com/dinum-HubEE/Documentations) pour la liste complète des démarches disponibles)
 - **`client_id`** et **`client_secret`** : Identifiants de connexion (un couple différent par démarche)
-- **`dossier_telechargement`** : Répertoire local où seront stockées les pièces jointes (PJs) des télédossiers
-- **`statut_minimal`** : Statut intermédiaire à appliquer au télédossier avant traitement
-- **`statut_maximal`** : Statut final à appliquer au télédossier après traitement
+- **`download_path`** : Répertoire local où seront stockées les pièces jointes (PJs) des télédossiers
+- **`min_status`** : Statut intermédiaire à appliquer au télédossier avant traitement
+- **`max_status`** : Statut final à appliquer au télédossier après traitement
 
 Pour obtenir vos `client_id` et `client_secret` :
 
@@ -94,20 +94,20 @@ Pour obtenir vos `client_id` et `client_secret` :
 **Exemple de configuration complète :**
 ```toml
 [[demarches]]
-demarche_nom = "CERTDC"
+name = "CERTDC"
 client_id = "votreClientId"
 client_secret = "votreClientSecret"
-dossier_telechargement = "./downloads/CERTDC/"
-statut_minimal = "IN_PROGRESS"
-statut_maximal = "DONE"
+download_path = "./downloads/CERTDC/"
+min_status = "IN_PROGRESS"
+max_status = "DONE"
 
 [[demarches]]
-demarche_nom = "EtatCivil"
+name = "EtatCivil"
 client_id = "votreClientId"
 client_secret = "votreClientSecret"
-dossier_telechargement = "./downloads/EtatCivil/"
-statut_minimal = "SI_RECEIVED"   # exemple de statut intermédiaire différent
-statut_maximal = "DONE"
+download_path = "./downloads/EtatCivil/"
+min_status = "SI_RECEIVED"   # exemple de statut intermédiaire différent
+max_status = "DONE"
 ```
 
 ### 📋 Header
@@ -126,12 +126,12 @@ D'autres paramètres peuvent être configurés, mais il est déconseillé de cha
 
 Le script récupère les notifications par lot de 25 par défaut :
 ```toml
-notification_max = 25
+max_notifications = 25
 ```
 
-En cas d'erreur de communication avec l'API Hubee, le script va retenter de communiquer avec l'API un nombre de fois défini par `nombre_retry` dans la configuration. Par défaut, cette valeur est de 5 :
+En cas d'erreur de communication avec l'API Hubee, le script va retenter de communiquer avec l'API un nombre de fois défini par `retry_nb` dans la configuration. Par défaut, cette valeur est de 5 :
 ```toml
-nombre_retry = 5
+retry_nb = 5
 ```
 
 ## 🤝 Contribuer à ce script

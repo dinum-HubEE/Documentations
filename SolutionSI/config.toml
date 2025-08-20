@@ -1,6 +1,6 @@
 # Configuration principale
-nombre_retry = 5
-notification_max = 25
+retry_nb = 5
+max_notifications = 25
 type_acteur = "SI"
 
 [environnement]
@@ -13,17 +13,17 @@ application_name = "script_HUBEE_DINUM"
 software_version = "2.0.0"
 
 [[demarches]]
-demarche_nom = "CERTDC"
+name = "CERTDC"
 client_id = ""
 client_secret = ""
-dossier_telechargement = "./downloads/CERTDC/"
-statut_minimal = "IN_PROGRESS"    # statut intermédiaire : SENT, SI_RECEIVED ou IN_PROGRESS
-statut_maximal = "DONE"           # statut final : DONE ou REFUSED
+download_path = "./downloads/CERTDC/"
+min_status = "IN_PROGRESS"    # statut intermédiaire : SENT, SI_RECEIVED ou IN_PROGRESS
+max_status = "DONE"           # statut final : DONE ou REFUSED
 
 [[demarches]]
-demarche_nom = "EtatCivil"
+name = "EtatCivil"
 client_id = ""
 client_secret = ""
-dossier_telechargement = "./downloads/EtatCivil/"
-statut_minimal = "IN_PROGRESS"    # statut intermédiaire : SENT, SI_RECEIVED ou IN_PROGRESS
-statut_maximal = "DONE"           # statut final : DONE ou REFUSED
+download_path = "./downloads/EtatCivil/"
+min_status = "IN_PROGRESS"    # statut intermédiaire : SENT, SI_RECEIVED ou IN_PROGRESS
+max_status = "DONE"           # statut final : DONE ou REFUSED

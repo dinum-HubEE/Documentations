@@ -10,8 +10,8 @@ def process_hubee_teledossier(
     client_id: str,
     client_secret: str,
     download_path: Path,
-    statut_minimal: str,
-    statut_maximal: str,
+    min_status: str,
+    max_status: str,
 ) -> None:
     """Traite les télédossiers pour une démarche donnée.
 
@@ -23,8 +23,8 @@ def process_hubee_teledossier(
       - client_id: identifiant client de la démarche
       - client_secret: secret client de la démarche
       - download_path: répertoire cible pour enregistrer les pièces jointes pour la démarche
-      - statut_minimal: statut minimal à appliquer au télédossier
-      - statut_maximal: statut maximal à appliquer au télédossier
+      - min_status: statut minimal à appliquer au télédossier
+      - max_status: statut maximal à appliquer au télédossier
     """
     token: str = hubee_client.get_access_token(client_id, client_secret)
     notifications: dict = hubee_client.get_notifications(token)
@@ -52,12 +52,12 @@ def process_hubee_teledossier(
             hubee_client.create_event(
                 token,
                 notif["caseId"],
-                statut_minimal,
+                min_status,
             )
             hubee_client.create_event(
                 token,
                 notif["caseId"],
-                statut_maximal,
+                max_status,
             )
             hubee_client.delete_notification(token, notif["id"])
         else:
@@ -99,20 +99,20 @@ def process_hubee_teledossier(
 
                         # changement des status du case et création d'events
                         print(
-                            f"  → Passage au statut: {statut_minimal} ({HubeeStatus.get_description(statut_minimal)})"
+                            f"  → Passage au statut: {min_status} ({HubeeStatus.get_description(min_status)})"
                         )
                         hubee_client.create_event(
                             token,
                             notif["caseId"],
-                            statut_minimal,
+                            min_status,
                         )
                         print(
-                            f"  → Passage au statut: {statut_maximal} ({HubeeStatus.get_description(statut_maximal)})"
+                            f"  → Passage au statut: {max_status} ({HubeeStatus.get_description(max_status)})"
                         )
                         hubee_client.create_event(
                             token,
                             notif["caseId"],
-                            statut_maximal,
+                            max_status,
                         )
                     case _:
                         print("erreur lors de la récupération de l'event")
@@ -129,8 +129,8 @@ def process_hubee_teledossier(
         client_id,
         client_secret,
         download_path,
-        statut_minimal,
-        statut_maximal,
+        min_status,
+        max_status,
     )
 
 
@@ -140,14 +140,14 @@ def main():
     hubee_client = HubeeClient()
 
     for process in hubee_client.config["demarches"]:
-        print("Traitement de la démarche: ", process["demarche_nom"])
+        print("Traitement de la démarche: ", process["name"])
 
         # Dossier de téléchargement (avec fallback) + création du répertoire
-        configured_dir: str | None = process.get("dossier_telechargement")
+        configured_dir: str | None = process.get("download_path")
         if configured_dir:
             download_path: Path = Path(configured_dir)
         else:
-            fallback_dir: str = f"./downloads/{process['demarche_nom']}/"
+            fallback_dir: str = f"./downloads/{process['name']}/"
             print(
                 f"  Dossier de téléchargement non configuré, utilisation du fallback: {fallback_dir}"
             )
@@ -163,8 +163,8 @@ def main():
             client_id=process["client_id"],
             client_secret=process["client_secret"],
             download_path=download_path,
-            statut_minimal=process["statut_minimal"],
-            statut_maximal=process["statut_maximal"],
+            min_status=process["min_status"],
+            max_status=process["max_status"],
         )
 
 

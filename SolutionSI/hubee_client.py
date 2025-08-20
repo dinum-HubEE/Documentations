@@ -88,7 +88,7 @@ class HubeeClient:
         auth=None,
     ) -> requests.Response:
         """Gère les requêtes HTTP avec retry automatique."""
-        nb_retry = self.config["nombre_retry"]
+        nb_retry = self.config["retry_nb"]
 
         while nb_retry > 0:
             try:
@@ -109,7 +109,7 @@ class HubeeClient:
                 nb_retry -= 1
                 if nb_retry > 0:
                     print(
-                        f"Retry attempt {self.config['nombre_retry'] - nb_retry + 1}/{self.config['nombre_retry']}"
+                        f"Retry attempt {self.config['retry_nb'] - nb_retry + 1}/{self.config['retry_nb']}"
                     )
                     continue
 
@@ -136,7 +136,7 @@ class HubeeClient:
         headers: dict[str, str] = self._get_headers(token=token)
         response: requests.Response = self._handle_request_with_retry(
             method="GET",
-            url=f"{self.config['environnement']['api_url']}/teledossiers/v1/notifications?eventDetails=true&maxResult={self.config['notification_max']}",
+            url=f"{self.config['environnement']['api_url']}/teledossiers/v1/notifications?eventDetails=true&maxResult={self.config['max_notifications']}",
             headers=headers,
             error_message="Impossible de récupérer les notifications, merci de vous rapprocher de votre équipe technique",
         )
