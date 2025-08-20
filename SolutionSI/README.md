@@ -20,35 +20,23 @@ Le projet est organisé en quatre fichiers principaux :
 
 **Python** >= 3.10
 
-### Lancement
-
-**Gestionnaire de paquets** : Le script peut être exécuté de deux façons :
-- **Méthode classique** : Avec pip et un environnement virtuel Python
-- **Méthode moderne** : Avec [uv](https://docs.astral.sh/uv/) qui gère automatiquement les dépendances et permet l'exécution directe (`./main.py`)
-
-#### Méthode 1 : Python classique
-
-Cette méthode nécessite un environnement virtuel Python pour isoler les dépendances du projet :
+### Installation et exécution
 
 ```bash
-# Installation des dépendances Python
+# Créer et activer un environnement virtuel
+python3 -m venv venv
+source venv/bin/activate  # Linux/Mac
+# ou
+venv\Scripts\activate     # Windows
+
+# Installer les dépendances
 pip install -e .
 
-# Lancement du script Python
+# Lancer le script
 python3 main.py
 ```
 
-#### Méthode 2 : Exécution directe
-
-Cette méthode gère automatiquement l'environnement virtuel et les dépendances :
-
-```bash
-# Rendre le script exécutable
-chmod +x main.py
-
-# Lancer le script
-./main.py
-```
+**Note :** Vous pouvez aussi utiliser [uv](https://docs.astral.sh/uv/) ou [Poetry](https://python-poetry.org/) pour gérer automatiquement l'environnement virtuel et les dépendances.
 
 ## ⚙️ Configuration
 

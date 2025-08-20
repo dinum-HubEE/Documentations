@@ -1,9 +1,4 @@
-#!/usr/bin/env -S uv run --script
-# /// script
-# dependencies = [
-#     "requests",
-# ]
-# ///
+#!/usr/bin/env python3
 
 from pathlib import Path
 
