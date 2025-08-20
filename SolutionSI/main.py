@@ -54,12 +54,12 @@ def process_hubee_teledossier(
                     download_path,
                 )
 
-            hubee_client.create_status_event(
+            hubee_client.create_event(
                 token,
                 notif["caseId"],
                 statut_minimal,
             )
-            hubee_client.create_status_event(
+            hubee_client.create_event(
                 token,
                 notif["caseId"],
                 statut_maximal,
@@ -106,12 +106,12 @@ def process_hubee_teledossier(
                             )
 
                         # changement des status du case et création d'events
-                        hubee_client.create_status_event(
+                        hubee_client.create_event(
                             token,
                             notif["caseId"],
                             statut_minimal,
                         )
-                        hubee_client.create_status_event(
+                        hubee_client.create_event(
                             token,
                             notif["caseId"],
                             statut_maximal,
@@ -158,15 +158,15 @@ def main():
         existed_before: bool = download_path.exists()
         if not existed_before:
             download_path.mkdir(parents=True, exist_ok=True)
-            print(
-                f"  Création du répertoire de téléchargement: {download_path.resolve()}"
-            )
+            print(f"  Création du répertoire de téléchargement: {download_path.resolve()}")
 
         process_hubee_teledossier(
             hubee_client=hubee_client,
             client_id=process["client_id"],
             client_secret=process["client_secret"],
             download_path=download_path,
+            statut_minimal=process["statut_minimal"],
+            statut_maximal=process["statut_maximal"],
         )
 
 

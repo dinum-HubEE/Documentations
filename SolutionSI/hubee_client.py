@@ -1,9 +1,26 @@
-import requests
 import json
+from enum import Enum
 from pathlib import Path
 from typing import Any
-from requests.exceptions import HTTPError
+
+import requests
 import tomllib
+from requests.exceptions import HTTPError
+
+
+class HubeeStatus(Enum):
+    """Statuts possibles pour les télédossiers HUBEE."""
+
+    SENT = "SENT"  # Nouveau
+    SI_RECEIVED = "SI_RECEIVED"  # Reçu par le service instructeur
+    IN_PROGRESS = "IN_PROGRESS"  # En cours de traitement par le service instructeur
+    DONE = "DONE"  # Traité par le service instructeur
+    REFUSED = "REFUSED"  # Refusé par le service instructeur
+
+    @classmethod
+    def is_valid(cls, status: str) -> bool:
+        """Vérifie si un statut est valide selon les valeurs HUBEE autorisées."""
+        return status in [s.value for s in cls]
 
 
 class HubeeClient:
@@ -15,17 +32,13 @@ class HubeeClient:
             with open("config.toml", "rb") as f:
                 self.config: dict[str, Any] = tomllib.load(f)
         except FileNotFoundError:
-            raise RuntimeError(
-                "Le fichier config.toml est introuvable dans le répertoire courant"
-            )
+            raise RuntimeError("Le fichier config.toml est introuvable dans le répertoire courant")
         except tomllib.TOMLDecodeError as e:
             raise RuntimeError(f"Erreur de syntaxe dans config.toml: {e}")
         except Exception as e:
             raise RuntimeError(f"Erreur lors de la lecture de config.toml: {e}")
 
-    def _get_headers(
-        self, token: str = None, content_type: str = None
-    ) -> dict[str, str]:
+    def _get_headers(self, token: str = None, content_type: str = None) -> dict[str, str]:
         """Génère les headers communs avec options.
 
         Args:
@@ -96,9 +109,7 @@ class HubeeClient:
 
     def get_access_token(self, client_id: str, client_secret: str) -> str:
         """Récupère un token d'authentification OAuth2 depuis l'API HUBEE."""
-        payload: str = (
-            f"scope={self.config['type_acteur']}&grant_type=client_credentials"
-        )
+        payload: str = f"scope={self.config['type_acteur']}&grant_type=client_credentials"
         headers: dict[str, str] = self._get_headers(
             content_type="application/x-www-form-urlencoded"
         )
@@ -122,6 +133,85 @@ class HubeeClient:
             error_message="Impossible de récupérer les notifications, merci de vous rapprocher de votre équipe technique",
         )
         return response.json()
+
+    def delete_notification(self, token: str, notification: str) -> requests.Response:
+        """Supprime une notification depuis l'API HUBEE."""
+        headers: dict[str, str] = self._get_headers(token=token)
+        response: requests.Response = self._handle_request_with_retry(
+            method="DELETE",
+            url=f"{self.config['environnement']['api_url']}teledossiers/v1/notifications/{notification}",
+            headers=headers,
+            error_message=f"impossible de supprimer la notification: {notification}",
+        )
+        return response
+
+    def get_case(self, token: str, case: str) -> dict[str, Any]:
+        """Récupère les informations d'un télédossier depuis l'API HUBEE."""
+        headers: dict[str, str] = self._get_headers(token=token)
+        response: requests.Response = self._handle_request_with_retry(
+            method="GET",
+            url=f"{self.config['environnement']['api_url']}teledossiers/v1/cases/{case}",
+            headers=headers,
+            error_message=f"impossible de récupérer le case: {case}",
+        )
+        return response.json()
+
+    def get_event(self, token: str, case: str, event: str) -> dict[str, Any]:
+        """Récupère les informations d'un événement depuis l'API HUBEE."""
+        headers: dict[str, str] = self._get_headers(token=token)
+        response: requests.Response = self._handle_request_with_retry(
+            method="GET",
+            url=f"{self.config['environnement']['api_url']}teledossiers/v1/cases/{case}/events/{event}",
+            headers=headers,
+            error_message=f"impossible de récupérer un event: {event}",
+        )
+        return response.json()
+
+    def create_event(self, token: str, case: str, new_status: str) -> dict[str, Any]:
+        """Crée un nouvel événement de changement de statut dans l'API HUBEE."""
+        # Validation du statut avant envoi à l'API
+        if not HubeeStatus.is_valid(new_status):
+            valid_statuses = [s.value for s in HubeeStatus]
+            raise ValueError(
+                f"Statut invalide: '{new_status}'. Statuts autorisés: {valid_statuses}. "
+            )
+
+        headers: dict[str, str] = self._get_headers(token=token, content_type="application/json")
+        response: requests.Response = self._handle_request_with_retry(
+            method="POST",
+            url=f"{self.config['environnement']['api_url']}teledossiers/v1/cases/{case}/events",
+            headers=headers,
+            error_message=f"impossible de créer un event: {case}",
+            data=json.dumps(
+                {
+                    "message": f"passage du télédossier à {new_status}",
+                    "actionType": "STATUS_UPDATE",
+                    "author": "me",
+                    "notification": True,
+                    "caseNewStatus": new_status,
+                }
+            ),
+        )
+        return response.json()
+
+    def update_event_status(
+        self, token: str, case: str, event: str, status: str
+    ) -> requests.Response:
+        """Met à jour le statut d'un événement dans l'API HUBEE."""
+        # Validation du statut avant envoi à l'API
+        if not HubeeStatus.is_valid(status):
+            valid_statuses = [s.value for s in HubeeStatus]
+            raise ValueError(f"Statut invalide: '{status}'. Statuts autorisés: {valid_statuses}. ")
+
+        headers: dict[str, str] = self._get_headers(token=token, content_type="application/json")
+        response: requests.Response = self._handle_request_with_retry(
+            method="PATCH",
+            url=f"{self.config['environnement']['api_url']}teledossiers/v1/cases/{case}/events/{event}",
+            headers=headers,
+            error_message=f"impossible de modifier le status de levent: {case}",
+            data=json.dumps({"status": status}),
+        )
+        return response
 
     def download_case_attachment(
         self,
@@ -181,76 +271,3 @@ class HubeeClient:
 
         if not download_path.exists():
             raise ValueError("FILE IS NOT CREATED")
-
-    def get_case(self, token: str, case: str) -> dict[str, Any]:
-        """Récupère les informations d'un télédossier depuis l'API HUBEE."""
-        headers: dict[str, str] = self._get_headers(token=token)
-        response: requests.Response = self._handle_request_with_retry(
-            method="GET",
-            url=f"{self.config['environnement']['api_url']}teledossiers/v1/cases/{case}",
-            headers=headers,
-            error_message=f"impossible de récupérer le case: {case}",
-        )
-        return response.json()
-
-    def update_event_status(
-        self, token: str, case: str, event: str, status: str
-    ) -> requests.Response:
-        """Met à jour le statut d'un événement dans l'API HUBEE."""
-        headers: dict[str, str] = self._get_headers(
-            token=token, content_type="application/json"
-        )
-        response: requests.Response = self._handle_request_with_retry(
-            method="PATCH",
-            url=f"{self.config['environnement']['api_url']}teledossiers/v1/cases/{case}/events/{event}",
-            headers=headers,
-            error_message=f"impossible de modifier le status de levent: {case}",
-            data=json.dumps({"status": status}),
-        )
-        return response
-
-    def get_event(self, token: str, case: str, event: str) -> dict[str, Any]:
-        """Récupère les informations d'un événement depuis l'API HUBEE."""
-        headers: dict[str, str] = self._get_headers(token=token)
-        response: requests.Response = self._handle_request_with_retry(
-            method="GET",
-            url=f"{self.config['environnement']['api_url']}teledossiers/v1/cases/{case}/events/{event}",
-            headers=headers,
-            error_message=f"impossible de récupérer un event: {event}",
-        )
-        return response.json()
-
-    def delete_notification(self, token: str, notification: str) -> requests.Response:
-        """Supprime une notification depuis l'API HUBEE."""
-        headers: dict[str, str] = self._get_headers(token=token)
-        response: requests.Response = self._handle_request_with_retry(
-            method="DELETE",
-            url=f"{self.config['environnement']['api_url']}teledossiers/v1/notifications/{notification}",
-            headers=headers,
-            error_message=f"impossible de supprimer la notification: {notification}",
-        )
-        return response
-
-    def create_status_event(
-        self, token: str, case: str, new_status: str
-    ) -> dict[str, Any]:
-        """Crée un nouvel événement de changement de statut dans l'API HUBEE."""
-        headers: dict[str, str] = self._get_headers(
-            token=token, content_type="application/json"
-        )
-        response: requests.Response = self._handle_request_with_retry(
-            method="POST",
-            url=f"{self.config['environnement']['api_url']}teledossiers/v1/cases/{case}/events",
-            headers=headers,
-            error_message=f"impossible de créer un event: {case}",
-            data=json.dumps(
-                {
-                    "message": f"passage du télédossier à {new_status}",
-                    "actionType": "STATUS_UPDATE",
-                    "author": "me",
-                    "notification": True,
-                    "caseNewStatus": new_status,
-                }
-            ),
-        )
-        return response.json()
