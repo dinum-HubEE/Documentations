@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from pathlib import Path
+from typing import Any
 
 from hubee_client import HubeeClient, HubeeStatus
 
@@ -27,7 +28,7 @@ def process_hubee_teledossier(
       - max_status: statut maximal à appliquer au télédossier
     """
     token: str = hubee_client.get_access_token(client_id, client_secret)
-    notifications: dict = hubee_client.get_notifications(token)
+    notifications: list[dict[str, Any]] = hubee_client.get_notifications(token)
 
     if len(notifications) == 0:
         print("Il n'y a pas de notification.")

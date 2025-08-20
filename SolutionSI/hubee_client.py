@@ -46,7 +46,9 @@ class HubeeClient:
         except Exception as e:
             raise RuntimeError(f"Erreur lors de la lecture de config.toml: {e}")
 
-    def _get_headers(self, token: str = None, content_type: str = None) -> dict[str, str]:
+    def _get_headers(
+        self, token: str | None = None, content_type: str | None = None
+    ) -> dict[str, str]:
         """Génère les headers communs avec options.
 
         Args:
@@ -131,7 +133,7 @@ class HubeeClient:
         )
         return response.json()["access_token"]
 
-    def get_notifications(self, token: str) -> dict[str, Any]:
+    def get_notifications(self, token: str) -> list[dict[str, Any]]:
         """Récupère la liste des notifications depuis l'API HUBEE."""
         headers: dict[str, str] = self._get_headers(token=token)
         response: requests.Response = self._handle_request_with_retry(
