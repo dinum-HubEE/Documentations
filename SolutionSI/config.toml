@@ -2,8 +2,6 @@
 nombre_retry = 5
 notification_max = 25
 type_acteur = "SI"
-statut_minimal = "IN_PROGRESS"
-statut_maximal = "DONE"
 
 [environnement]
 api_url = ""
@@ -19,9 +17,13 @@ demarche_nom = "CERTDC"
 client_id = ""
 client_secret = ""
 dossier_telechargement = "./downloads/CERTDC/"
+statut_minimal = "IN_PROGRESS"    # statut intermédiaire : SENT, SI_RECEIVED ou IN_PROGRESS
+statut_maximal = "DONE"           # statut final : DONE ou REFUSED
 
 [[demarches]]
 demarche_nom = "EtatCivil"
 client_id = ""
 client_secret = ""
 dossier_telechargement = "./downloads/EtatCivil/"
+statut_minimal = "IN_PROGRESS"    # statut intermédiaire : SENT, SI_RECEIVED ou IN_PROGRESS
+statut_maximal = "DONE"           # statut final : DONE ou REFUSED

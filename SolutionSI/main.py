@@ -11,7 +11,12 @@ from hubee_client import HubeeClient
 
 
 def process_hubee_teledossier(
-    hubee_client: HubeeClient, client_id: str, client_secret: str, download_path: Path
+    hubee_client: HubeeClient,
+    client_id: str,
+    client_secret: str,
+    download_path: Path,
+    statut_minimal: str,
+    statut_maximal: str,
 ) -> None:
     """Traite les télédossiers pour une démarche donnée.
 
@@ -23,6 +28,8 @@ def process_hubee_teledossier(
       - client_id: identifiant client de la démarche
       - client_secret: secret client de la démarche
       - download_path: répertoire cible pour enregistrer les pièces jointes pour la démarche
+      - statut_minimal: statut minimal à appliquer au télédossier
+      - statut_maximal: statut maximal à appliquer au télédossier
     """
     token: str = hubee_client.get_access_token(client_id, client_secret)
     notifications: dict = hubee_client.get_notifications(token)
@@ -50,12 +57,12 @@ def process_hubee_teledossier(
             hubee_client.create_status_event(
                 token,
                 notif["caseId"],
-                hubee_client.config["statut_minimal"],
+                statut_minimal,
             )
             hubee_client.create_status_event(
                 token,
                 notif["caseId"],
-                hubee_client.config["statut_maximal"],
+                statut_maximal,
             )
             hubee_client.delete_notification(token, notif["id"])
         else:
@@ -102,12 +109,12 @@ def process_hubee_teledossier(
                         hubee_client.create_status_event(
                             token,
                             notif["caseId"],
-                            hubee_client.config["statut_minimal"],
+                            statut_minimal,
                         )
                         hubee_client.create_status_event(
                             token,
                             notif["caseId"],
-                            hubee_client.config["statut_maximal"],
+                            statut_maximal,
                         )
                     case _:
                         print("erreur lors de la récupération de l'event")
@@ -119,7 +126,14 @@ def process_hubee_teledossier(
                     "RECEIVED",
                 )
 
-    process_hubee_teledossier(hubee_client, client_id, client_secret, download_path)
+    process_hubee_teledossier(
+        hubee_client,
+        client_id,
+        client_secret,
+        download_path,
+        statut_minimal,
+        statut_maximal,
+    )
 
 
 def main():

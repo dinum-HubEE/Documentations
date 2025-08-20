@@ -79,44 +79,46 @@ token_url = "url pour le TOKEN"
 
 ### 🔧 Utilisation d'une ou plusieurs démarches
 
-Il est possible d'utiliser une ou plusieurs démarches. Vous devez paramétrer dans le fichier de configuration afin d'ajouter les informations liées à une ou plusieurs démarches, de la manière suivante :
+Il est possible d'utiliser une ou plusieurs démarches. Chaque démarche peut avoir ses propres paramètres de configuration.
 
+**Structure de configuration pour chaque démarche :**
 ```toml
 [[demarches]]
 demarche_nom = "nomDeLaDemarche"
 client_id = "votreClientId"
 client_secret = "votreClientSecret"
 dossier_telechargement = "data/file/download/nomDeLaDemarche/"
+statut_minimal = "IN_PROGRESS"   # statut initial : SENT, SI_RECEIVED ou IN_PROGRESS
+statut_maximal = "DONE"          # statut final : DONE ou REFUSED
 ```
 
-Pour chaque démarche, il y a un couple différent `client_id` / `client_secret` à compléter.
-Vos identifiants sont disponibles sur le portail HUBEE.
+**Paramètres expliqués :**
+- **`demarche_nom`** : Nom de la démarche HUBEE
+- **`client_id`** et **`client_secret`** : Identifiants de connexion (un couple différent par démarche, disponibles sur le portail HUBEE)
+- **`dossier_telechargement`** : Répertoire local où seront stockées les pièces jointes (PJs) des télédossiers
+- **`statut_minimal`** : Statut intermédiare à appliquer au télédossier avant traitement
+- **`statut_maximal`** : Statut final à appliquer au télédossier après traitement
 
-À la réception d'un télédossier, les pièces jointes (PJs) iront directement dans un répertore local de votre choix, défini par `dossier_telechargement`.
-Il est possible de paramétrer un répertoire différent pour chaque démarche.
-
-**Exemple de configuration :**
+**Exemple de configuration complète :**
 ```toml
 [[demarches]]
 demarche_nom = "CERTDC"
 client_id = "votreClientId"
 client_secret = "votreClientSecret"
 dossier_telechargement = "./downloads/CERTDC/"
+statut_minimal = "IN_PROGRESS"
+statut_maximal = "DONE"
 
 [[demarches]]
 demarche_nom = "EtatCivil"
 client_id = "votreClientId"
 client_secret = "votreClientSecret"
 dossier_telechargement = "./downloads/EtatCivil/"
+statut_minimal = "SI_RECEIVED"   # exemple de statut initial différent
+statut_maximal = "DONE"
 ```
 
-### 📊 Configuration de l'utilisation des statuts
-
-Suivant la démarche, vous devez changer les statuts à mettre sur le télédossier :
-```toml
-statut_minimal = "IN_PROGRESS"   # il peut être SENT, SI_RECEIVED ou IN_PROGRESS
-statut_maximal = "DONE"          # il doit être DONE ou REFUSED
-```
+Chaque démarche peut avoir des workflows de statuts différents selon vos besoins métier.
 
 ### 📋 Header
 
@@ -130,12 +132,14 @@ software_version = "2.0.0"                # ne pas toucher si vous utilisez ce s
 
 ### ⚙️ Autres configurations
 
-Le script récupère les notifications par lot de 25 par défaut. Ne pas toucher à cette valeur sans raison :
+D'autres paramètres peuvent être configurés, mais il est déconseillé de changer ces valeurs.
+
+Le script récupère les notifications par lot de 25 par défaut :
 ```toml
 notification_max = 25
 ```
 
-En cas d'erreur de communication avec l'API Hubee, le script va retenter de communiquer avec l'API un nombre de fois défini par `nombre_retry` dans la configuration. Par défaut, cette valeur est de 5, il est déconseillé de le modifier.
+En cas d'erreur de communication avec l'API Hubee, le script va retenter de communiquer avec l'API un nombre de fois défini par `nombre_retry` dans la configuration. Par défaut, cette valeur est de 5 :
 ```toml
 nombre_retry = 5
 ```
