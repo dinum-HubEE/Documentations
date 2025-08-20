@@ -4,8 +4,8 @@ notification_max = 25
 type_acteur = "SI"
 
 [environnement]
-api_url = ""
-token_url = ""
+api_url = "https://api.bas.hubee.numerique.gouv.fr"
+token_url = "https://auth.bas.hubee.numerique.gouv.fr/oauth2/token"
 
 [header]
 editor_name = "SI_XYZ"
