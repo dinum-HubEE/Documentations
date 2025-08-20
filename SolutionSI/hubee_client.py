@@ -128,7 +128,7 @@ class HubeeClient:
         headers: dict[str, str] = self._get_headers(token=token)
         response: requests.Response = self._handle_request_with_retry(
             method="GET",
-            url=f"{self.config['environnement']['api_url']}teledossiers/v1/notifications?eventDetails=true&maxResult={self.config['notification_max']}",
+            url=f"{self.config['environnement']['api_url']}/teledossiers/v1/notifications?eventDetails=true&maxResult={self.config['notification_max']}",
             headers=headers,
             error_message="Impossible de récupérer les notifications, merci de vous rapprocher de votre équipe technique",
         )
@@ -139,7 +139,7 @@ class HubeeClient:
         headers: dict[str, str] = self._get_headers(token=token)
         response: requests.Response = self._handle_request_with_retry(
             method="DELETE",
-            url=f"{self.config['environnement']['api_url']}teledossiers/v1/notifications/{notification}",
+            url=f"{self.config['environnement']['api_url']}/teledossiers/v1/notifications/{notification}",
             headers=headers,
             error_message=f"impossible de supprimer la notification: {notification}",
         )
@@ -150,7 +150,7 @@ class HubeeClient:
         headers: dict[str, str] = self._get_headers(token=token)
         response: requests.Response = self._handle_request_with_retry(
             method="GET",
-            url=f"{self.config['environnement']['api_url']}teledossiers/v1/cases/{case}",
+            url=f"{self.config['environnement']['api_url']}/teledossiers/v1/cases/{case}",
             headers=headers,
             error_message=f"impossible de récupérer le case: {case}",
         )
@@ -161,7 +161,7 @@ class HubeeClient:
         headers: dict[str, str] = self._get_headers(token=token)
         response: requests.Response = self._handle_request_with_retry(
             method="GET",
-            url=f"{self.config['environnement']['api_url']}teledossiers/v1/cases/{case}/events/{event}",
+            url=f"{self.config['environnement']['api_url']}/teledossiers/v1/cases/{case}/events/{event}",
             headers=headers,
             error_message=f"impossible de récupérer un event: {event}",
         )
@@ -179,7 +179,7 @@ class HubeeClient:
         headers: dict[str, str] = self._get_headers(token=token, content_type="application/json")
         response: requests.Response = self._handle_request_with_retry(
             method="POST",
-            url=f"{self.config['environnement']['api_url']}teledossiers/v1/cases/{case}/events",
+            url=f"{self.config['environnement']['api_url']}/teledossiers/v1/cases/{case}/events",
             headers=headers,
             error_message=f"impossible de créer un event: {case}",
             data=json.dumps(
@@ -206,7 +206,7 @@ class HubeeClient:
         headers: dict[str, str] = self._get_headers(token=token, content_type="application/json")
         response: requests.Response = self._handle_request_with_retry(
             method="PATCH",
-            url=f"{self.config['environnement']['api_url']}teledossiers/v1/cases/{case}/events/{event}",
+            url=f"{self.config['environnement']['api_url']}/teledossiers/v1/cases/{case}/events/{event}",
             headers=headers,
             error_message=f"impossible de modifier le status de levent: {case}",
             data=json.dumps({"status": status}),
@@ -226,7 +226,7 @@ class HubeeClient:
         headers: dict[str, str] = self._get_headers(token=token)
         response: requests.Response = self._handle_request_with_retry(
             method="GET",
-            url=f"{self.config['environnement']['api_url']}teledossiers/v1/cases/{case}/attachments/{attachment}",
+            url=f"{self.config['environnement']['api_url']}/teledossiers/v1/cases/{case}/attachments/{attachment}",
             headers=headers,
             error_message=f"impossible de récupérer la pièce jointe : {attachment}",
         )
@@ -256,7 +256,7 @@ class HubeeClient:
         headers: dict[str, str] = self._get_headers(token=token)
         response: requests.Response = self._handle_request_with_retry(
             method="GET",
-            url=f"{self.config['environnement']['api_url']}teledossiers/v1/cases/{case}/events/{event_id}/attachments/{attachment}",
+            url=f"{self.config['environnement']['api_url']}/teledossiers/v1/cases/{case}/events/{event_id}/attachments/{attachment}",
             headers=headers,
             error_message=f"impossible de récupérer la pièce jointe : {attachment}",
         )
